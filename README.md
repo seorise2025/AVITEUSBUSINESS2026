@@ -158,7 +158,7 @@ Every service, detail and contact fact from the live site (Home, Services, About
 | Growth and advice | Virtual CFO | `/services/virtual-cfo` | Live site |
 | Company and software | Company formation and compliance | `/services/company-formation` | Live site |
 | Company and software | Accounting software set-up and training | `/services/accounting-software` | Live site |
-| Industries | Healthcare and care, construction, e-commerce | `/industries` | Live site |
+| Industries | Healthcare and care, construction, e-commerce | `/industries` | New page. The live site names these sectors in one home page FAQ answer only. Owner to confirm |
 
 Also from the live site: the ICAEW, ACCA and CIMA credentials line (owner's decision), the five values, "How we work", the About FAQ, "Alpha House" in the office address, Sunday closed, "we respond within one business day", "meet online or in person", "UK-wide coverage using secure cloud systems". The legal lines keep the registered office exactly as Companies House shows it.
 
@@ -208,6 +208,7 @@ Run `python3 src/link_audit.py` after any copy change. It counts contextual link
 - Contextual links on existing deck words, for example "The books are three months behind" to Bookkeeping, "Aviteus began in healthcare staffing" to About, "VAT and payroll dates" on Contact to the finder.
 - Three short link lines: "See all services and what we don't do →" (Home), "Find your own dates →" (Home sample card), "Compare them first: see all services" (Contact form hint).
 - "Cookie settings" link in the footer, so visitors can change their choice (PECR).
+- The Industries page (`/industries`) and its menu links. The live site has no such page; it only names healthcare, construction and e-commerce in one FAQ answer. The CIS, shift-pay and sales-channel detail on the page must be confirmed by the owner.
 - The floating WhatsApp widget. The strategy pack asked for no floating chat bubble; added at the owner's request (24 Nov 2026).
 - The 5-step lead form. The strategy pack asked for a short form; the longer qualifying form was added at the owner's request to judge lead quality.
 - Payroll month table: "Cut-off day" shown in place of the `{Cut-off day}` field until a day is agreed.
