@@ -632,7 +632,7 @@ ABOUT_FAQS = [  # reworked from the live About page FAQ
 
 def about(data):
     facts = [("Company", "Aviteus Business Solutions Ltd"),
-             ("Company number", f'<a class="tlink" href="{CH_URL}" target="_blank" rel="noopener">Company number {COMPANY_NO}</a>, registered in England and Wales'),
+             ("Company number", f'<a class="tlink" href="{CH_URL}" target="_blank" rel="noopener">{COMPANY_NO}</a>, registered in England and Wales'),
              ("Registered office", REG_OFFICE), ("Office", ADDRESS)]
     if data.get("aml_supervisor"): facts.append(("Anti-money laundering supervisor", escape(data["aml_supervisor"])))
     if data.get("pi_insurer"): facts.append(("Professional indemnity insurance", escape(data["pi_insurer"])))
