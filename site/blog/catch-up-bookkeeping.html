@@ -174,6 +174,23 @@
   <a class="av-btn av-btn--ember" href="/contact" data-book data-placement="sticky_bar">Book a review</a>
   <a class="av-btn av-btn--outline" href="https://wa.me/447570359908?text=Hi%20Aviteus%2C%20I%20have%20a%20question%20about%20your%20services." target="_blank" rel="noopener" data-placement="sticky_bar">Chat on WhatsApp</a>
 </div>
+<div class="wa-widget" id="wa-widget" hidden>
+  <div class="wa-panel" id="wa-panel" role="dialog" aria-labelledby="wa-title" hidden>
+    <div class="wa-top"><div><p class="wa-title" id="wa-title">Aviteus Business Solutions</p><p class="wa-sub">We reply within one business day</p></div><button class="wa-close" type="button" data-wa-close aria-label="Close WhatsApp chat">×</button></div>
+    <div class="wa-body">
+      <p class="wa-bubble">Hi, how can we help? Pick a topic and WhatsApp opens with your message ready to send.</p>
+      <div class="wa-topics">
+        <a class="wa-topic" href="https://wa.me/447570359908?text=Hi%20Aviteus%2C%20I%20have%20a%20question%20about%20bookkeeping." target="_blank" rel="noopener" data-placement="widget_bookkeeping">Bookkeeping</a>
+        <a class="wa-topic" href="https://wa.me/447570359908?text=Hi%20Aviteus%2C%20I%20have%20a%20question%20about%20payroll." target="_blank" rel="noopener" data-placement="widget_payroll">Payroll</a>
+        <a class="wa-topic" href="https://wa.me/447570359908?text=Hi%20Aviteus%2C%20I%20have%20a%20question%20about%20VAT%20or%20year-end%20tax." target="_blank" rel="noopener" data-placement="widget_vat">VAT or year-end tax</a>
+        <a class="wa-topic" href="https://wa.me/447570359908?text=Hi%20Aviteus%2C%20I%20have%20a%20question%20about%20your%20services." target="_blank" rel="noopener" data-placement="widget_general">Something else</a>
+      </div>
+      <p class="wa-num">Or message <span class="av-num">+44 7570 359908</span></p>
+    </div>
+  </div>
+  <p class="wa-hint" id="wa-hint" hidden><span>Questions? Chat with us on WhatsApp.</span><button type="button" data-wa-hint-close aria-label="Dismiss">×</button></p>
+  <button class="wa-fab" type="button" id="wa-fab" aria-expanded="false" aria-controls="wa-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg><span>WhatsApp</span></button>
+</div>
 <div class="cookie" id="cookie" role="region" aria-label="Cookie choice" hidden>
   <p>We use essential cookies to run this site. With your permission, we also use analytics cookies to see which pages help people. We do not use advertising cookies.</p>
   <div class="actions">
@@ -183,6 +200,7 @@
   <p class="mt-4 small"><a href="/cookies">Cookie details</a></p>
 </div>
 <script src="/assets/site.js" defer></script>
+
 
 </body>
 </html>

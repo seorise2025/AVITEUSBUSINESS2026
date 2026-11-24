@@ -34,7 +34,7 @@ The build writes `site/` from scratch. Edit files in `src/` or `design-system/`,
 | `/services/payroll` | `services/payroll.html` | |
 | `/services/vat-tax` | `services/vat-tax.html` | |
 | `/about-us` | `about-us.html` | |
-| `/contact` | `contact.html` | Review booking and enquiry form |
+| `/contact` | `contact.html` | Review booking and the 5-step lead form |
 | `/deadline-finder` | `deadline-finder.html` | Free tool. New copy, not in the deck |
 | `/terms-and-conditions` | `terms-and-conditions.html` | Word for word from the live site, until Vikas reviews it |
 | `/privacy-policy` | `privacy-policy.html` | **Draft for adviser review.** `noindex`, not in the sitemap. "To confirm" items need answers |
@@ -75,7 +75,47 @@ The preview copy uses file names for links (`contact.html`), keeps the light loo
 
 The form posts JSON to `POST /api/enquiries`. **That endpoint does not exist yet.** Until it does, every submit shows the honest failure message with the WhatsApp fallback. The form never pretends to work.
 
-The backend must follow section 13 of the strategy pack. The page sends: `name`, `email`, `company`, `service`, `message`, `reply_method`, `phone`, `newsletter`, `website` (honeypot, must be empty), `submission_id` (for duplicate checks), `elapsed_ms` (reject under 3000), and the attribution fields `page_url`, `page_title`, `referrer`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `first_landing`, `form_version`.
+The backend must follow section 13 of the strategy pack.
+
+### The lead form (version 2)
+
+One form, built once in `src/layout.py` (`lead_form`, `lead_section`), logic in `src/leadform.js`. It sits on Contact, Home and all 8 service pages. On a service page that service is ticked already. Any "Book a review" button on a page with the form scrolls to it.
+
+Five short steps. Most answers are one tap. Each step tells us something about lead quality.
+
+| Step | Questions | What it tells us |
+|---|---|---|
+| 1. What you need | Services (choose all that apply, includes "Switching from my current accountant" and "Extra capacity for my accountancy practice") | Fit, and the size of the job |
+| 2. Your business | Business type, people in the business, yearly turnover, VAT registered (optional), industry (optional) | Size, likely fee, which manager |
+| 3. Where things stand | Who does the books now, software, how up to date the books are, deadlines in the next 3 months, "What would you like to change?" | Pain, urgency, effort. A long answer here is the strongest intent signal |
+| 4. Timing | When to start, who makes the decision, monthly budget (optional), how they heard of us | Timing, authority, budget, channel |
+| 5. Your details | Name, email, company (optional), reply by email, phone or WhatsApp, best time (optional), newsletter opt-in | Contact. Phone becomes required when they pick phone or WhatsApp |
+
+**Hidden lead score.** Worked out in the browser and sent with the enquiry. Never shown to the visitor.
+
+- Start: within 2 weeks +3, this month +2, this quarter +1.
+- Decision maker: yes +2, shared +1.
+- Staff: 10 to 49 +3, 2 to 9 or 50+ +2, just me +1.
+- Turnover: £250k to £5m +3, £90k to £250k or over £5m +2, others +1.
+- +1 each for: 2 or more services, books behind, a real deadline in 3 months, a message of 60+ characters, a phone number, a budget band given.
+- Tier: **hot** 11+, **warm** 7 to 10, **nurture** under 7. Suggested rule: hot gets a call the same day, warm a reply within one business day, nurture a reply plus the newsletter.
+
+The backend must re-score on the server and never trust the browser score alone.
+
+**Fields sent:** `services[]`, `business_type`, `staff`, `turnover`, `vat_registered`, `industry`, `books_now`, `software`, `books_status`, `deadlines[]`, `message`, `start`, `decision`, `budget`, `source`, `name`, `email`, `company`, `phone`, `reply_method`, `best_time`, `newsletter`, `website` (honeypot, must be empty), `lead_score`, `lead_tier`, `submission_id` (for duplicate checks), `elapsed_ms` (reject under 3000), and the attribution fields `page_url`, `page_title`, `referrer`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `first_landing`, `form_version` (now `"2"`).
+
+`generate_lead` in the dataLayer now carries `lead_tier` (no personal data).
+
+### WhatsApp widget
+
+A floating WhatsApp button, bottom right, on every page (`WA_WIDGET` in `src/layout.py`, logic in `src/site.js`).
+
+- Hidden until the visitor makes a cookie choice, so it never covers the banner.
+- Opens a small panel with 4 topics: Bookkeeping, Payroll, VAT or year-end tax, Something else. Each opens WhatsApp with a message ready to send.
+- One gentle greeting after 20 seconds, once per visit. Never while the lead form is on screen.
+- Fades while the lead form is on screen, so it does not pull people away from the form.
+- On phones it hides when the sticky bar is showing, since that bar already has WhatsApp.
+- Escape closes it. Clicks are tracked as `whatsapp_widget_open` and `whatsapp_click`.
 
 It must answer with:
 
@@ -168,6 +208,8 @@ Run `python3 src/link_audit.py` after any copy change. It counts contextual link
 - Contextual links on existing deck words, for example "The books are three months behind" to Bookkeeping, "Aviteus began in healthcare staffing" to About, "VAT and payroll dates" on Contact to the finder.
 - Three short link lines: "See all services and what we don't do →" (Home), "Find your own dates →" (Home sample card), "Compare them first: see all services" (Contact form hint).
 - "Cookie settings" link in the footer, so visitors can change their choice (PECR).
+- The floating WhatsApp widget. The strategy pack asked for no floating chat bubble; added at the owner's request (24 Nov 2026).
+- The 5-step lead form. The strategy pack asked for a short form; the longer qualifying form was added at the owner's request to judge lead quality.
 - Payroll month table: "Cut-off day" shown in place of the `{Cut-off day}` field until a day is agreed.
 
 ## Launch blockers (from the strategy pack)

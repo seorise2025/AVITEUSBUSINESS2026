@@ -30,6 +30,7 @@ open(os.path.join(OUT, "assets", "site.css"), "w").write(css)
 shutil.copy(os.path.join(SRC, "site.js"), os.path.join(OUT, "assets", "site.js"))
 shutil.copy(os.path.join(SRC, "finder.js"), os.path.join(OUT, "assets", "finder.js"))
 shutil.copy(os.path.join(SRC, "tools.js"), os.path.join(OUT, "assets", "tools.js"))
+shutil.copy(os.path.join(SRC, "leadform.js"), os.path.join(OUT, "assets", "leadform.js"))
 for f in os.listdir(os.path.join(SRC, "static")):
     shutil.copy(os.path.join(SRC, "static", f), os.path.join(OUT, f if not f.startswith("img-") else os.path.join("assets", "img", f[4:])))
 

@@ -1,7 +1,7 @@
 """Page content. Public copy is taken word for word from the Website Copy Deck (24 Nov 2026).
 Blocks that wait on approval or proof read from data.json and stay hidden until filled."""
 from html import escape
-from layout import (SERVICE_MAP, ALSO_AVAILABLE, INDUSTRIES, REG_OFFICE, SITE, PHONE, PHONE_TEL, WA_DISPLAY, EMAIL, ADDRESS, COMPANY_NO, CH_URL, ARROW, PULSE,
+from layout import (lead_form, lead_section, SERVICE_MAP, ALSO_AVAILABLE, INDUSTRIES, REG_OFFICE, SITE, PHONE, PHONE_TEL, WA_DISPLAY, EMAIL, ADDRESS, COMPANY_NO, CH_URL, ARROW, PULSE,
                     book_btn, wa_btn, wa, faq_html, faq_ld, breadcrumb_ld, crumbs_html, page)
 
 
@@ -194,6 +194,7 @@ def home(data):
     </div>
   </div>
 </section>
+{lead_section()}
 {close_band("Bring one problem. Leave with a plan.", "Twenty minutes is enough to tell you what is behind, what is due next, and whether we can help. If we can't, we'll tell you who might.")}
 '''
     return page(path="/", title="Bookkeeping, Payroll and VAT for UK Businesses | Aviteus",
@@ -310,6 +311,7 @@ def bookkeeping(data):
     {faq_html(faqs)}
   </div>
 </section>
+{lead_section(("bookkeeping",))}
 {close_band("Find out where your books really stand", "In 20 minutes we will tell you how far behind you are, what it will take to catch up, and what a monthly fee would look like.", "bookkeeping")}
 '''
     return page(path="/services/bookkeeping", title="Outsourced Bookkeeping and Management Accounts UK | Aviteus",
@@ -331,31 +333,7 @@ def contact(data):
     </div>
 
     <div class="c-form">
-      <div class="form-card">
-        <div class="err-summary" id="err-summary" tabindex="-1" role="alert"><h2>There is 1 problem with your enquiry</h2><ul></ul></div>
-        <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
-        <form class="form" id="enquiry-form" novalidate data-version="1" aria-labelledby="form-h">
-          <div><h2 id="form-h">Tell us what you need help with</h2><p class="small mt-4">Share a little about your business and what you need, so we can prepare for your review.</p></div>
-          <div class="field" id="f-name-wrap"><label for="f-name">Full name</label><input class="av-input" id="f-name" name="name" autocomplete="name" required maxlength="100" aria-describedby="f-name-err"><p class="err" id="f-name-err"></p></div>
-          <div class="field" id="f-email-wrap"><label for="f-email">Email</label><input class="av-input" id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err"><p class="err" id="f-email-err"></p></div>
-          <div class="field"><label for="f-company">Company or website (optional)</label><input class="av-input" id="f-company" name="company" autocomplete="organization" maxlength="200"></div>
-          <div class="field" id="f-service-wrap"><label for="f-service">Which service is this about?</label><select class="av-input" id="f-service" name="service" required aria-describedby="f-service-err"><option value="">Choose one</option>{opts}</select><p class="hint">Compare them first: <a class='ilink' href='/services'>see all services</a>.</p><p class="err" id="f-service-err"></p></div>
-          <div class="field" id="f-message-wrap"><label for="f-message">What would you like help with?</label><p class="hint" id="f-message-hint">For example: our books are three months behind, or we want to move payroll before the new tax year.</p><textarea class="av-input" id="f-message" name="message" rows="5" required maxlength="2000" aria-describedby="f-message-hint f-message-err"></textarea><p class="err" id="f-message-err"></p></div>
-          <fieldset class="field"><legend>How should we reply?</legend><div class="choices">
-            <label class="choice"><input type="radio" name="reply_method" value="email" checked><span>Email</span></label>
-            <label class="choice"><input type="radio" name="reply_method" value="phone"><span>Phone call</span></label>
-            <label class="choice"><input type="radio" name="reply_method" value="whatsapp"><span>WhatsApp</span></label>
-          </div></fieldset>
-          <div class="field" id="f-phone-wrap" hidden><label for="f-phone">Phone or WhatsApp number</label><p class="hint" id="f-phone-hint">Include the country code if it is not a UK number.</p><input class="av-input" id="f-phone" name="phone" type="tel" autocomplete="tel" aria-describedby="f-phone-hint f-phone-err"><p class="err" id="f-phone-err"></p></div>
-          <label class="check"><input type="checkbox" name="newsletter" value="yes"><span>Send me occasional emails about UK tax deadlines and changes. You can unsubscribe at any time.</span></label>
-          <div class="hp" aria-hidden="true"><label for="f-website">Leave this empty</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
-          <div class="cf-turnstile" data-sitekey=""></div>
-          <p class="privacy">We use these details only to reply to your enquiry. Read our <a class="tlink" href="/privacy-policy">privacy notice</a>.</p>
-          <button class="av-btn av-btn--ember" type="submit">Send enquiry</button>
-          <p class="send-note">Free. No obligation. We reply within one business day.</p>
-          <p class="small">Prefer to message? <a class="tlink" href="{wa()}" target="_blank" rel="noopener" data-placement="under_form">Chat on WhatsApp</a></p>
-        </form>
-      </div>
+      {lead_form()}
     </div>
 
     <div class="c-rest">
@@ -512,6 +490,7 @@ def payroll(data):
     {faq_html(faqs)}
   </div>
 </section>
+{lead_section(("payroll",))}
 {close_band("Get your 24th of the month back", "Twenty minutes is enough to see how your payroll runs today and what would change with us.", "payroll")}
 '''
     return page(path="/services/payroll", title="Payroll Services for Small Businesses UK | Aviteus",
@@ -613,6 +592,7 @@ def vat(data):
     {faq_html(faqs)}
   </div>
 </section>
+{lead_section(("vat",))}
 {close_band("Leave one call knowing your next three deadlines", "Book a 20-minute review and we will list the dates that apply to your business, and what you need to do before each one.", "vat")}
 '''
     return page(path="/services/vat-tax", title="VAT Returns, Year-End Accounts and Corporation Tax | Aviteus",
@@ -1270,6 +1250,7 @@ def _svc_page(data, spec):
     {faq_html(spec["faqs"])}
   </div>
 </section>
+{lead_section((spec["key"],))}
 {close_band(spec["close_h"], spec["close_p"])}
 '''
     return page(path=spec["path"], title=spec["title"], description=spec["desc"], h_active=spec["key"], body_html=body, page_type="service",
