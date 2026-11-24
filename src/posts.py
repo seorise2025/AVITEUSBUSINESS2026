@@ -48,7 +48,8 @@ POSTS = [
 <ul><li><b>Just after a VAT return is filed.</b> The new firm starts with a clean quarter.</li>
 <li><b>Just after a pay run.</b> Payroll moves from the next run, with no gap. Our payroll page explains {L('/services/payroll', 'how moving payroll part way through the year works')}.</li>
 <li><b>Not in the last weeks before a big deadline.</b> If your accounts or tax return are due within a month, let the old firm finish that one.</li></ul>
-<p>Not sure which dates are close for you? The {L('/deadline-finder', 'free deadline finder')} lists them in order.</p>"""),
+<p>Not sure which dates are close for you? The {L('/deadline-finder', 'free deadline finder')} lists them in order.</p>
+<p>Want to tick the steps off as you go? Use the free {L('/tools/switching-checklist', 'switching accountant checklist')}.</p>"""),
 ],
 "faqs": [
 ("Do I need to tell HMRC that I have changed accountant?", "Not directly. Your new accountant sends HMRC the requests to act for you, and you approve them. That is enough for HMRC."),
@@ -231,8 +232,8 @@ POSTS = [
 <li>Submit returns through software that works with Making Tax Digital.</li>
 <li>Keep digital links between its records and the return. Copying figures by hand between systems is not allowed.</li></ul>
 <p>If you still use spreadsheets, bridging software can link them to HMRC. Most businesses find it simpler to move to {L('/services/accounting-software', 'Xero, QuickBooks, Sage or FreeAgent')}.</p>"""),
-("When you must register for VAT", """
-<p>You must register when your VAT-taxable turnover goes over the registration threshold in any rolling 12 months, or when you expect it to in the next 30 days alone. Check the current threshold on GOV.UK, as it can change. Watching your turnover each month is the easiest way to avoid registering late.</p>"""),
+("When you must register for VAT", f"""
+<p>You must register when your VAT-taxable turnover goes over the registration threshold in any rolling 12 months, or when you expect it to in the next 30 days alone. Check the current threshold on GOV.UK, as it can change. Watching your turnover each month is the easiest way to avoid registering late. The free {L('/tools/vat-threshold-checker', 'VAT registration checker')} works out your rolling total.</p>"""),
 ("Records to keep", """
 <ul><li>Sales and purchase invoices.</li>
 <li>Records of VAT you charged and VAT you paid.</li>

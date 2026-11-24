@@ -124,6 +124,16 @@ Also from the live site: the ICAEW, ACCA and CIMA credentials line (owner's deci
 
 The Services panel opens on click (and on hover with a mouse), closes on a second click, Escape or a click elsewhere, and scrolls within the screen on smaller laptops.
 
+## Free tools (lead magnets)
+
+| Tool | URL | Why it earns its place | Keep current |
+|---|---|---|---|
+| UK deadline finder | `/deadline-finder` | Every upcoming date is a reason to call | Reviewer checks the rules each April |
+| VAT registration checker | `/tools/vat-threshold-checker` | Crossing the threshold is when owners look for an accountant | Threshold set once in `src/data.json` (`vat_threshold`, now £90,000). Reviewer confirms before launch and each April |
+| Switching accountant checklist | `/tools/switching-checklist` | People switching are ready to buy; each step points to "we do this for you" | No tax figures to update |
+
+All three run in the browser, store nothing on a server and ask for no email (the strategy pack advises against gated content for a new firm). Each result ends with a "Book a 20-minute review" offer. They are linked from the Services panel, the phone menu, the footer, a Free tools band on Home and the related blog posts. Not built, on purpose: a salary vs dividend calculator (tax rates change every April; a wrong answer costs trust) and a fee estimator (no approved prices).
+
 ## Blog
 
 `/blog` plus six posts, written in `src/posts.py`. Each post targets one keyword cluster from the strategy pack and links to the service page it supports:

@@ -170,7 +170,7 @@ def header(active):
             </div>
             <div class="mega-strip">
               <p><span class="mega-strip-label">Industries</span> {ind}</p>
-              <p><span class="mega-strip-label">Free</span> <a href="/deadline-finder"{cur("finder")}>UK deadline finder</a> <a href="/blog">Blog</a></p>
+              <p><span class="mega-strip-label">Free tools</span> <a href="/deadline-finder"{cur("finder")}>Deadline finder</a> <a href="/tools/vat-threshold-checker">VAT checker</a> <a href="/tools/switching-checklist">Switching checklist</a></p>
             </div>
             <div class="mega-foot">
               <a class="av-link" href="/services"{cur("services")}>All services, side by side {ARROW}</a>
@@ -196,8 +196,8 @@ def header(active):
     <ul class="m-main">
       <li><a href="/services">All services</a></li>
       <li><a href="/about-us">About us</a></li>
+      <li><a href="/tools">Free tools</a></li>
       <li><a href="/blog">Blog</a></li>
-      <li><a href="/deadline-finder">Free UK deadline finder</a></li>
       <li><a href="{PHONE_TEL}" data-placement="mobile_menu">Call {PHONE}</a></li>
     </ul>
   </nav>
@@ -218,7 +218,6 @@ def footer(data):
         <ul>
           {"".join(f'<li><a href="{s["url"]}">{s["name"]}</a></li>' for s in SERVICE_MAP)}
           <li><a href="/services">All services</a></li>
-          <li><a href="/deadline-finder">Free UK deadline finder</a></li>
         </ul>
       </div>
       <div>
@@ -226,6 +225,10 @@ def footer(data):
         <ul>
           <li><a href="/about-us">About us</a></li>
           <li><a href="/industries">Industries we work with</a></li>
+          <li><a href="/tools">Free tools</a></li>
+          <li><a href="/deadline-finder">UK deadline finder</a></li>
+          <li><a href="/tools/vat-threshold-checker">VAT registration checker</a></li>
+          <li><a href="/tools/switching-checklist">Switching checklist</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/contact" data-book data-placement="footer">Book a review</a></li>
           {linkedin}

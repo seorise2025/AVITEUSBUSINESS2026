@@ -29,6 +29,7 @@ css = re.sub(r"\n\s*\n+", "\n", css)
 open(os.path.join(OUT, "assets", "site.css"), "w").write(css)
 shutil.copy(os.path.join(SRC, "site.js"), os.path.join(OUT, "assets", "site.js"))
 shutil.copy(os.path.join(SRC, "finder.js"), os.path.join(OUT, "assets", "finder.js"))
+shutil.copy(os.path.join(SRC, "tools.js"), os.path.join(OUT, "assets", "tools.js"))
 for f in os.listdir(os.path.join(SRC, "static")):
     shutil.copy(os.path.join(SRC, "static", f), os.path.join(OUT, f if not f.startswith("img-") else os.path.join("assets", "img", f[4:])))
 
@@ -44,6 +45,9 @@ ROUTES = [
     ("services/accounting-software.html", pages.software, "/services/accounting-software", "0.8", "monthly"),
     ("services/virtual-cfo.html", pages.virtual_cfo, "/services/virtual-cfo", "0.8", "monthly"),
     ("industries.html", pages.industries, "/industries", "0.7", "monthly"),
+    ("tools.html", pages.tools_hub, "/tools", "0.7", "monthly"),
+    ("tools/vat-threshold-checker.html", pages.vat_checker, "/tools/vat-threshold-checker", "0.8", "monthly"),
+    ("tools/switching-checklist.html", pages.switching_checklist, "/tools/switching-checklist", "0.8", "monthly"),
     ("contact.html", pages.contact, "/contact", "0.8", "monthly"),
     ("about-us.html", pages.about, "/about-us", "0.7", "monthly"),
     ("services.html", pages.services, "/services", "0.6", "monthly"),
@@ -55,9 +59,9 @@ ROUTES = [
 ]
 # Blog: indexable (and in the sitemap) only once approved in data.json
 _ok = data.get("approved_posts", [])
-ROUTES.insert(14, ("blog.html", pages.blog_index, "/blog" if _ok else None, "0.6", "weekly"))
+ROUTES.insert(17, ("blog.html", pages.blog_index, "/blog" if _ok else None, "0.6", "weekly"))
 for _post in pages.POSTS:
-    ROUTES.insert(15, (f"blog/{_post['slug']}.html", (lambda d, _p=_post: pages.blog_post(d, _p)),
+    ROUTES.insert(18, (f"blog/{_post['slug']}.html", (lambda d, _p=_post: pages.blog_post(d, _p)),
                       f"/blog/{_post['slug']}" if _post["slug"] in _ok else None, "0.6", "monthly"))
 for fn, func, url, _, _ in ROUTES:
     p = os.path.join(OUT, fn)

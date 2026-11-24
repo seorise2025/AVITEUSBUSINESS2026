@@ -20,6 +20,7 @@ PAGES = {
     "/services/self-assessment": "services-self-assessment.html", "/services/business-advisory": "services-business-advisory.html",
     "/services/company-formation": "services-company-formation.html", "/services/accounting-software": "services-accounting-software.html",
     "/services/virtual-cfo": "services-virtual-cfo.html", "/industries": "industries.html",
+    "/tools": "tools.html", "/tools/vat-threshold-checker": "tools-vat-threshold-checker.html", "/tools/switching-checklist": "tools-switching-checklist.html",
 }
 sys.path.insert(0, os.path.join(ROOT, "src"))
 from posts import POSTS  # noqa: E402

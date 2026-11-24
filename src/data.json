@@ -31,5 +31,7 @@
     "Hubdoc": "/assets/img/logo-hubdoc.png"
   },
   "approved_posts": [],
-  "_approved_posts_note": "Add a post's slug here once the named accounting reviewer has signed it off. It then loses its draft note, becomes indexable and joins the sitemap."
+  "_approved_posts_note": "Add a post's slug here once the named accounting reviewer has signed it off. It then loses its draft note, becomes indexable and joins the sitemap.",
+  "vat_threshold": 90000,
+  "_vat_threshold_note": "VAT registration threshold used by the free VAT checker. \u00a390,000 from 1 April 2024. The accounting reviewer must confirm it is current before launch and each April."
 }

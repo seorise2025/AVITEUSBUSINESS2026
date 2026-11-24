@@ -90,7 +90,7 @@ def home(data):
       <p class="lead">We run the monthly finance work for UK owner-managed businesses. You get a written scope, one named manager, and a short report each month that shows what we finished and what is coming up next. No surprises in January.</p>
       <div class="hero-actions">{book_btn("hero")}<a class="tlink" href="#what-we-do">See what we do →</a></div>
       <p class="hero-note">Free. 20 minutes. By video or phone.</p>
-      <p class="hero-cred">ICAEW, ACCA and CIMA qualified accountants · UK-wide service</p>
+      <p class="hero-cred">ICAEW, ACCA and CIMA qualified accountants · UK-wide service · Company no. 16694378</p>
     </div>
     <aside class="dd" aria-label="Sample Done and due report">
       <p class="dd-label">SAMPLE REPORT · Fictional company Sample Trading Ltd · November</p>
@@ -173,6 +173,14 @@ def home(data):
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="roots-h">Started by the team behind Aviteus Healthcare</h2></div>
     <p class="lead"><a class='ilink' href='/about-us'>Aviteus began in healthcare staffing</a>, supplying care and nursing staff across the UK. In that world a late payroll means a carer does not get paid on Friday. We brought the same standard to accounting: get the dull things right, on time, every time.</p>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="tools-h">
+  <div class="wrap">
+    <div class="head"><p class="av-eyebrow">Free · No sign-up</p><h2 id="tools-h">Free tools for UK business owners</h2></div>
+    <div class="tool-grid">{"".join(f'<article class="tool-card"><h3><a href="{u}">{t}</a></h3><p>{d}</p><a class="av-link" href="{u}">{c} {ARROW}</a></article>' for u, t, d, c in TOOLS)}</div>
+    <p class="mt-6"><a class="tlink" href="/tools">All free tools →</a></p>
   </div>
 </section>
 
@@ -343,6 +351,7 @@ def contact(data):
           <div class="cf-turnstile" data-sitekey=""></div>
           <p class="privacy">We use these details only to reply to your enquiry. Read our <a class="tlink" href="/privacy-policy">privacy notice</a>.</p>
           <button class="av-btn av-btn--ember" type="submit">Send enquiry</button>
+          <p class="send-note">Free. No obligation. We reply within one business day.</p>
           <p class="small">Prefer to message? <a class="tlink" href="{wa()}" target="_blank" rel="noopener" data-placement="under_form">Chat on WhatsApp</a></p>
         </form>
       </div>
@@ -906,7 +915,7 @@ def finder(data):
       <tbody>{rule_rows}</tbody>
     </table>
     <div class="quiet mt-6"><h3>When these rules do not fit</h3><p class="mt-4">Your first accounts after setting up a company have a different deadline. Large companies pay corporation tax in instalments. If a payment date falls on a weekend or bank holiday, make sure the money reaches HMRC by the working day before. Always check your own dates on GOV.UK or with your accountant.</p></div>
-    {related([("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Self Assessment tax returns", "/services/self-assessment"), ("All services", "/services"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
+    {related([("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Self Assessment tax returns", "/services/self-assessment"), ("VAT registration checker", "/tools/vat-threshold-checker"), ("All free tools", "/tools"), ("All services", "/services"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
   </div>
 </section>
 
@@ -1466,4 +1475,161 @@ def industries(data):
                 description="Accounting, payroll and tax for UK healthcare and care providers, construction businesses and online sellers, from a team with roots in healthcare.",
                 h_active="industries", body_html=body, page_type="industries",
                 ld=[{"@type": "CollectionPage", "url": f"{SITE}/industries", "name": "Industries we work with", "about": {"@id": f"{SITE}/#business"}, "inLanguage": "en-GB"},
+                    breadcrumb_ld(crumbs)], data=data)
+
+
+# ---------------------------------------------------------------- Free tools (new copy: reviewer to confirm the VAT rules and threshold)
+TOOLS = [
+    ("/deadline-finder", "UK deadline finder", "Your next VAT, corporation tax, Companies House, payroll and Self Assessment dates, in date order, for the next 12 months.", "Find my dates"),
+    ("/tools/vat-threshold-checker", "VAT registration checker", "Enter your monthly taxable turnover. See your rolling 12-month total, your headroom, and when you would go over the threshold.", "Check my turnover"),
+    ("/tools/switching-checklist", "Switching accountant checklist", "Every step of changing accountant, in order. Tick them off as you go: your progress is saved in your browser.", "Open the checklist"),
+]
+
+
+def tools_hub(data):
+    cards = "".join(f'''<article class="tool-card">
+  <h2><a href="{u}">{t}</a></h2><p>{d}</p><a class="av-link" href="{u}">{c} {ARROW}</a>
+</article>''' for u, t, d, c in TOOLS)
+    body = f'''
+<section class="hero hero--simple" aria-labelledby="h1">
+  <div class="wrap read">
+    {crumbs_html([("Home", "/"), ("Free tools", "/tools")])}
+    <p class="av-eyebrow">Free · No sign-up</p>
+    <h1 id="h1" class="mt-4">Free tools for UK business owners</h1>
+    <p class="lead">Three quick tools for the questions owners ask us most. They work in your browser, and nothing you enter is stored or sent.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0" aria-label="Tools">
+  <div class="wrap"><div class="tool-grid">{cards}</div></div>
+</section>
+{close_band("Want a person to check your figures?", "Book a free 20-minute review. We will look at your dates, your turnover and your books with you, and tell you what needs doing.")}'''
+    items = [{"@type": "ListItem", "position": i + 1, "name": t, "url": f"{SITE}{u}"} for i, (u, t, d, c) in enumerate(TOOLS)]
+    return page(path="/tools", title="Free Tools for UK Business Owners | Aviteus",
+                description="Free tools for UK business owners: a tax deadline finder, a VAT registration checker and a switching accountant checklist. No sign-up needed.",
+                h_active="tools", body_html=body, page_type="tools",
+                ld=[{"@type": "ItemList", "name": "Free tools", "itemListElement": items}, breadcrumb_ld([("Home", "/"), ("Free tools", "/tools")])], data=data)
+
+
+def vat_checker(data):
+    th = int(data.get("vat_threshold", 90000))
+    crumbs = [("Home", "/"), ("Free tools", "/tools"), ("VAT registration checker", "/tools/vat-threshold-checker")]
+    faqs = [
+        ("When do I have to register for VAT?", f"When your VAT-taxable turnover for the last 12 months goes over the registration threshold (£{th:,} in this tool), or when you expect to go over it in the next 30 days alone."),
+        ("How long do I have to register?", "If your rolling 12-month total goes over, register within 30 days of the end of the month you went over. If you expect to go over in the next 30 days alone, register by the end of that 30-day period."),
+        ("What counts as VAT-taxable turnover?", "The total value of everything you sell that is not exempt from VAT. Exempt sales, such as some health, education and insurance services, do not count."),
+        ("Can I register before I reach the threshold?", "Yes. Some businesses register voluntarily, for example to reclaim VAT on costs. Whether it suits you depends on who your customers are. We go through this on a review call."),
+    ]
+    body = f'''
+<section class="hero hero--simple" aria-labelledby="h1">
+  <div class="wrap read">
+    {crumbs_html(crumbs)}
+    <p class="av-eyebrow">Free tool · No sign-up</p>
+    <h1 id="h1" class="mt-4">VAT registration checker</h1>
+    <p class="lead">Enter your VAT-taxable turnover for each of the last 12 months. You will see your rolling total, how much headroom you have, and roughly when you would go over the threshold.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0" aria-label="VAT registration checker">
+  <div class="wrap finder">
+    <form class="form-card form" id="vat-form" data-threshold="{th}" aria-labelledby="vat-h" novalidate>
+      <div><h2 id="vat-h">Your taxable turnover</h2><p class="hint mt-4">Sales that are not exempt from VAT, before any VAT is added. Round figures are fine.</p></div>
+      <div class="month-grid" id="vat-months"><noscript><p>This tool needs JavaScript. The rules are listed below.</p></noscript></div>
+      <button class="av-btn av-btn--outline av-btn--small" type="button" id="vat-fill">Copy the first month to all months</button>
+      <div class="field"><label for="vat-next30">Expected taxable turnover in the next 30 days alone (optional)</label><input class="av-input av-num" id="vat-next30" name="next30" inputmode="decimal" placeholder="0"></div>
+    </form>
+    <div>
+      <div id="vat-result" aria-live="polite"></div>
+      <div class="callout mt-6">
+        <h2 style="font-size:24px;line-height:30px">Close to the threshold?</h2>
+        <p class="mt-4">Book a 20-minute review. We will check your figures, tell you whether to register now or wait, and set up VAT in your software.</p>
+        <div class="close-actions mt-5">{book_btn("vat_checker")}{wa_btn("vat_checker_whatsapp", "vat")}</div>
+      </div>
+      <p class="note mt-5">This tool uses a threshold of £{th:,}. Check the current figure on GOV.UK before you rely on the result.</p>
+    </div>
+  </div>
+</section>
+<section class="section section--alt" aria-labelledby="faq-h">
+  <div class="wrap split">
+    <div class="head" style="margin:0"><h2 id="faq-h">VAT registration questions</h2></div>
+    <div>{faq_html(faqs)}{related([("VAT and year-end tax", "/services/vat-tax"), ("VAT returns and Making Tax Digital", "/blog/vat-returns-making-tax-digital"), ("UK deadline finder", "/deadline-finder"), ("All free tools", "/tools")])}</div>
+  </div>
+</section>
+{close_band("Get VAT set up right first time", "In 20 minutes we will tell you when to register, which VAT scheme fits, and what changes in your software.", "vat")}'''
+    return page(path="/tools/vat-threshold-checker", title="VAT Registration Threshold Checker UK | Aviteus",
+                description="Free VAT registration checker. Enter 12 months of taxable turnover to see your rolling total, your headroom and when you would cross the threshold.",
+                h_active="tools", body_html=body, page_type="tool", service="vat",
+                extra_js='<script src="/assets/tools.js" defer></script>',
+                ld=[{"@type": "WebApplication", "name": "VAT registration checker", "url": f"{SITE}/tools/vat-threshold-checker", "applicationCategory": "FinanceApplication", "operatingSystem": "Any",
+                     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}, "provider": {"@id": f"{SITE}/#business"}, "inLanguage": "en-GB"},
+                    breadcrumb_ld(crumbs), faq_ld(faqs)], data=data)
+
+
+SWITCH_STEPS = [
+    ("Before you switch", [
+        ("s1", "Read your engagement letter", "Check the notice period and how fees are settled when you leave."),
+        ("s2", "Clear or agree any unpaid fees", "Unpaid fees are the most common reason a handover slows down."),
+        ("s3", "Get a written scope from the new firm", "What they do, what you do, when, and the fixed fee."),
+        ("s4", "Agree the takeover date", "Ideally the start of your next VAT quarter or your next pay run."),
+    ]),
+    ("Telling people", [
+        ("s5", "Email your current accountant", "A short, polite note with the date you are moving."),
+        ("s6", "Let the new firm request professional clearance", "They write to your old firm. You do not need to do anything."),
+    ]),
+    ("Authority and access", [
+        ("s7", "Approve the new firm as your HMRC agent", "For corporation tax, VAT, PAYE and Self Assessment, as each request arrives."),
+        ("s8", "Move your accounting software into your company's name", "If the old firm holds the subscription, ask them to transfer it."),
+        ("s9", "Find your Companies House authentication code", "Needed to file accounts and the confirmation statement."),
+    ]),
+    ("Records to hand over", [
+        ("s10", "Last year's accounts and tax returns", "The opening figures for this year."),
+        ("s11", "VAT returns filed this year", "So the next return starts from the right place."),
+        ("s12", "Payroll year-to-date figures for each employee", "Needed if payroll moves part way through the year."),
+        ("s13", "Your tax references", "UTR, VAT number, PAYE and Accounts Office references."),
+    ]),
+    ("After the switch", [
+        ("s14", "Check the first monthly report", "Confirm the opening balances and your next deadlines are right."),
+        ("s15", "Put your next three deadlines in your calendar", "Your new firm should give you these on day one."),
+    ]),
+]
+
+
+def switching_checklist(data):
+    crumbs = [("Home", "/"), ("Free tools", "/tools"), ("Switching checklist", "/tools/switching-checklist")]
+    total = sum(len(items) for _, items in SWITCH_STEPS)
+    groups = []
+    for title, items in SWITCH_STEPS:
+        lis = "".join(f'''<li class="check-item"><input type="checkbox" id="{i}"><label for="{i}" class="ci-text"><b>{a}</b><span>{b}</span></label></li>''' for i, a, b in items)
+        groups.append(f'<fieldset class="check-group"><legend>{title}</legend><ul>{lis}</ul></fieldset>')
+    body = f'''
+<section class="hero hero--simple" aria-labelledby="h1">
+  <div class="wrap read">
+    {crumbs_html(crumbs)}
+    <p class="av-eyebrow">Free tool · No sign-up</p>
+    <h1 id="h1" class="mt-4">Switching accountant checklist</h1>
+    <p class="lead">Every step of changing accountant, in the order you do them. Tick each one as you go. Your progress is saved in this browser only.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0" aria-label="Checklist">
+  <div class="wrap finder">
+    <div>
+      <div class="progress-wrap"><div class="progress" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="{total}" aria-valuenow="0"><span id="switch-progress"></span></div><p class="small" id="switch-count">0 of {total} done</p></div>
+      <div id="switch-list" class="mt-5">{"".join(groups)}</div>
+      <div class="close-actions mt-6"><button class="av-btn av-btn--outline av-btn--small" type="button" id="switch-copy">Copy the checklist</button><button class="av-btn av-btn--small" type="button" id="switch-reset" style="background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-strong)">Start again</button></div>
+    </div>
+    <div class="post-side" style="top:112px">
+      <div class="callout">
+        <h2 style="font-size:24px;line-height:30px">Would you rather we did it?</h2>
+        <p class="mt-4">When you switch to Aviteus, we handle clearance, HMRC authority and the handover, timed around your next payroll run and VAT date. You send one email.</p>
+        <div class="close-actions mt-5">{book_btn("switch_checklist")}</div>
+      </div>
+      <p class="note">Read the full guide: <a class="ilink" href="/blog/how-to-change-accountant-uk">How to change accountant in the UK</a>.</p>
+    </div>
+  </div>
+</section>
+{close_band("Switch without missing a deadline", "Book a 20-minute review and we will plan your move around your next payroll run and VAT date.")}'''
+    return page(path="/tools/switching-checklist", title="Switching Accountant Checklist for UK Businesses | Aviteus",
+                description="Free switching accountant checklist: every step from your engagement letter to HMRC authority and the records to hand over. Tick as you go.",
+                h_active="tools", body_html=body, page_type="tool",
+                extra_js='<script src="/assets/tools.js" defer></script>',
+                ld=[{"@type": "HowTo", "name": "How to change accountant in the UK", "url": f"{SITE}/tools/switching-checklist", "inLanguage": "en-GB",
+                     "step": [{"@type": "HowToStep", "name": a, "text": b} for _, items in SWITCH_STEPS for _, a, b in items]},
                     breadcrumb_ld(crumbs)], data=data)
