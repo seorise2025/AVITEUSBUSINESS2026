@@ -102,19 +102,27 @@ Fill these in `src/data.json` and rebuild. Each block appears only when its data
 
 ## Services and the main menu
 
-Seven services, matching the live site's Services page (read 24 Nov 2026). One list in `src/layout.py` (`SERVICE_MAP`) feeds the header panel, the phone menu, the footer and the Services page, so they always match.
+Every service, detail and contact fact from the live site (Home, Services, About, Contact, Terms, read 24 Nov 2026) is on the new site, reworked in the new style. One list in `src/layout.py` (`SERVICE_MAP`) feeds the Services panel, the phone menu, the footer and the Services page.
 
-| Group | Service | URL | Source of copy |
+| Group | Service | URL | Source |
 |---|---|---|---|
 | Monthly accounting | Bookkeeping and management accounts | `/services/bookkeeping` | Copy deck |
-| Monthly accounting | Business advisory | `/services/business-advisory` | **New, from the live site. Vikas to approve** |
-| Payroll and tax | Payroll and pensions | `/services/payroll` | Copy deck |
-| Payroll and tax | VAT and year-end tax | `/services/vat-tax` | Copy deck |
-| Payroll and tax | Self Assessment tax returns | `/services/self-assessment` | **New, from the live site. Vikas to approve; reviewer to check dates** |
-| Company and software | Company formation and compliance | `/services/company-formation` | **New, from the live site. Vikas to approve** |
-| Company and software | Accounting software set-up and training | `/services/accounting-software` | **New, from the live site. Vikas to approve** |
+| Monthly accounting | Payroll and pensions | `/services/payroll` | Copy deck |
+| Tax | VAT and year-end tax, plus tax planning and audit support | `/services/vat-tax` | Copy deck + live site |
+| Tax | Self Assessment tax returns | `/services/self-assessment` | Live site |
+| Growth and advice | Business advisory, incl. valuation and fundraising support | `/services/business-advisory` | Live site |
+| Growth and advice | Virtual CFO | `/services/virtual-cfo` | Live site |
+| Company and software | Company formation and compliance | `/services/company-formation` | Live site |
+| Company and software | Accounting software set-up and training | `/services/accounting-software` | Live site |
+| Industries | Healthcare and care, construction, e-commerce | `/industries` | Live site |
 
-Note: the strategy pack recommended dropping business advisory. It is back at the owner's request. The advisory page says plainly that Aviteus does not raise funds or broker loans, which keeps it consistent with "What we don't do" on the Services page. The Services page intro now says "Seven services" instead of the deck's "Three services".
+Also from the live site: the ICAEW, ACCA and CIMA credentials line (owner's decision), the five values, "How we work", the About FAQ, "Alpha House" in the office address, Sunday closed, "we respond within one business day", "meet online or in person", "UK-wide coverage using secure cloud systems". The legal lines keep the registered office exactly as Companies House shows it.
+
+**Not carried over, on purpose:** the "100% / 90% / 86% / 85%" counters and "Business Awards" (unprovable for a firm founded in September 2025), the insurance template text and the Latin placeholder text.
+
+**Vikas to approve:** all copy marked "Live site" above was rewritten from the live site's wording and is not in the approved copy deck.
+
+The Services panel opens on click (and on hover with a mouse), closes on a second click, Escape or a click elsewhere, and scrolls within the screen on smaller laptops.
 
 ## Blog
 

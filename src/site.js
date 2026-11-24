@@ -75,18 +75,28 @@
   });
 
   // ---------- Header: services menu and mobile menu ----------
+  // Services panel: one state, shown with the hidden attribute. Click toggles; Escape, outside click and leaving close it.
   var subBtn = doc.querySelector('.menu-btn');
-  if (subBtn) {
-    subBtn.addEventListener('click', function () {
-      var open = subBtn.getAttribute('aria-expanded') === 'true';
-      subBtn.setAttribute('aria-expanded', String(!open));
-    });
-    doc.addEventListener('click', function (e) {
-      if (!e.target.closest('.has-sub')) subBtn.setAttribute('aria-expanded', 'false');
-    });
-    doc.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { subBtn.setAttribute('aria-expanded', 'false'); }
-    });
+  var mega = doc.getElementById('mega-services');
+  var hasSub = doc.querySelector('.has-sub');
+  if (subBtn && mega && hasSub) {
+    var hoverTimer = null;
+    var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var setOpen = function (open) {
+      subBtn.setAttribute('aria-expanded', String(open));
+      mega.hidden = !open;
+      body.classList.toggle('mega-open', open);
+    };
+    setOpen(false);
+    subBtn.addEventListener('click', function () { clearTimeout(hoverTimer); setOpen(mega.hidden); });
+    if (canHover) {
+      hasSub.addEventListener('mouseenter', function () { clearTimeout(hoverTimer); hoverTimer = setTimeout(function () { setOpen(true); }, 120); });
+      hasSub.addEventListener('mouseleave', function () { clearTimeout(hoverTimer); hoverTimer = setTimeout(function () { setOpen(false); }, 250); });
+    }
+    doc.addEventListener('click', function (e) { if (!e.target.closest('.has-sub')) setOpen(false); });
+    doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !mega.hidden) { setOpen(false); subBtn.focus(); } });
+    hasSub.addEventListener('focusout', function (e) { if (e.relatedTarget && !hasSub.contains(e.relatedTarget)) setOpen(false); });
+    mega.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
   }
   var navBtn = doc.querySelector('.nav-toggle');
   var mobileNav = doc.getElementById('mobile-nav');
