@@ -1,0 +1,26 @@
+{
+  "_note": "CMS-style data. A block that needs a value stays hidden until the value is filled in here. Never put placeholder text in these fields.",
+  "team": [],
+  "aml_supervisor": null,
+  "pi_insurer": null,
+  "linkedin_company_url": null,
+  "management_pack_day": null,
+  "payroll_cutoff_day": null,
+  "sample_pack_ready": false,
+  "where_work_is_done": null,
+  "where_work_is_done_options": {
+    "A": "Your manager is based in the UK. Some processing work is done by our qualified team in India, under UK supervision, inside your own accounting software. That is part of how we keep fees fixed. Your data stays in UK and EU-hosted systems, and everyone who touches it works under the same confidentiality and data protection rules.",
+    "B": "All client work is done by our team in the UK."
+  },
+  "_team_example": {
+    "name": "Full name",
+    "role": "Role",
+    "qualification": "Qualification",
+    "body": "Professional body",
+    "membership_number": "Number",
+    "summary": "Two sentences in plain words.",
+    "photo": "/assets/img/team/file.webp or null for initials",
+    "linkedin": "https://www.linkedin.com/in/...",
+    "consent": true
+  }
+}
