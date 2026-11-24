@@ -621,6 +621,15 @@ def vat(data):
 
 
 # ---------------------------------------------------------------- About
+# The deck's line names the team, so it shows only once team members are added in data.json.
+ABOUT_INTRO_TEAM = "You are about to trust someone with your bank feeds, your payroll and your tax. You should know who they are. Here they are, with the details you can check."
+ABOUT_INTRO_NO_TEAM = "You are about to trust someone with your bank feeds, your payroll and your tax. You should be able to check who we are. Here is our story, how we work, and the company details you can verify yourself."
+
+
+def _has_team(data):
+    return any(p.get("consent") and p.get("name") and p.get("role") for p in data.get("team", []))
+
+
 ABOUT_FAQS = [  # reworked from the live About page FAQ
     ("What services does Aviteus Business Solutions provide?", "Bookkeeping and management accounts, payroll and pensions, VAT returns, year-end accounts and corporation tax, tax planning, Self Assessment, business advisory, Virtual CFO, audit support, company formation and accounting software set-up. We also have specialist knowledge of <a class='ilink' href='/industries'>healthcare, construction and e-commerce</a>."),
     ("Do you support Making Tax Digital?", "Yes. We use cloud accounting software such as Xero, QuickBooks and Sage, so your business meets HMRC's digital rules for VAT and other tax submissions."),
@@ -646,7 +655,7 @@ def about(data):
 <section class="hero hero--simple" aria-labelledby="h1">
   <div class="wrap read">
     <h1 id="h1">The people who will keep your books</h1>
-    <p class="lead">You are about to trust someone with your bank feeds, your payroll and your tax. You should know who they are. Here they are, with the details you can check.</p>
+    <p class="lead">{ABOUT_INTRO_TEAM if _has_team(data) else ABOUT_INTRO_NO_TEAM}</p>
   </div>
 </section>
 
@@ -701,7 +710,7 @@ def about(data):
     <div class="head"><h2 id="values-h">What guides us</h2></div>
     <ul class="values">
       <li><b>Integrity</b><span>Honest advice and strict confidentiality.</span></li>
-      <li><b>Accuracy</b><span>Precise books, compliant filings and clean audits.</span></li>
+      <li><b>Accuracy</b><span>Precise books, compliant filings and audit-ready records.</span></li>
       <li><b>Commitment</b><span>We own deadlines and outcomes.</span></li>
       <li><b>Innovation</b><span>Secure cloud tools with real-time access.</span></li>
       <li><b>Partnership</b><span>We work with you as part of your team.</span></li>
