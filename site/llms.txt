@@ -18,13 +18,15 @@ Our accountants hold ICAEW, ACCA and CIMA qualifications. Aviteus does not carry
 - [Accounting software set-up and training](https://www.aviteusbusiness.co.uk/services/accounting-software): Xero, QuickBooks, Sage and FreeAgent set-up, clean-up, record migration and training.
 - [All services](https://www.aviteusbusiness.co.uk/services)
 
-## Industries
+## Who we work with
 
-- [Healthcare, construction and e-commerce](https://www.aviteusbusiness.co.uk/industries): payroll for shift and agency staff, CIS and job costing, sales channel reconciliation and VAT on online sales.
+Owner-managed businesses in any sector across the UK: limited companies and their directors, sole traders and the self-employed, partnerships and LLPs, landlords, startups, and growing teams of 2 to 50 staff. [Who we work with](https://www.aviteusbusiness.co.uk/services#who-we-help)
 
 ## Tools
 
 - [UK tax deadline finder](https://www.aviteusbusiness.co.uk/deadline-finder): free, no sign-up. Shows the next 12 months of VAT, corporation tax, Companies House, PAYE, P60, P11D and Self Assessment dates, and exports them to a calendar.
+- [VAT registration checker](https://www.aviteusbusiness.co.uk/tools/vat-threshold-checker): enter 12 months of taxable turnover to see the rolling total against the VAT threshold.
+- [Switching accountant checklist](https://www.aviteusbusiness.co.uk/tools/switching-checklist): every step to change accountant, ticked off as you go.
 
 ## Company
 

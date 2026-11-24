@@ -57,12 +57,13 @@ The preview copy uses file names for links (`contact.html`), keeps the light loo
 ## SEO built in
 
 - Every page is full HTML from the server. Nothing needs JavaScript to be read by Google or AI tools.
-- Titles 47 to 60 characters, descriptions 135 to 152, one H1, self-canonical, Open Graph and social image on every page.
-- Structured data: `AccountingService` + `LocalBusiness` (address, phone, hours, company number, founding date), `WebSite`, `Service` on each service page, `FAQPage` only where the FAQ is visible, `BreadcrumbList`, `ContactPage`, `AboutPage`, `ItemList`, `WebApplication` for the finder. No `SearchAction` (there is no site search).
+- Titles 47 to 60 characters, descriptions 135 to 155, one H1, self-canonical, Open Graph and social image on every page.
+- **Keyword map:** `docs/keyword-map.md`. One primary keyword per page, with UK volumes and difficulty, the 2026 techniques used, and the owner actions off the site.
+- Structured data: `AccountingService` + `LocalBusiness` (address, phone, hours, company number, founding date), `WebSite`, `Service` on each service page, `FAQPage` only where the FAQ is visible, `BreadcrumbList`, `ContactPage`, `AboutPage`, `ItemList`, `WebApplication` for the finder, `HowTo` for the checklist, `BlogPosting`, `Person` for the founder. Every page has one WebPage node linked by `@id` to the site, the business, its breadcrumb and its main topic. No `SearchAction` (there is no site search).
 - Answer-first sections on each service page, written so AI answer tools can quote them.
 - Internal links with the anchor text the strategy pack specifies.
-- `sitemap.xml` (8 URLs), `robots.txt` with the sitemap line, `llms.txt` summary for AI tools.
-- `_redirects`: `/contactus` and `/contactus.html` to `/contact` (301). `_headers`: security headers and caching.
+- `sitemap.xml` (indexable pages only, `lastmod` from `content_updated` in `data.json`), `robots.txt` that names and allows AI search crawlers, `llms.txt` summary for AI tools, and an IndexNow key file (`indexnow_key` in `data.json`).
+- `_redirects`: `/contactus` and `/contactus.html` to `/contact`, `/industries` to `/services#who-we-help` (301). `_headers`: security headers and caching.
 - Fonts self-hosted and preloaded. Logo served as WebP. Whole site about 700 KB, most of it fonts that are cached after the first page.
 
 ## Analytics and consent
@@ -158,7 +159,7 @@ Every service, detail and contact fact from the live site (Home, Services, About
 | Growth and advice | Virtual CFO | `/services/virtual-cfo` | Live site |
 | Company and software | Company formation and compliance | `/services/company-formation` | Live site |
 | Company and software | Accounting software set-up and training | `/services/accounting-software` | Live site |
-| Industries | Healthcare and care, construction, e-commerce | `/industries` | New page. The live site names these sectors in one home page FAQ answer only. Owner to confirm |
+| Who we work with | Any sector: limited companies, sole traders, partnerships, landlords, startups, growing teams, businesses changing accountant | `/services#who-we-help` | Replaces the removed Industries page (owner decision, 24 Nov 2026), so the site never reads as limited to a few sectors |
 
 Also from the live site: the ICAEW, ACCA and CIMA credentials line (owner's decision), the five values, "How we work", the About FAQ, "Alpha House" in the office address, Sunday closed, "we respond within one business day", "meet online or in person", "UK-wide coverage using secure cloud systems". The legal lines keep the registered office exactly as Companies House shows it.
 
@@ -208,7 +209,9 @@ Run `python3 src/link_audit.py` after any copy change. It counts contextual link
 - Contextual links on existing deck words, for example "The books are three months behind" to Bookkeeping, "Aviteus began in healthcare staffing" to About, "VAT and payroll dates" on Contact to the finder.
 - Three short link lines: "See all services and what we don't do →" (Home), "Find your own dates →" (Home sample card), "Compare them first: see all services" (Contact form hint).
 - "Cookie settings" link in the footer, so visitors can change their choice (PECR).
-- The Industries page (`/industries`) and its menu links. The live site has no such page; it only names healthcare, construction and e-commerce in one FAQ answer. The CIS, shift-pay and sales-channel detail on the page must be confirmed by the owner.
+- "Who we work with" block on `/services` (any sector), linked from the menu strip, the footer and an About FAQ answer. The Industries page was removed at the owner's request; `/industries` redirects there (301).
+- Titles and descriptions retargeted to keywords with real UK search demand (see `docs/keyword-map.md`). H1s and body copy from the deck are unchanged.
+- "Free tools" in the top menu, in the slot Industries used to hold.
 - The floating WhatsApp widget. The strategy pack asked for no floating chat bubble; added at the owner's request (24 Nov 2026).
 - The 5-step lead form. The strategy pack asked for a short form; the longer qualifying form was added at the owner's request to judge lead quality.
 - Payroll month table: "Cut-off day" shown in place of the `{Cut-off day}` field until a day is agreed.

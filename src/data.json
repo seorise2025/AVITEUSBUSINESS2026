@@ -33,12 +33,16 @@
   "approved_posts": [],
   "_approved_posts_note": "Add a post's slug here once the named accounting reviewer has signed it off. It then loses its draft note, becomes indexable and joins the sitemap.",
   "vat_threshold": 90000,
-  "_vat_threshold_note": "VAT registration threshold used by the free VAT checker. \u00a390,000 from 1 April 2024. The accounting reviewer must confirm it is current before launch and each April.",
+  "_vat_threshold_note": "VAT registration threshold used by the free VAT checker. £90,000 from 1 April 2024. The accounting reviewer must confirm it is current before launch and each April.",
   "founder": {
     "name": "Vikas Pandey",
     "role": "CEO, Aviteus Business Solutions",
     "photo": null,
     "linkedin": "https://www.linkedin.com/in/vikas-pandey-aviteus/",
     "_photo_note": "Put the original photo in src/static/ named img-vikas-pandey.jpg (square, at least 600 x 600 px), then set photo to /assets/img/vikas-pandey.jpg and rebuild. Until then the page shows initials."
-  }
+  },
+  "content_updated": "2026-11-24",
+  "_content_updated_note": "Date the page copy last really changed. Used for sitemap lastmod and WebPage dateModified. Update it only when content changes, never on every build.",
+  "indexnow_key": "21a3960ab9ad3caaa942fd01b0b59ea5",
+  "_indexnow_note": "Public IndexNow key. The build writes /<key>.txt. After launch, ping https://api.indexnow.org/indexnow with changed URLs so Bing and others recrawl fast."
 }

@@ -45,7 +45,6 @@ ROUTES = [
     ("services/company-formation.html", pages.formation, "/services/company-formation", "0.8", "monthly"),
     ("services/accounting-software.html", pages.software, "/services/accounting-software", "0.8", "monthly"),
     ("services/virtual-cfo.html", pages.virtual_cfo, "/services/virtual-cfo", "0.8", "monthly"),
-    ("industries.html", pages.industries, "/industries", "0.7", "monthly"),
     ("tools.html", pages.tools_hub, "/tools", "0.7", "monthly"),
     ("tools/vat-threshold-checker.html", pages.vat_checker, "/tools/vat-threshold-checker", "0.8", "monthly"),
     ("tools/switching-checklist.html", pages.switching_checklist, "/tools/switching-checklist", "0.8", "monthly"),
@@ -70,10 +69,23 @@ for fn, func, url, _, _ in ROUTES:
     open(p, "w").write(func(data))
 
 # ---------- Crawl and host files ----------
-urls = "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{TODAY}</lastmod><changefreq>{cf}</changefreq><priority>{pr}</priority></url>\n" for _, _, u, pr, cf in ROUTES if u)
+LASTMOD = data.get("content_updated") or TODAY
+urls = "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{LASTMOD}</lastmod><changefreq>{cf}</changefreq><priority>{pr}</priority></url>\n" for _, _, u, pr, cf in ROUTES if u)
 open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
 
-open(os.path.join(OUT, "robots.txt"), "w").write(f"""User-agent: *
+open(os.path.join(OUT, "robots.txt"), "w").write(f"""# Search engines and AI answer engines are welcome. Only the form API is closed.
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Named so the choice is explicit (AI search and answer citations)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
 Allow: /
 Disallow: /api/
 
@@ -85,6 +97,8 @@ open(os.path.join(OUT, "_redirects"), "w").write("""/contactus        /contact  
 /contactus/       /contact  301
 /contactus.html   /contact  301
 /index.html       /         301
+/industries       /services#who-we-help  301
+/industries/      /services#who-we-help  301
 """)
 open(os.path.join(OUT, "_headers"), "w").write("""/*
   X-Content-Type-Options: nosniff
@@ -99,5 +113,8 @@ open(os.path.join(OUT, "_headers"), "w").write("""/*
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 """)
+
+if data.get("indexnow_key"):
+    open(os.path.join(OUT, data["indexnow_key"] + ".txt"), "w").write(data["indexnow_key"])
 
 print("Built", len(ROUTES), "pages into", OUT)

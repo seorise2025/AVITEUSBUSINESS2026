@@ -1,7 +1,7 @@
 """Page content. Public copy is taken word for word from the Website Copy Deck (24 Nov 2026).
 Blocks that wait on approval or proof read from data.json and stay hidden until filled."""
 from html import escape
-from layout import (lead_form, lead_section, SERVICE_MAP, ALSO_AVAILABLE, INDUSTRIES, REG_OFFICE, SITE, PHONE, PHONE_TEL, WA_DISPLAY, EMAIL, ADDRESS, COMPANY_NO, CH_URL, ARROW, PULSE,
+from layout import (lead_form, lead_section, SERVICE_MAP, ALSO_AVAILABLE, REG_OFFICE, SITE, PHONE, PHONE_TEL, WA_DISPLAY, EMAIL, ADDRESS, COMPANY_NO, CH_URL, ARROW, PULSE,
                     book_btn, wa_btn, wa, faq_html, faq_ld, breadcrumb_ld, crumbs_html, page)
 
 
@@ -90,7 +90,7 @@ def home(data):
       <p class="lead">We run the monthly finance work for UK owner-managed businesses. You get a written scope, one named manager, and a short report each month that shows what we finished and what is coming up next. No surprises in January.</p>
       <div class="hero-actions">{book_btn("hero")}<a class="tlink" href="#what-we-do">See what we do →</a></div>
       <p class="hero-note">Free. 20 minutes. By video or phone.</p>
-      <p class="hero-cred">ICAEW, ACCA and CIMA qualified accountants · UK-wide service · Company no. 16694378</p>
+      <p class="hero-cred">ICAEW, ACCA and CIMA qualified accountants for small businesses · UK-wide service · Company no. 16694378</p>
     </div>
     <aside class="dd" aria-label="Sample Done and due report">
       <p class="dd-label">SAMPLE REPORT · Fictional company Sample Trading Ltd · November</p>
@@ -137,6 +137,7 @@ def home(data):
       <div class="row"><h3>Payroll and pensions</h3><p>Staff paid on the right day. Payslips sent. RTI filed with HMRC. Pension contributions handled.</p><a class="av-link" href="/services/payroll">Payroll and pensions {ARROW}</a></div>
       <div class="row"><h3>VAT and year-end tax</h3><p>VAT returns under Making Tax Digital. Year-end accounts. Corporation tax. Your part flagged weeks ahead, not days.</p><a class="av-link" href="/services/vat-tax">VAT and year-end tax {ARROW}</a></div>
     </div>
+    <p class="mt-5">Also from the same team: <a class="ilink" href="/services/self-assessment">Self Assessment tax returns</a>, <a class="ilink" href="/services/business-advisory">business advisory</a>, a <a class="ilink" href="/services/virtual-cfo">Virtual CFO</a> and <a class="ilink" href="/services/company-formation">limited company formation</a>.</p>
     <p class="mt-5"><a class="tlink" href="/services">See all services and what we don't do →</a></p>
   </div>
 </section>
@@ -197,8 +198,8 @@ def home(data):
 {lead_section()}
 {close_band("Bring one problem. Leave with a plan.", "Twenty minutes is enough to tell you what is behind, what is due next, and whether we can help. If we can't, we'll tell you who might.")}
 '''
-    return page(path="/", title="Bookkeeping, Payroll and VAT for UK Businesses | Aviteus",
-                description="Monthly bookkeeping, payroll and VAT for UK owner-managed businesses. A written scope, one named manager, and a short report on what is done and due.",
+    return page(path="/", title="Accountants for Small Business in the UK | Aviteus",
+                description="Small business accountants for UK owner-managed firms: monthly bookkeeping, payroll and VAT, a written scope, one named manager and a fixed fee.",
                 h_active="home", body_html=body, ld=[{"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": "Know what's done. Know what's due. Every month.", "isPartOf": {"@id": f"{SITE}/#website"}, "about": {"@id": f"{SITE}/#business"}, "inLanguage": "en-GB"}, faq_ld(faqs)],
                 data=data, page_type="home")
 
@@ -314,8 +315,8 @@ def bookkeeping(data):
 {lead_section(("bookkeeping",))}
 {close_band("Find out where your books really stand", "In 20 minutes we will tell you how far behind you are, what it will take to catch up, and what a monthly fee would look like.", "bookkeeping")}
 '''
-    return page(path="/services/bookkeeping", title="Outsourced Bookkeeping and Management Accounts UK | Aviteus",
-                description="Monthly bookkeeping for UK businesses: bank reconciled, bills and sales posted, and a short management pack. Written scope, fixed fee, one manager.",
+    return page(path="/services/bookkeeping", title="Bookkeeping Services and Management Accounts UK | Aviteus",
+                description="Outsourced bookkeeping services for UK businesses: bank reconciled, bills and sales posted, monthly management accounts. Fixed fee, one manager.",
                 h_active="bookkeeping", body_html=body, service="bookkeeping", page_type="service",
                 ld=[service_ld("Bookkeeping and management accounts", "/services/bookkeeping", "Monthly outsourced bookkeeping and management accounts for UK owner-managed businesses, in your own software, to a written scope and a fixed monthly fee.", "Bookkeeping"), breadcrumb_ld(crumbs), faq_ld(faqs)], data=data)
 
@@ -439,7 +440,7 @@ def payroll(data):
       </tbody>
     </table>
     <p class="lead mt-5">The same routine every month. No guessing, no last-minute calls.</p>
-    {related([("Monthly bookkeeping", "/services/bookkeeping"), ("Who will run your payroll", "/about-us"), ("VAT and year-end tax", "/services/vat-tax"), ("Find your payroll dates", "/deadline-finder"), ("Directors' Self Assessment", "/services/self-assessment"), ("Payroll for healthcare and care", "/industries#healthcare"), ("All services", "/services"), ("Blog: the employer payroll checklist", "/blog/small-business-payroll-checklist")])}
+    {related([("Monthly bookkeeping", "/services/bookkeeping"), ("Who will run your payroll", "/about-us"), ("VAT and year-end tax", "/services/vat-tax"), ("Find your payroll dates", "/deadline-finder"), ("Directors' Self Assessment", "/services/self-assessment"), ("Payroll and pensions in your bookkeeping pack", "/services/bookkeeping#included"), ("All services", "/services"), ("Blog: the employer payroll checklist", "/blog/small-business-payroll-checklist")])}
     <div class="mt-7">{book_btn("after_table")}</div>
   </div>
 </section>
@@ -494,7 +495,7 @@ def payroll(data):
 {close_band("Get your 24th of the month back", "Twenty minutes is enough to see how your payroll runs today and what would change with us.", "payroll")}
 '''
     return page(path="/services/payroll", title="Payroll Services for Small Businesses UK | Aviteus",
-                description="Managed payroll for UK small businesses. Staff paid on time, payslips sent, RTI filed with HMRC and pensions handled, to a fixed monthly routine.",
+                description="Payroll services for UK small businesses. Staff paid on time, payslips sent, RTI filed with HMRC and pensions handled, to a fixed monthly routine.",
                 h_active="payroll", body_html=body, service="payroll", page_type="service",
                 ld=[service_ld("Payroll and pensions", "/services/payroll", "Managed payroll for UK small businesses: pay, tax and National Insurance calculated, payslips sent, RTI filed with HMRC and workplace pensions handled.", "Payroll"), breadcrumb_ld(crumbs), faq_ld(faqs)], data=data)
 
@@ -540,7 +541,7 @@ def vat(data):
       </tbody>
     </table>
     <p class="callout mt-5">Note the order. Corporation tax is <b>paid</b> three months before the return is <b>due</b>. Many owners find that out the hard way.</p>
-    {related([("Find your own dates with the free deadline finder", "/deadline-finder"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Payroll", "/services/payroll"), ("Who will do the work", "/about-us"), ("Self Assessment tax returns", "/services/self-assessment"), ("Company formation and compliance", "/services/company-formation"), ("Construction and CIS", "/industries#construction"), ("Virtual CFO", "/services/virtual-cfo"), ("All services", "/services"), ("Blog: VAT and Making Tax Digital", "/blog/vat-returns-making-tax-digital"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
+    {related([("Find your own dates with the free deadline finder", "/deadline-finder"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Payroll", "/services/payroll"), ("Who will do the work", "/about-us"), ("Self Assessment tax returns", "/services/self-assessment"), ("Company formation and compliance", "/services/company-formation"), ("Business advisory and tax planning", "/services/business-advisory"), ("Virtual CFO", "/services/virtual-cfo"), ("All services", "/services"), ("Blog: VAT and Making Tax Digital", "/blog/vat-returns-making-tax-digital"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
     <div class="mt-7">{book_btn("after_table")}</div>
   </div>
 </section>
@@ -596,7 +597,7 @@ def vat(data):
 {close_band("Leave one call knowing your next three deadlines", "Book a 20-minute review and we will list the dates that apply to your business, and what you need to do before each one.", "vat")}
 '''
     return page(path="/services/vat-tax", title="VAT Returns, Year-End Accounts and Corporation Tax | Aviteus",
-                description="VAT returns under Making Tax Digital, year-end accounts and corporation tax for UK companies. Every deadline in one place, with your part flagged early.",
+                description="VAT returns under Making Tax Digital, year-end accounts and corporation tax for limited companies. Every deadline in one place, your part flagged early.",
                 h_active="vat", body_html=body, service="vat", page_type="service",
                 ld=[service_ld("VAT and year-end tax", "/services/vat-tax", "VAT returns under Making Tax Digital, year-end accounts filed with Companies House, and corporation tax returns (CT600) for UK limited companies.", "Tax preparation"), breadcrumb_ld(crumbs), faq_ld(faqs)], data=data)
 
@@ -642,7 +643,7 @@ def _has_team(data):
 
 
 ABOUT_FAQS = [  # reworked from the live About page FAQ
-    ("What services does Aviteus Business Solutions provide?", "Bookkeeping and management accounts, payroll and pensions, VAT returns, year-end accounts and corporation tax, tax planning, Self Assessment, business advisory, Virtual CFO, audit support, company formation and accounting software set-up. We also have specialist knowledge of <a class='ilink' href='/industries'>healthcare, construction and e-commerce</a>."),
+    ("What services does Aviteus Business Solutions provide?", "Bookkeeping and management accounts, payroll and pensions, VAT returns, year-end accounts and corporation tax, tax planning, Self Assessment, business advisory, Virtual CFO, audit support, company formation and accounting software set-up. We work with <a class='ilink' href='/services#who-we-help'>owner-managed businesses in any sector</a> across the UK."),
     ("Do you support Making Tax Digital?", "Yes. We use cloud accounting software such as Xero, QuickBooks and Sage, so your business meets HMRC's digital rules for VAT and other tax submissions."),
     ("How quickly do you respond to queries?", "Each client has a dedicated account manager. We respond within one business day, and urgent matters come first."),
     ("What makes Aviteus different from other accountants?", "A qualified team (ICAEW, ACCA and CIMA), modern cloud tools and fixed fees agreed in writing. We give advice before problems arrive, not just compliance after them, and we build long-term working relationships around your goals."),
@@ -748,7 +749,7 @@ def about(data):
 '''
     people = [{"@type": "Person", "name": p["name"], "jobTitle": p["role"], "worksFor": {"@id": f"{SITE}/#business"}, **({"sameAs": [p["linkedin"]]} if p.get("linkedin") else {})}
               for p in data.get("team", []) if p.get("consent") and p.get("name")]
-    return page(path="/about-us", title="About Aviteus Business Solutions | The Team in Harrow",
+    return page(path="/about-us", title="About Us: Accountants in Harrow, Serving the UK | Aviteus",
                 description="Meet Aviteus Business Solutions: ICAEW, ACCA and CIMA qualified accountants in Harrow, our values, how we work, and company details you can check.",
                 h_active="about", body_html=body, page_type="about",
                 ld=[{"@type": "AboutPage", "url": f"{SITE}/about-us", "name": "The people who will keep your books", "about": {"@id": f"{SITE}/#business"}, "inLanguage": "en-GB"}, faq_ld(ABOUT_FAQS),
@@ -798,7 +799,7 @@ def services(data):
     <h1 id="h1">What we do, and what we don't</h1>
     <p class="lead">Eight services for UK SMEs and startups, from monthly books and tax to advice, a Virtual CFO and company set-up. Most clients use two or three together, because they all run off the same set of books.</p>
     <nav class="jump mt-6" aria-label="Jump to a service">
-      {"".join(f'<a href="#svc-{k}">{_svc(k)["name"]}</a>' for k in HUB_ORDER)}<a href="/industries">Industries we work with</a><a href="#dont-h">What we don't do</a>
+      {"".join(f'<a href="#svc-{k}">{_svc(k)["name"]}</a>' for k in HUB_ORDER)}<a href="#who-we-help">Who we work with</a><a href="#dont-h">What we don't do</a>
     </nav>
   </div>
 </section>
@@ -807,6 +808,23 @@ def services(data):
   <div class="wrap">
     <div class="rows">{"".join(_hub_row(k) for k in HUB_ORDER)}
     </div>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="who-we-help">
+  <div class="wrap read">
+    <h2 id="who-we-help">Who we work with</h2>
+    <p class="lead">Owner-managed businesses in any sector, anywhere in the UK. If your business sells, employs people or files with HMRC, we can help.</p>
+    <ul class="ticks mt-6">
+      <li><b>Limited companies and their directors.</b> Books, payroll, <a class="ilink" href="/services/vat-tax">VAT and year-end accounts</a>, and the directors' own tax returns.</li>
+      <li><b>Sole traders and the self-employed.</b> <a class="ilink" href="/services/bookkeeping">Bookkeeping</a> and <a class="ilink" href="/services/self-assessment">Self Assessment</a>, with Making Tax Digital for Income Tax in hand.</li>
+      <li><b>Partnerships and LLPs.</b> Partnership accounts and each partner's tax return.</li>
+      <li><b>Landlords.</b> Rental income records and Self Assessment.</li>
+      <li><b>Businesses changing accountant.</b> We handle the handover. Use our free <a class="ilink" href="/tools/switching-checklist">switching accountant checklist</a> to see every step.</li>
+      <li><b>Startups and new companies.</b> <a class="ilink" href="/services/company-formation">Company formation</a>, registrations and the first year of <a class="ilink" href="/deadline-finder">deadlines</a>.</li>
+      <li><b>Growing teams of 2 to 50 staff.</b> Monthly management accounts, <a class="ilink" href="/services/payroll">payroll</a> and, when you need it, a <a class="ilink" href="/services/virtual-cfo">Virtual CFO</a>.</li>
+    </ul>
+    <p class="mt-6">Every sector has its own rules for payroll, VAT and records. We ask about yours on the first call and build your written scope around the way you work. <a class="ilink" href="/contact" data-book data-placement="who_we_help">Book a free 20-minute review</a>.</p>
   </div>
 </section>
 
@@ -836,8 +854,8 @@ def services(data):
 </section>
 '''
     items = [(_svc(k)["name"], _svc(k)["url"]) for k in HUB_ORDER]
-    return page(path="/services", title="Accounting Services for UK Businesses | Aviteus",
-                description="Bookkeeping, payroll, VAT and tax planning, Self Assessment, business advisory, Virtual CFO, company formation and software set-up for UK SMEs.",
+    return page(path="/services", title="Accounting Services for Small Businesses UK | Aviteus",
+                description="Accounting services for UK small businesses in any sector: bookkeeping, payroll, VAT, tax, Self Assessment, advisory, Virtual CFO and company set-up.",
                 h_active="services", body_html=body, page_type="hub",
                 ld=[{"@type": "ItemList", "name": "Aviteus services", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "url": f"{SITE}{u}"} for i, (n, u) in enumerate(items)]},
                     breadcrumb_ld([("Home", "/"), ("Services", "/services")])], data=data)
@@ -1260,8 +1278,8 @@ def _svc_page(data, spec):
 def advisory(data):
     return _svc_page(data, {
         "key": "advisory", "path": "/services/business-advisory", "crumb": "Business advisory",
-        "title": "Business Advisory, Valuation and Fundraising | Aviteus",
-        "desc": "Business advisory for UK SMEs: forecasts, budgets, pricing and cost reviews, business valuation, fundraising support and growth planning. Fixed fee.",
+        "title": "Business Advisory Services for UK SMEs | Aviteus",
+        "desc": "Business advisory services for UK SMEs: forecasts, budgets, pricing and cost reviews, business valuation, fundraising and growth planning. Fixed fee.",
         "schema_name": "Business advisory", "service_type": "Business advisory",
         "h1": "Business advisory: forecasts, valuations and funding, in plain numbers",
         "lead": "Know what next quarter looks like before it arrives. We build forecasts and budgets from your own books, review your prices and costs, value your business and support you when you raise funds. On a fee agreed in writing before we start.",
@@ -1298,8 +1316,8 @@ def advisory(data):
 def formation(data):
     return _svc_page(data, {
         "key": "formation", "path": "/services/company-formation", "crumb": "Company formation",
-        "title": "Company Formation and Compliance in the UK | Aviteus",
-        "desc": "Limited company set-up, HMRC registrations, Companies House filings and company secretarial tasks, done in the right order with your first dates set.",
+        "title": "Limited Company Formation and Compliance UK | Aviteus",
+        "desc": "Limited company formation, HMRC registrations, Companies House filings and company secretarial tasks, done in the right order with your first dates set.",
         "schema_name": "Company formation and compliance", "service_type": "Company formation",
         "h1": "Company formation and compliance, set up right from day one",
         "lead": "Limited company set-up, HMRC registrations, Companies House filings and company secretarial tasks. Done in the right order, so your first tax, VAT and payroll dates are known before they arrive.",
@@ -1350,7 +1368,7 @@ def software(data):
                   ("Set-up", "Build the accounts, VAT settings and invoice templates", "Connect your bank feeds with us"),
                   ("Moving records", "Bring across balances and history, then check them", "Share access to your old system"),
                   ("Training", "Show your team the monthly routine", "Join one short session")],
-        "related": [("Monthly bookkeeping", "/services/bookkeeping"), ("E-commerce accounting", "/industries#ecommerce"), ("VAT returns and Making Tax Digital", "/blog/vat-returns-making-tax-digital"), ("Catch-up bookkeeping", "/blog/catch-up-bookkeeping")],
+        "related": [("Monthly bookkeeping", "/services/bookkeeping"), ("VAT and year-end tax", "/services/vat-tax"), ("VAT returns and Making Tax Digital", "/blog/vat-returns-making-tax-digital"), ("Catch-up bookkeeping", "/blog/catch-up-bookkeeping")],
         "suits": "This suits you if you are still on spreadsheets, starting out, or stuck with a software file nobody trusts any more.",
         "not": "If your current software works and your books are up to date, you may not need this at all. We will say so on the call.",
         "fee": "A fixed fee for set-up, moving records or a clean-up, quoted before we start. Training is included with set-up. If you then use our monthly bookkeeping, the software becomes part of that routine.",
@@ -1383,8 +1401,8 @@ def self_assessment(data):
 </section>"""
     return _svc_page(data, {
         "key": "self-assessment", "path": "/services/self-assessment", "crumb": "Self Assessment",
-        "title": "Self Assessment Tax Returns for Directors | Aviteus",
-        "desc": "Self Assessment tax returns for company directors, landlords and the self-employed. Prepared from your figures, filed before 31 January, no surprises.",
+        "title": "Self Assessment Accountant for Tax Returns | Aviteus",
+        "desc": "A Self Assessment accountant for directors, landlords and the self-employed. Your tax return prepared from your figures and filed before 31 January.",
         "schema_name": "Self Assessment tax returns", "service_type": "Tax preparation",
         "h1": "Self Assessment tax returns, filed before 31 January",
         "lead": "Your personal tax return, prepared from your figures and filed on time. You see the tax figure early, so the 31 January payment is never a surprise.",
@@ -1418,8 +1436,8 @@ def self_assessment(data):
 def virtual_cfo(data):
     return _svc_page(data, {
         "key": "virtual-cfo", "path": "/services/virtual-cfo", "crumb": "Virtual CFO",
-        "title": "Virtual CFO Services for UK SMEs and Startups | Aviteus",
-        "desc": "A part-time finance director for growing UK businesses: monthly finance reviews, cash flow management, strategic planning and lender and investor support.",
+        "title": "Virtual CFO and Fractional CFO Services UK | Aviteus",
+        "desc": "A virtual or fractional CFO for growing UK businesses: a part-time finance director for monthly reviews, cash flow, planning and investor support.",
         "schema_name": "Virtual CFO", "service_type": "Virtual CFO",
         "h1": "Virtual CFO: a finance director for your business, without the full-time cost",
         "lead": "Senior finance support every month. Your figures reviewed with you, cash planned ahead, and clear advice before big decisions. Part-time, on a fixed monthly fee.",
@@ -1441,6 +1459,7 @@ def virtual_cfo(data):
         "fee": "A fixed monthly fee, based on how much time you need each month. Agreed in writing before any work starts, and reviewed with you as the business grows.",
         "faq_h": "Virtual CFO questions",
         "faqs": [("What is the difference between a Virtual CFO and an accountant?", "An accountant keeps your records and files your returns. A Virtual CFO uses those figures to plan ahead and advise on decisions. Many clients use both, from the same team."),
+                 ("Is a Virtual CFO the same as a fractional CFO?", "Yes. Both mean a senior finance director who works with you part-time, for a set number of days or hours each month, instead of a full-time hire."),
                  ("How often will we meet?", "Usually once a month, with more contact around big decisions, year end or a funding round."),
                  ("Can a Virtual CFO help us raise money?", "Yes. We prepare the business plan, forecasts and investor or lender pack, and support you through their questions and checks."),
                  ("Do we need monthly bookkeeping as well?", "You need up-to-date books. If ours is the team keeping them, your Virtual CFO works from current figures every month.")],
@@ -1449,65 +1468,11 @@ def virtual_cfo(data):
     })
 
 
-INDUSTRY_TEXT = [
-    ("healthcare", "Healthcare and care",
-     "Our roots are in healthcare staffing, through Aviteus Healthcare. We know the payroll pressure of shift work and agency staff, and the cash flow of long contract payment terms.",
-     [("Payroll for shift and agency staff,", "with changing hours, rates and holiday pay."),
-      ("Cash flow planning", "for contracts that pay weeks after the work is done."),
-      ("VAT checks", "for health and care services, where some income can be exempt.")],
-     [("Payroll and pensions", "/services/payroll"), ("Bookkeeping and management accounts", "/services/bookkeeping")]),
-    ("construction", "Construction",
-     "Construction businesses deal with the Construction Industry Scheme (CIS), stage payments, retentions and tight margins on every job.",
-     [("CIS deductions and monthly returns,", "for contractors and subcontractors."),
-      ("Job costing,", "so you see the margin on each contract, not just the year."),
-      ("VAT on construction services,", "including the domestic reverse charge.")],
-     [("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll")]),
-    ("ecommerce", "E-commerce",
-     "Online sellers deal with many sales channels, many fees and VAT on sales to customers in other countries.",
-     [("Reconciling sales channels:", "Amazon, Shopify, eBay and payment providers, matched to your bank."),
-      ("Stock and cost of sales,", "so profit per product is real, not a guess."),
-      ("VAT on online and overseas sales,", "set up correctly in your software.")],
-     [("Accounting software set-up", "/services/accounting-software"), ("VAT and year-end tax", "/services/vat-tax")]),
-]
-
-
-def industries(data):
-    crumbs = [("Home", "/"), ("Industries", "/industries")]
-    secs = []
-    for i, (slug, name, intro, items, links) in enumerate(INDUSTRY_TEXT):
-        alt = " section--alt" if i % 2 == 0 else ""
-        lis = "".join(f"<li><b>{a}</b> {b}</li>" for a, b in items)
-        secs.append(f'''<section class="section{alt}" id="{slug}" aria-labelledby="{slug}-h">
-  <div class="wrap split">
-    <div class="head" style="margin:0"><h2 id="{slug}-h">{name}</h2></div>
-    <div><p class="lead">{intro}</p><ul class="ticks mt-6">{lis}</ul>{related(links + [("All services", "/services")])}</div>
-  </div>
-</section>''')
-    body = f'''
-<section class="hero hero--simple" aria-labelledby="h1">
-  <div class="wrap read">
-    {crumbs_html(crumbs)}
-    <h1 id="h1">Industries we work with</h1>
-    <p class="lead">We serve SMEs and startups across the UK. Three sectors get specialist attention: healthcare and care, construction, and e-commerce.</p>
-    <nav class="jump mt-6" aria-label="Jump to an industry">{"".join(f'<a href="#{s}">{n}</a>' for s, n, *_ in INDUSTRY_TEXT)}</nav>
-  </div>
-</section>
-{"".join(secs)}
-{close_band("Talk to someone who knows your sector", "Book a 20-minute review and we will look at the questions your industry raises for your books, payroll and tax.")}'''
-    return page(path="/industries", title="Healthcare, Construction and E-commerce Accounting | Aviteus",
-                description="Accounting, payroll and tax for UK healthcare and care providers, construction businesses and online sellers, from a team with roots in healthcare.",
-                h_active="industries", body_html=body, page_type="industries",
-                ld=[{"@type": "CollectionPage", "url": f"{SITE}/industries", "name": "Industries we work with", "about": {"@id": f"{SITE}/#business"}, "inLanguage": "en-GB"},
-                    breadcrumb_ld(crumbs)], data=data)
-
-
-# ---------------------------------------------------------------- Free tools (new copy: reviewer to confirm the VAT rules and threshold)
 TOOLS = [
     ("/deadline-finder", "UK deadline finder", "Your next VAT, corporation tax, Companies House, payroll and Self Assessment dates, in date order, for the next 12 months.", "Find my dates"),
     ("/tools/vat-threshold-checker", "VAT registration checker", "Enter your monthly taxable turnover. See your rolling 12-month total, your headroom, and when you would go over the threshold.", "Check my turnover"),
     ("/tools/switching-checklist", "Switching accountant checklist", "Every step of changing accountant, in order. Tick them off as you go: your progress is saved in your browser.", "Open the checklist"),
 ]
-
 
 def tools_hub(data):
     cards = "".join(f'''<article class="tool-card">
@@ -1647,6 +1612,7 @@ def switching_checklist(data):
       <p class="note">Read the full guide: <a class="ilink" href="/blog/how-to-change-accountant-uk">How to change accountant in the UK</a>.</p>
     </div>
   </div>
+  <div class="wrap">{related([("Monthly bookkeeping services", "/services/bookkeeping"), ("Payroll services", "/services/payroll"), ("VAT returns and year-end accounts", "/services/vat-tax"), ("Find your next deadlines", "/deadline-finder"), ("All free tools", "/tools")])}</div>
 </section>
 {close_band("Switch without missing a deadline", "Book a 20-minute review and we will plan your move around your next payroll run and VAT date.")}'''
     return page(path="/tools/switching-checklist", title="Switching Accountant Checklist for UK Businesses | Aviteus",

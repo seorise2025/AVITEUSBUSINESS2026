@@ -1,4 +1,16 @@
+# Search engines and AI answer engines are welcome. Only the form API is closed.
 User-agent: *
+Allow: /
+Disallow: /api/
+
+# Named so the choice is explicit (AI search and answer citations)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
 Allow: /
 Disallow: /api/
 

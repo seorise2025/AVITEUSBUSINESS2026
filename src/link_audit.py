@@ -5,7 +5,7 @@ SITE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
 PAGES = {"index.html": "/", "services.html": "/services", "services/bookkeeping.html": "/services/bookkeeping", "services/payroll.html": "/services/payroll",
          "services/vat-tax.html": "/services/vat-tax", "services/self-assessment.html": "/services/self-assessment",
          "services/business-advisory.html": "/services/business-advisory", "services/company-formation.html": "/services/company-formation",
-         "services/accounting-software.html": "/services/accounting-software", "services/virtual-cfo.html": "/services/virtual-cfo", "industries.html": "/industries", "tools.html": "/tools", "tools/vat-threshold-checker.html": "/tools/vat-threshold-checker", "tools/switching-checklist.html": "/tools/switching-checklist", "about-us.html": "/about-us", "contact.html": "/contact", "deadline-finder.html": "/deadline-finder", "blog.html": "/blog"}
+         "services/accounting-software.html": "/services/accounting-software", "services/virtual-cfo.html": "/services/virtual-cfo", "tools.html": "/tools", "tools/vat-threshold-checker.html": "/tools/vat-threshold-checker", "tools/switching-checklist.html": "/tools/switching-checklist", "about-us.html": "/about-us", "contact.html": "/contact", "deadline-finder.html": "/deadline-finder", "blog.html": "/blog"}
 import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from posts import POSTS
 for _p in POSTS: PAGES[f"blog/{_p['slug']}.html"] = f"/blog/{_p['slug']}"

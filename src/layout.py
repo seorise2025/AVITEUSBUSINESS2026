@@ -55,7 +55,7 @@ def org_ld():
         "address": {"@type": "PostalAddress", "streetAddress": "Alpha House, 296 Kenton Road", "addressLocality": "Harrow", "postalCode": "HA3 8DD", "addressCountry": "GB"},
         "areaServed": {"@type": "Country", "name": "United Kingdom"},
         "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}],
-        "knowsAbout": ["Bookkeeping", "Management accounts", "Payroll", "Workplace pensions", "Real Time Information (RTI)", "VAT returns", "Making Tax Digital", "Year-end accounts", "Corporation tax", "Company tax return (CT600)", "Self Assessment", "Tax planning", "Business advisory", "Virtual CFO", "Business valuation", "Fundraising support", "Audit support", "Company formation", "Xero", "Sage", "QuickBooks", "FreeAgent", "Construction Industry Scheme"],
+        "knowsAbout": ["Bookkeeping", "Management accounts", "Payroll", "Workplace pensions", "Real Time Information (RTI)", "VAT returns", "Making Tax Digital", "Year-end accounts", "Corporation tax", "Company tax return (CT600)", "Self Assessment", "Tax planning", "Business advisory", "Virtual CFO", "Business valuation", "Fundraising support", "Audit support", "Company formation", "Xero", "Sage", "QuickBooks", "FreeAgent"],
         "founder": {"@type": "Person", "@id": f"{SITE}/about-us#vikas-pandey", "name": "Vikas Pandey", "jobTitle": "CEO", "sameAs": ["https://www.linkedin.com/in/vikas-pandey-aviteus/"]},
     }
 
@@ -137,7 +137,6 @@ SERVICE_MAP = [
                ("Cleaning up an existing file", "/services/accounting-software#included"), ("Training for you and your team", "/services/accounting-software#included")]},
 ]
 SERVICE_GROUPS = ["Monthly accounting", "Tax", "Growth and advice", "Company and software"]
-INDUSTRIES = [("Healthcare and care", "/industries#healthcare"), ("Construction", "/industries#construction"), ("E-commerce", "/industries#ecommerce")]
 ALSO_AVAILABLE = [("Catch-up bookkeeping", "/services/bookkeeping#catch-up")]
 
 
@@ -155,8 +154,6 @@ def header(active):
     m_groups = "".join(
         f'''<li class="m-group"><span class="m-glabel">{g}</span><ul>{"".join(f'<li><a href="{s["url"]}">{s["name"]}</a></li>' for s in SERVICE_MAP if s["group"] == g)}</ul></li>'''
         for g in SERVICE_GROUPS)
-    ind = " ".join(f'<a href="{u}">{t}</a>' for t, u in INDUSTRIES)
-    m_ind = "".join(f'<li><a href="{u}">{t}</a></li>' for t, u in INDUSTRIES)
     return f'''<header class="site-header">
   <div class="wrap">
     <a class="av-logo" href="/" aria-label="Aviteus Business Solutions home">{logo_img(168, 74, eager=True)}</a>
@@ -169,7 +166,7 @@ def header(active):
               {"".join(cols)}
             </div>
             <div class="mega-strip">
-              <p><span class="mega-strip-label">Industries</span> {ind}</p>
+              <p><span class="mega-strip-label">Who we help</span> <a href="/services#who-we-help">Owner-managed businesses in any sector, across the UK</a></p>
               <p><span class="mega-strip-label">Free tools</span> <a href="/deadline-finder"{cur("finder")}>Deadline finder</a> <a href="/tools/vat-threshold-checker">VAT checker</a> <a href="/tools/switching-checklist">Switching checklist</a></p>
             </div>
             <div class="mega-foot">
@@ -179,7 +176,7 @@ def header(active):
           </div>
         </div>
       </li>
-      <li><a href="/industries"{cur("industries")}>Industries</a></li>
+      <li><a href="/tools"{cur("tools")}>Free tools</a></li>
       <li><a href="/about-us"{cur("about")}>About us</a></li>
       <li><a href="/blog"{cur("blog")}>Blog</a></li>
       <li><a class="header-phone" href="{PHONE_TEL}" data-placement="header">{PHONE}</a></li>
@@ -191,7 +188,6 @@ def header(active):
     <p class="m-label">Our services</p>
     <ul class="m-services">
       {m_groups}
-      <li class="m-group"><span class="m-glabel">Industries</span><ul>{m_ind}</ul></li>
     </ul>
     <ul class="m-main">
       <li><a href="/services">All services</a></li>
@@ -224,7 +220,7 @@ def footer(data):
         <h2>Company</h2>
         <ul>
           <li><a href="/about-us">About us</a></li>
-          <li><a href="/industries">Industries we work with</a></li>
+          <li><a href="/services#who-we-help">Who we work with</a></li>
           <li><a href="/tools">Free tools</a></li>
           <li><a href="/deadline-finder">UK deadline finder</a></li>
           <li><a href="/tools/vat-threshold-checker">VAT registration checker</a></li>
@@ -297,7 +293,7 @@ def lead_form(preselect=(), title="Tell us what you need help with", intro="Five
           + _group("staff", "How many people work in the business, including you?", _chips("staff", [("solo", "Just me"), ("2_9", "2 to 9"), ("10_49", "10 to 49"), ("50_plus", "50 or more")]))
           + _group("turnover", "Roughly what is your yearly turnover?", _chips("turnover", [("under_90k", "Under £90,000"), ("90k_250k", "£90,000 to £250,000"), ("250k_1m", "£250,000 to £1 million"), ("1m_5m", "£1 million to £5 million"), ("over_5m", "Over £5 million"), ("undisclosed", "Prefer not to say")]))
           + _group("vat_registered", "Are you VAT registered?", _chips("vat_registered", [("yes", "Yes"), ("no", "No"), ("not_sure", "Not sure")]), required=False)
-          + _select("industry", "Which industry are you in?", [("healthcare", "Healthcare and care"), ("construction", "Construction"), ("ecommerce", "E-commerce"), ("professional", "Professional services"), ("hospitality", "Hospitality"), ("retail", "Retail"), ("property", "Property"), ("charity", "Charity or not for profit"), ("other", "Something else")]))
+          + _select("industry", "Which industry are you in?", [("charity", "Charity or not for profit"), ("construction", "Construction and trades"), ("creative", "Creative and media"), ("ecommerce", "E-commerce"), ("healthcare", "Healthcare and care"), ("hospitality", "Hospitality"), ("manufacturing", "Manufacturing"), ("professional", "Professional services"), ("property", "Property and lettings"), ("retail", "Retail"), ("technology", "Technology"), ("transport", "Transport and logistics"), ("other", "Something else")]))
     s3 = (_group("books_now", "Who keeps your books today?", _chips("books_now", [("accountant", "An accountant or bookkeeper"), ("self_software", "Me, in accounting software"), ("spreadsheets", "Spreadsheets"), ("paper", "Paper or a shoebox"), ("not_started", "Not started yet")]), required=False)
           + _select("software", "Which software, if any?", [("xero", "Xero"), ("quickbooks", "QuickBooks"), ("sage", "Sage"), ("freeagent", "FreeAgent"), ("other", "Something else"), ("none", "None")])
           + _group("books_status", "How up to date are your books?", _chips("books_status", [("up_to_date", "Up to date"), ("behind_1_3", "1 to 3 months behind"), ("behind_3_plus", "More than 3 months behind"), ("not_sure", "Not sure")]))
@@ -374,10 +370,41 @@ WA_WIDGET = f'''<div class="wa-widget" id="wa-widget" hidden>
 </div>'''
 
 
+PAGE_TYPES = ("WebPage", "AboutPage", "ContactPage", "CollectionPage")
+
+
+def _page_node(path, title, description, ld, data, noindex):
+    """Every page gets one WebPage node, tied to the site, the business and its breadcrumb (entity graph)."""
+    url = f"{SITE}{path}"
+    ld = [dict(n) for n in ld]
+    crumbs = next((n for n in ld if n.get("@type") == "BreadcrumbList"), None)
+    if crumbs is not None:
+        crumbs["@id"] = f"{url}#breadcrumb"
+    main = next((n for n in ld if n.get("@type") in ("Service", "BlogPosting", "WebApplication", "HowTo")), None)
+    node = next((n for n in ld if n.get("@type") in PAGE_TYPES), None)
+    if node is None:
+        node = {"@type": "WebPage", "name": title}
+        ld.insert(0, node)
+    node.setdefault("@id", f"{url}#webpage")
+    node.setdefault("url", url)
+    node.setdefault("description", description)
+    node.setdefault("isPartOf", {"@id": f"{SITE}/#website"})
+    node.setdefault("about", {"@id": f"{SITE}/#business"})
+    node.setdefault("publisher", {"@id": f"{SITE}/#business"})
+    node.setdefault("inLanguage", "en-GB")
+    if data.get("content_updated"):
+        node.setdefault("dateModified", data["content_updated"])
+    if crumbs is not None:
+        node.setdefault("breadcrumb", {"@id": crumbs["@id"]})
+    if main is not None and main.get("@id"):
+        node.setdefault("mainEntity", {"@id": main["@id"]})
+    return ld
+
+
 def page(*, path, title, description, h_active, body_html, ld, data, page_type, service="general",
          sticky=True, noindex=False, extra_js="", og_title=None, og_desc=None):
     canonical = f"{SITE}{path}"
-    graph = [org_ld(), website_ld()] + ld
+    graph = [org_ld(), website_ld()] + _page_node(path, title, description, ld, data, noindex)
     ld_json = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=None).replace("</", "<\\/")
     robots = "noindex, follow" if noindex else "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     ogt = og_title or "Aviteus Business Solutions · Know what's done. Know what's due."
