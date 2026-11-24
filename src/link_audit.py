@@ -3,7 +3,10 @@ import os, re, sys
 from collections import defaultdict
 SITE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "site")
 PAGES = {"index.html": "/", "services.html": "/services", "services/bookkeeping.html": "/services/bookkeeping", "services/payroll.html": "/services/payroll",
-         "services/vat-tax.html": "/services/vat-tax", "about-us.html": "/about-us", "contact.html": "/contact", "deadline-finder.html": "/deadline-finder"}
+         "services/vat-tax.html": "/services/vat-tax", "about-us.html": "/about-us", "contact.html": "/contact", "deadline-finder.html": "/deadline-finder", "blog.html": "/blog"}
+import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from posts import POSTS
+for _p in POSTS: PAGES[f"blog/{_p['slug']}.html"] = f"/blog/{_p['slug']}"
 inbound = defaultdict(set); outbound = {}
 for f, url in PAGES.items():
     html = open(os.path.join(SITE, f)).read()

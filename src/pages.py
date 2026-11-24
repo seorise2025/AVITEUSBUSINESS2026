@@ -34,6 +34,14 @@ def team_block(data, heading, intro_link=False):
     return f'<section class="section" aria-labelledby="team-h"><div class="wrap"><div class="head"><h2 id="team-h">{heading}</h2></div><div class="team">{"".join(cards)}</div>{more}</div></section>'
 
 
+def _png_size(src):
+    import os, struct
+    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "img-" + src.rsplit("/", 1)[-1])
+    with open(f, "rb") as fh:
+        head = fh.read(24)
+    return struct.unpack(">II", head[16:24])
+
+
 def software_strip(data):
     """Deck: "Software we work in" strip. Names show as plain text until each vendor's partner terms are confirmed.
     Add an approved logo file path in data.json software_logos to swap a name for its official logo."""
@@ -41,7 +49,13 @@ def software_strip(data):
     items = []
     for name in ["Xero", "Sage", "FreeAgent", "Hubdoc"]:
         src = logos.get(name)
-        items.append(f'<li class="sw"><img src="{escape(src)}" alt="{name} logo" height="32" loading="lazy"></li>' if src else f'<li class="sw sw--text">{name}</li>')
+        if src:
+            w, h = _png_size(src)
+            badge = w / h < 1.3                 # round marks (Xero, Hubdoc) need more height to read at the same visual size
+            hh = 48 if badge else 32
+            items.append(f'<li class="sw"><img class="{"badge" if badge else "mark"}" src="{escape(src)}" alt="{name} logo" width="{round(w * hh / h)}" height="{hh}" loading="lazy"></li>')
+        else:
+            items.append(f'<li class="sw sw--text">{name}</li>')
     return f'''<section class="section section--alt" id="software" aria-labelledby="sw-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="sw-h">Already on Xero, Sage, FreeAgent or Hubdoc? We start from your file.</h2></div>
@@ -244,7 +258,7 @@ def bookkeeping(data):
       </tbody>
     </table>
     <p class="note mt-4">The table in your scope will be specific to your business. This is the starting point.</p>
-    {related([("We can run payroll from the same books", "/services/payroll"), ("VAT returns and Making Tax Digital", "/services/vat-tax"), ("Who will do the work", "/about-us"), ("All services", "/services")])}
+    {related([("We can run payroll from the same books", "/services/payroll"), ("VAT returns and Making Tax Digital", "/services/vat-tax"), ("Who will do the work", "/about-us"), ("All services", "/services"), ("Blog: bookkeeping vs management accounts", "/blog/bookkeeping-vs-management-accounts"), ("Blog: catch up your books", "/blog/catch-up-bookkeeping")])}
     <div class="mt-7">{book_btn("after_scope")}</div>
   </div>
 </section>
@@ -436,7 +450,7 @@ def payroll(data):
       </tbody>
     </table>
     <p class="lead mt-5">The same routine every month. No guessing, no last-minute calls.</p>
-    {related([("Monthly bookkeeping", "/services/bookkeeping"), ("Who will run your payroll", "/about-us"), ("VAT and year-end tax", "/services/vat-tax"), ("Find your payroll dates", "/deadline-finder"), ("All services", "/services")])}
+    {related([("Monthly bookkeeping", "/services/bookkeeping"), ("Who will run your payroll", "/about-us"), ("VAT and year-end tax", "/services/vat-tax"), ("Find your payroll dates", "/deadline-finder"), ("All services", "/services"), ("Blog: the employer payroll checklist", "/blog/small-business-payroll-checklist")])}
     <div class="mt-7">{book_btn("after_table")}</div>
   </div>
 </section>
@@ -536,7 +550,7 @@ def vat(data):
       </tbody>
     </table>
     <p class="callout mt-5">Note the order. Corporation tax is <b>paid</b> three months before the return is <b>due</b>. Many owners find that out the hard way.</p>
-    {related([("Find your own dates with the free deadline finder", "/deadline-finder"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Payroll", "/services/payroll"), ("Who will do the work", "/about-us"), ("All services", "/services")])}
+    {related([("Find your own dates with the free deadline finder", "/deadline-finder"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Payroll", "/services/payroll"), ("Who will do the work", "/about-us"), ("All services", "/services"), ("Blog: VAT and Making Tax Digital", "/blog/vat-returns-making-tax-digital"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
     <div class="mt-7">{book_btn("after_table")}</div>
   </div>
 </section>
@@ -806,7 +820,7 @@ def finder(data):
       <tbody>{rule_rows}</tbody>
     </table>
     <div class="quiet mt-6"><h3>When these rules do not fit</h3><p class="mt-4">Your first accounts after setting up a company have a different deadline. Large companies pay corporation tax in instalments. If a payment date falls on a weekend or bank holiday, make sure the money reaches HMRC by the working day before. Always check your own dates on GOV.UK or with your accountant.</p></div>
-    {related([("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Monthly bookkeeping", "/services/bookkeeping"), ("All services", "/services")])}
+    {related([("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Monthly bookkeeping", "/services/bookkeeping"), ("All services", "/services"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
   </div>
 </section>
 
@@ -946,3 +960,110 @@ def cookies(data):
                   "Which cookies and browser storage the Aviteus Business Solutions website uses, why, for how long, and how to change your choice at any time.",
                   "Cookie details", "Cookies", inner, data, noindex=True,
                   draft="This page describes exactly what the website does today. Aviteus's adviser must approve it before the website goes live.")
+
+
+# ---------------------------------------------------------------- Blog
+from posts import POSTS
+from datetime import date as _date
+
+
+def _when(iso):
+    d = _date.fromisoformat(iso)
+    return f"{d.day} {d.strftime('%B %Y')}"
+
+
+def _minutes(post):
+    import re as _re
+    text = _re.sub(r"<[^>]+>", " ", " ".join(b for _, b in post["sections"]) + post["in_short"] + " ".join(q + a for q, a in post["faqs"]))
+    return max(2, round(len(text.split()) / 220))
+
+
+def _approved(data, post):
+    return post["slug"] in data.get("approved_posts", [])
+
+
+def blog_index(data):
+    rows = []
+    for post in POSTS:
+        rows.append(f'''<article class="post-row">
+  <p class="post-meta"><span class="post-cat">{post["category"]}</span> · <time datetime="{post["date"]}">{_when(post["date"])}</time> · {_minutes(post)} min read</p>
+  <h2><a href="/blog/{post["slug"]}">{post["title"]}</a></h2>
+  <p>{post["summary"]}</p>
+  <a class="av-link" href="/blog/{post["slug"]}" aria-label="Read: {escape(post["title"])}">Read the guide {ARROW}</a>
+</article>''')
+    any_ok = any(_approved(data, p) for p in POSTS)
+    body = f'''
+<section class="hero hero--simple" aria-labelledby="h1">
+  <div class="wrap read">
+    {crumbs_html([("Home", "/"), ("Blog", "/blog")])}
+    <p class="av-eyebrow">Blog</p>
+    <h1 id="h1" class="mt-4">Plain answers on UK bookkeeping, payroll and tax</h1>
+    <p class="lead">Short guides for owners of UK businesses. Each one answers a question we hear on review calls, with the dates and steps that matter.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0" aria-label="Posts">
+  <div class="wrap">
+    <div class="post-list">{"".join(rows)}</div>
+    <div class="callout mt-8"><h2 style="font-size:24px;line-height:30px">Rather someone handled it?</h2><p class="mt-4">Book a 20-minute review and we will tell you what is behind, what is due next, and whether we can help.</p><div class="close-actions mt-5">{book_btn("blog_index")}</div></div>
+  </div>
+</section>'''
+    items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/blog/{p['slug']}", "name": p["title"]} for i, p in enumerate(POSTS)]
+    return page(path="/blog", title="Blog: UK Bookkeeping, Payroll and Tax Guides | Aviteus",
+                description="Plain guides for UK business owners on bookkeeping, payroll, VAT, Making Tax Digital, company deadlines and switching accountant.",
+                h_active="blog", body_html=body, page_type="blog", noindex=not any_ok,
+                ld=[{"@type": "Blog", "@id": f"{SITE}/blog#blog", "name": "Aviteus Business Solutions blog", "url": f"{SITE}/blog", "publisher": {"@id": f"{SITE}/#business"}, "inLanguage": "en-GB"},
+                    {"@type": "ItemList", "itemListElement": items}, breadcrumb_ld([("Home", "/"), ("Blog", "/blog")])], data=data)
+
+
+def blog_post(data, post):
+    import re as _re
+    ok = _approved(data, post)
+    ids = [_re.sub(r"[^a-z0-9]+", "-", h.lower()).strip("-")[:48] for h, _ in post["sections"]]
+    toc = "".join(f'<li><a class="ilink" href="#{i}">{h}</a></li>' for (h, _), i in zip(post["sections"], ids))
+    secs = "".join(f'<section class="post-sec" aria-labelledby="{i}"><h2 id="{i}">{h}</h2>{b}</section>' for (h, b), i in zip(post["sections"], ids))
+    others = [p for p in POSTS if p["slug"] != post["slug"]]
+    same = [p for p in others if p["category"] == post["category"]]
+    more = (same + [p for p in others if p not in same])[:3]
+    more_html = "".join(f'<li><a class="tlink" href="/blog/{p["slug"]}">{p["title"]}</a></li>' for p in more)
+    svc_html = "".join(f'<li><a class="tlink" href="{u}">{t}</a></li>' for t, u in post["services"])
+    draft = "" if ok else '<div class="callout mt-5" role="note"><b>Draft: awaiting accounting review.</b> This guide is not yet signed off by a named reviewer, so search engines are asked not to list it.</div>'
+    url = f"/blog/{post['slug']}"
+    crumbs = [("Home", "/"), ("Blog", "/blog"), (post["category"], url)]
+    body = f'''
+<article>
+<section class="hero hero--simple" aria-labelledby="h1">
+  <div class="wrap read">
+    {crumbs_html(crumbs)}
+    <p class="av-eyebrow">{post["category"]}</p>
+    <h1 id="h1" class="mt-4">{post["title"]}</h1>
+    <p class="post-meta mt-5">Aviteus Business Solutions · Updated <time datetime="{post["date"]}">{_when(post["date"])}</time> · {_minutes(post)} min read</p>
+    {draft}
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="wrap post-grid">
+    <aside class="post-side" aria-label="On this page">
+      <p class="sw-label">On this page</p>
+      <ol class="toc">{toc}<li><a class="ilink" href="#faq-h">Questions</a></li></ol>
+      <div class="post-cta"><p><b>Need a hand?</b> Book a free 20-minute review.</p>{book_btn("post_side", "Book a review", "av-btn av-btn--ember av-btn--small")}</div>
+    </aside>
+    <div class="post-body">
+      <div class="in-short"><p class="sw-label">In short</p><p>{post["in_short"]}</p></div>
+      {secs}
+      <section class="post-sec" aria-labelledby="faq-h"><h2 id="faq-h">Questions</h2>{faq_html(post["faqs"], first_open=False)}</section>
+      <nav class="post-links" aria-label="Related">
+        <div><p class="sw-label">Related services</p><ul>{svc_html}</ul></div>
+        <div><p class="sw-label">More from the blog</p><ul>{more_html}<li><a class="av-link" href="/blog">All posts {ARROW}</a></li></ul></div>
+      </nav>
+    </div>
+  </div>
+</section>
+</article>
+{close_band("Bring one problem. Leave with a plan.", "Twenty minutes is enough to tell you what is behind, what is due next, and whether we can help. If we can't, we'll tell you who might.")}'''
+    ld = {"@type": "BlogPosting", "@id": f"{SITE}{url}#post", "headline": post["title"], "description": post["description"], "datePublished": post["date"], "dateModified": post["date"],
+          "inLanguage": "en-GB", "mainEntityOfPage": f"{SITE}{url}", "image": f"{SITE}/assets/img/og-default.png", "articleSection": post["category"],
+          "author": {"@id": f"{SITE}/#business"}, "publisher": {"@id": f"{SITE}/#business"}, "isPartOf": {"@id": f"{SITE}/blog#blog"},
+          "about": [{"@id": f"{SITE}{u}#service"} for _, u in post["services"]]}
+    return page(path=url, title=post["seo_title"], description=post["description"], h_active="blog", body_html=body, page_type="post",
+                noindex=not ok, og_title=post["title"], og_desc=post["description"],
+                ld=[ld, breadcrumb_ld(crumbs), faq_ld(post["faqs"])], data=data)

@@ -24,10 +24,12 @@
     "consent": true
   },
   "software_logos": {
-    "_note": "Leave null until the vendor's partner terms allow Aviteus to use the logo (Xero partner programme for Xero and Hubdoc). Then set the path to the official file, e.g. /assets/img/logos/xero.svg",
-    "Xero": null,
-    "Sage": null,
-    "FreeAgent": null,
-    "Hubdoc": null
-  }
+    "_note": "Logos switched on at the owner's request (24 Nov 2026). Xero's brand rules limit its logo, and Hubdoc's, to Xero partners: join the Xero partner programme before launch. Set a value to null to show the name as text instead.",
+    "Xero": "/assets/img/logo-xero.png",
+    "Sage": "/assets/img/logo-sage.png",
+    "FreeAgent": "/assets/img/logo-freeagent.png",
+    "Hubdoc": "/assets/img/logo-hubdoc.png"
+  },
+  "approved_posts": [],
+  "_approved_posts_note": "Add a post's slug here once the named accounting reviewer has signed it off. It then loses its draft note, becomes indexable and joins the sitemap."
 }

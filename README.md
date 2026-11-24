@@ -100,9 +100,24 @@ Fill these in `src/data.json` and rebuild. Each block appears only when its data
 - Where the work is done (Option A or B): About page section.
 - LinkedIn company page: footer.
 
+## Blog
+
+`/blog` plus six posts, written in `src/posts.py`. Each post targets one keyword cluster from the strategy pack and links to the service page it supports:
+
+| Post | Supports |
+|---|---|
+| How to change accountant in the UK | Switching (phase 2 page), Bookkeeping, Payroll |
+| UK limited company deadlines | VAT and tax, deadline finder |
+| Bookkeeping vs management accounts | Bookkeeping |
+| Running payroll for a small business | Payroll |
+| VAT returns and Making Tax Digital | VAT and tax |
+| Books behind? Catch up your bookkeeping | Bookkeeping |
+
+**Every post is a draft until reviewed.** Posts show a "Draft: awaiting accounting review" note, are `noindex` and stay out of the sitemap. When the named accounting reviewer signs a post off, add its slug to `approved_posts` in `src/data.json` and rebuild. The `/blog` index becomes indexable once at least one post is approved. Each post has `BlogPosting`, `BreadcrumbList` and `FAQPage` structured data.
+
 ## Software we work in (Home)
 
-Built from the updated deck (Copy Deck 1). The strip shows Xero, Sage, FreeAgent and Hubdoc as plain text, as the deck instructs, until each vendor's partner terms are confirmed. Xero's rules limit its logo (and Hubdoc's) to firms on the Xero partner programme. To show an approved logo, put the official file in `src/static/` and set its path in `src/data.json` under `software_logos`, then rebuild.
+Built from the updated deck (Copy Deck 1). **Logos are switched on at the owner's request.** The files are the ones already used on the live site, with only their empty margins trimmed. Round marks (Xero, Hubdoc) show at 48px and wordmarks (Sage, FreeAgent) at 32px so they read at the same visual size. **Risk:** Xero's brand rules limit its logo, and Hubdoc's, to firms on the Xero partner programme. Join it before launch, or set a logo to `null` in `src/data.json` under `software_logos` to show the name as text.
 
 ## Internal linking
 

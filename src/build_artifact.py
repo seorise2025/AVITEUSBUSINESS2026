@@ -16,9 +16,13 @@ PAGES = {
     "/services/payroll": "services-payroll.html", "/services/vat-tax": "services-vat-tax.html",
     "/about-us": "about-us.html", "/contact": "contact.html", "/deadline-finder": "deadline-finder.html",
     "/terms-and-conditions": "terms-and-conditions.html", "/privacy-policy": "privacy-policy.html",
-    "/cookies": "cookies.html",
+    "/cookies": "cookies.html", "/blog": "blog.html",
 }
-SOURCES = {v: (k.strip("/").replace("services/", "services/") or "index") + ".html" for k, v in PAGES.items()}
+sys.path.insert(0, os.path.join(ROOT, "src"))
+from posts import POSTS  # noqa: E402
+for _p in POSTS:
+    PAGES[f"/blog/{_p['slug']}"] = f"blog-{_p['slug']}.html"
+SOURCES = {v: (k.strip("/") or "index") + ".html" for k, v in PAGES.items()}
 SOURCES["index.html"] = "index.html"
 SOURCES["404.html"] = "404.html"
 

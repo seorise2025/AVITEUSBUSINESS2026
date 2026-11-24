@@ -47,6 +47,12 @@ ROUTES = [
     ("cookies.html", pages.cookies, None, None, None),          # draft, noindex, out of the sitemap until approved
     ("404.html", pages.notfound, None, None, None),
 ]
+# Blog: indexable (and in the sitemap) only once approved in data.json
+_ok = data.get("approved_posts", [])
+ROUTES.insert(8, ("blog.html", pages.blog_index, "/blog" if _ok else None, "0.6", "weekly"))
+for _post in pages.POSTS:
+    ROUTES.insert(9, (f"blog/{_post['slug']}.html", (lambda d, _p=_post: pages.blog_post(d, _p)),
+                      f"/blog/{_post['slug']}" if _post["slug"] in _ok else None, "0.6", "monthly"))
 for fn, func, url, _, _ in ROUTES:
     p = os.path.join(OUT, fn)
     os.makedirs(os.path.dirname(p), exist_ok=True)

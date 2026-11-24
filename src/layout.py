@@ -118,6 +118,7 @@ def header(active):
         </ul>
       </li>
       <li><a href="/about-us"{cur("about")}>About us</a></li>
+      <li><a href="/blog"{cur("blog")}>Blog</a></li>
       <li><a class="header-phone" href="{PHONE_TEL}" data-placement="header">Call {PHONE}</a></li>
     </ul>
     <a class="av-btn av-btn--ember av-btn--small header-cta" href="/contact" data-book data-placement="header">Book a review</a>
@@ -130,6 +131,7 @@ def header(active):
       <li class="sub"><a href="/services/payroll">Payroll and pensions</a></li>
       <li class="sub"><a href="/services/vat-tax">VAT and year-end tax</a></li>
       <li><a href="/about-us">About us</a></li>
+      <li><a href="/blog">Blog</a></li>
       <li><a href="/deadline-finder">Free UK deadline finder</a></li>
       <li><a href="{PHONE_TEL}" data-placement="mobile_menu">Call {PHONE}</a></li>
     </ul>
@@ -159,6 +161,7 @@ def footer(data):
         <h2>Company</h2>
         <ul>
           <li><a href="/about-us">About us</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/contact" data-book data-placement="footer">Book a review</a></li>
           {linkedin}
         </ul>
