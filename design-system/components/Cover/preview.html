@@ -1,0 +1,33 @@
+<!-- @dsCard height=300 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Cover</title>
+<style>
+  body { margin: 0; background: var(--ground); }
+  .cover { position: relative; width: 960px; height: 300px; overflow: hidden; background: var(--ground); }
+  .cover svg { position: absolute; inset: 0; }
+  .b-slate { fill: var(--slate); } .b-glow { fill: var(--ember-glow); } .b-ember { fill: var(--ember); } .b-blush { fill: var(--blush); }
+  .pulse { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+  .node { fill: var(--ember); stroke: var(--ink); stroke-width: 3; }
+  .name { position: absolute; left: 48px; bottom: 76px; max-width: 440px; margin: 0; font-family: var(--font-display); font-size: 88px; line-height: 84px; font-weight: 650; letter-spacing: -0.02em; color: var(--ink); }
+  .tag { position: absolute; left: 50px; bottom: 40px; max-width: 440px; margin: 0; font-family: var(--font-figures); font-size: 13px; line-height: 18px; letter-spacing: 0.08em; color: var(--ink-body); }
+</style></head>
+<body>
+<div class="cover">
+  <svg viewBox="0 0 960 300" width="960" height="300" aria-hidden="true">
+    <!-- blocks: slate 88x112, ember-glow 88x176, ember 112x248 (rising columns from the logo) + blush 96x64 relief tile, all standing on or bleeding off the edges
+         arrangement: three columns rising left to right on the bottom edge (the logo's bars), blush tile bleeding off the top-right corner
+         pattern: literal motif row, the Pulse Line (logo heartbeat) crossing the columns once with one node, because the brand's own mark is bars + a pulse
+         scales: column gaps space-5 (24px), widths multiples of space-1, top-left cuts cut-m (18px) / cut-l (32px), pulse stroke-pulse x1.5 -->
+    <path class="b-slate" d="M520 206 L538 188 L608 188 L608 300 L520 300 Z"/>
+    <path class="b-glow" d="M632 142 L650 124 L720 124 L720 300 L632 300 Z"/>
+    <path class="b-ember" d="M744 84 L776 52 L856 52 L856 300 L744 300 Z"/>
+    <path class="b-blush" d="M880 0 L960 0 L960 64 L880 64 Z"/>
+    <path class="pulse" d="M496 168 H652 L664 150 L676 196 L690 118 L704 220 L716 168 H960"/>
+    <circle class="node" cx="496" cy="168" r="7"/>
+  </svg>
+  <h1 class="name">Aviteus Business</h1>
+  <p class="tag">ACCURACY. INTEGRITY. RESULTS.</p>
+</div>
+</body>
+</html>

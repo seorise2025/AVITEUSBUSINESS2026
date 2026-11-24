@@ -1,0 +1,110 @@
+/* Aviteus Business: generated from tokens.json */
+:root, [data-theme="light"] {
+  --ground: #ffffff;
+  --ground-alt: #f9f9f9;
+  --ground-sunk: #f6f6f6;
+  --ink: #2b2b2b;
+  --ink-body: #5d666f;
+  --ember: #d55d00;
+  --ember-ink: #b04d00;
+  --ember-deep: #b04d00;
+  --ember-glow: #ff8c42;
+  --ember-wash: #fff4ec;
+  --blush: #ffeeea;
+  --night: #0e1422;
+  --night-deep: #0c1019;
+  --night-raised: #121825;
+  --on-night: #ffffff;
+  --plate: #ffffff;
+  --on-night-muted: #999999;
+  --on-ember: #0e1422;
+  --on-ember-deep: #ffffff;
+  --slate: #385c7c;
+  --logo-ink: #273039;
+  --line: #00000024;
+  --line-strong: #5d666f;
+  --focus-ring: #0e1422;
+  --success: #3eb75e;
+  --warning: #ff8f3c;
+  --danger: #ff0003;
+  --icon-ink: #fa360a;
+  --shadow-lift: 0 24px 48px -24px rgba(14, 20, 34, 0.28);
+  --shadow-plate: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] {
+  --ground: #0e1422;
+  --ground-alt: #0c1019;
+  --ground-sunk: #121825;
+  --ink: #ffffff;
+  --ink-body: #999999;
+  --ember: #d55d00;
+  --ember-ink: #ff8c42;
+  --ember-deep: #b04d00;
+  --ember-glow: #ff8c42;
+  --ember-wash: #121825;
+  --blush: #ffeeea;
+  --night: #0e1422;
+  --night-deep: #0c1019;
+  --night-raised: #121825;
+  --on-night: #ffffff;
+  --plate: #ffffff;
+  --on-night-muted: #999999;
+  --on-ember: #0e1422;
+  --on-ember-deep: #ffffff;
+  --slate: #385c7c;
+  --logo-ink: #273039;
+  --line: #ffffff24;
+  --line-strong: #999999;
+  --focus-ring: #ff8c42;
+  --success: #3eb75e;
+  --warning: #ff8f3c;
+  --danger: #ff0003;
+  --icon-ink: #fa360a;
+  --shadow-lift: 0 24px 48px -20px rgba(0, 0, 0, 0.6);
+  --shadow-plate: 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 120px;
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 20px;
+  --radius-pill: 999px;
+  --cut-s: 10px;
+  --cut-m: 18px;
+  --cut-l: 32px;
+  --stroke-hair: 1px;
+  --stroke-pulse: 2px;
+  --stroke-heavy: 4px;
+  --font-display: "Bricolage Grotesque", "Red Hat Display", system-ui, sans-serif;
+  --font-text: "Instrument Sans", "DM Sans", system-ui, sans-serif;
+  --font-figures: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+.display-xl { font-family: var(--font-display); font-size: 72px; line-height: 74px; font-weight: 650; letter-spacing: -0.02em; font-variation-settings: 'opsz' 96; }
+.display-l { font-family: var(--font-display); font-size: 56px; line-height: 58px; font-weight: 650; letter-spacing: -0.02em; font-variation-settings: 'opsz' 72; }
+.heading-1 { font-family: var(--font-display); font-size: 40px; line-height: 46px; font-weight: 650; letter-spacing: -0.02em; font-variation-settings: 'opsz' 48; }
+.heading-2 { font-family: var(--font-display); font-size: 30px; line-height: 36px; font-weight: 650; letter-spacing: -0.015em; font-variation-settings: 'opsz' 32; }
+.heading-3 { font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 600; letter-spacing: -0.01em; font-variation-settings: 'opsz' 24; }
+.lead { font-family: var(--font-text); font-size: 20px; line-height: 32px; font-weight: 400; }
+.body { font-family: var(--font-text); font-size: 16px; line-height: 26px; font-weight: 400; }
+.body-s { font-family: var(--font-text); font-size: 14px; line-height: 22px; font-weight: 400; }
+.label { font-family: var(--font-text); font-size: 15px; line-height: 20px; font-weight: 600; letter-spacing: 0.005em; }
+.eyebrow { font-family: var(--font-text); font-size: 13px; line-height: 16px; font-weight: 600; letter-spacing: 0.14em; }
+.figure-xl { font-family: var(--font-figures); font-size: 64px; line-height: 64px; font-weight: 500; letter-spacing: -0.04em; }
+.figure { font-family: var(--font-figures); font-size: 16px; line-height: 24px; font-weight: 500; }
+.code { font-family: var(--font-figures); font-size: 13px; line-height: 18px; font-weight: 400; letter-spacing: 0.02em; }
+@font-face { font-family: 'Bricolage Grotesque'; src: url('fonts/BricolageGrotesque-Variable.woff2') format('woff2'); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSans-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSans-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSans-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSans-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'JetBrains Mono'; src: url('fonts/JetBrainsMono-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'JetBrains Mono'; src: url('fonts/JetBrainsMono-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }

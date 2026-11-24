@@ -1,0 +1,22 @@
+<!-- @dsCard group="Forms" height=490 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Field preview</title>
+<style>body{margin:0} .pad{padding:24px}</style></head>
+<body class="av">
+<div class="pad" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+  <form class="av-panel av-panel--light" onsubmit="return false">
+    <h3>Ask us anything</h3>
+    <div class="av-field"><label for="n1">Your name</label><input id="n1" class="av-input" placeholder="Priya Shah"></div>
+    <div class="av-field"><label for="e1">Work email</label><input id="e1" class="av-input" type="email" placeholder="priya@yourfirm.co.uk"><span class="av-field-help">We reply within one working day.</span></div>
+    <div class="av-field av-field--error"><label for="p1">Phone</label><input id="p1" class="av-input" value="020 46"><span class="av-field-error">Enter a full UK number, like 020 4628 8209.</span></div>
+  </form>
+  <form class="av-panel av-night" onsubmit="return false">
+    <h3>Let's talk numbers</h3>
+    <div class="av-field"><label for="n2">Your name</label><input id="n2" class="av-input" placeholder="Your name"></div>
+    <div class="av-field"><label for="m2">What do you need help with?</label><textarea id="m2" class="av-input" placeholder="VAT returns, payroll, year end..."></textarea></div>
+    <button class="av-btn av-btn--ember" type="submit">Send my question</button>
+  </form>
+</div>
+</body>
+</html>
