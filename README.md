@@ -181,13 +181,14 @@ All three run in the browser, store nothing on a server and ask for no email (th
 
 ## Blog
 
-`/blog` plus six posts, written in `src/posts.py`. Each post targets one keyword cluster from the strategy pack and links to the service page it supports:
+`/blog` plus seven posts, written in `src/posts.py`. Each post targets one keyword cluster from the strategy pack and links to the service page it supports:
 
 | Post | Supports |
 |---|---|
+| Making Tax Digital for Income Tax (added 24 Nov 2026, from the content gap analysis: 8,100 + 3,600 UK searches a month) | Self Assessment, Bookkeeping, Software. **Approve this one first.** |
 | How to change accountant in the UK | Switching (phase 2 page), Bookkeeping, Payroll |
 | UK limited company deadlines | VAT and tax, deadline finder |
-| Bookkeeping vs management accounts | Bookkeeping |
+| What are management accounts? (retargeted from "Bookkeeping vs management accounts", which gets no searches) | Bookkeeping |
 | Running payroll for a small business | Payroll |
 | VAT returns and Making Tax Digital | VAT and tax |
 | Books behind? Catch up your bookkeeping | Bookkeeping |

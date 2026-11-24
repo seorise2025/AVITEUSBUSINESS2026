@@ -7,6 +7,61 @@ L = lambda href, text: f"<a class='ilink' href='{href}'>{text}</a>"
 POSTS = [
 # ------------------------------------------------------------------------------------------------
 {
+"slug": "making-tax-digital-income-tax",
+"category": "Tax",
+"title": "Making Tax Digital for Income Tax: who it affects and what to do",
+"seo_title": "MTD for Income Tax: Who It Affects and When | Aviteus",
+"description": "MTD for Income Tax started in April 2026. Who it affects, the £50,000, £30,000 and £20,000 limits, the quarterly update dates and what to do now.",
+"date": "2026-11-24",
+"summary": "It started on 6 April 2026 for sole traders and landlords with income over £50,000. The limit falls to £30,000 in 2027 and £20,000 in 2028.",
+"in_short": "Making Tax Digital (MTD) for Income Tax started on 6 April 2026. It applies to sole traders and landlords whose income from self-employment and property, before expenses, is over £50,000. The limit falls to £30,000 from April 2027 and £20,000 from April 2028. If you are in, you keep digital records, send HMRC a short update every quarter, and finish the year with a final declaration by 31 January. Limited companies are not affected.",
+"services": [("Self Assessment tax returns", "/services/self-assessment"), ("Bookkeeping and management accounts", "/services/bookkeeping")],
+"sections": [
+("Who has to use it, and when", f"""
+<table class="table table--stack"><thead><tr><th scope="col">Your qualifying income</th><th scope="col">Based on your tax return for</th><th scope="col">You start on</th></tr></thead><tbody>
+<tr><td>Over £50,000</td><td data-label="Based on">2024 to 2025</td><td data-label="You start on" class="date">6 April 2026</td></tr>
+<tr><td>Over £30,000</td><td data-label="Based on">2025 to 2026</td><td data-label="You start on" class="date">6 April 2027</td></tr>
+<tr><td>Over £20,000</td><td data-label="Based on">2026 to 2027</td><td data-label="You start on" class="date">6 April 2028</td></tr>
+</tbody></table>
+<p><b>Qualifying income</b> is your total income from self-employment and property, before expenses. It is not your profit. A wage from a job, pension income and dividends do not count. If you own a property jointly, count your share.</p>
+<p>Earn £35,000 from a trade and £20,000 in rent? That is £55,000, so you were in from April 2026, even if your profit was much lower.</p>"""),
+("Who it does not apply to (yet)", """
+<ul><li><b>Limited companies.</b> They pay corporation tax, not Income Tax, so MTD for Income Tax does not apply to the company. Directors who also have rental income may still be in, if that income is over the limit.</li>
+<li><b>Partnerships.</b> Not yet. The government has not set a date.</li>
+<li><b>Qualifying income under £20,000.</b> You carry on with a normal Self Assessment tax return.</li>
+<li><b>People who cannot use digital tools</b> because of age, disability, where they live or another reason. You can ask HMRC for an exemption.</li></ul>"""),
+("What changes in practice", f"""
+<ol><li><b>Digital records.</b> You keep your income and expenses in software that works with MTD, not in a paper book. A spreadsheet can work if it links to bridging software.</li>
+<li><b>Quarterly updates.</b> Every three months, you send HMRC a summary of your income and expenses for each trade and for your property income.</li>
+<li><b>A final declaration.</b> After the tax year ends, you add any other income and reliefs and confirm the final figures, by 31 January. This replaces the old tax return.</li></ol>
+<p>When you pay does not change. Tax is still due on 31 January, with {L('/services/self-assessment', 'payments on account')} on 31 January and 31 July where they apply.</p>"""),
+("The quarterly update dates", f"""
+<table class="table table--stack"><thead><tr><th scope="col">Quarter</th><th scope="col">Update due by</th></tr></thead><tbody>
+<tr><td>6 April to 5 July</td><td data-label="Due by" class="date">7 August</td></tr>
+<tr><td>6 July to 5 October</td><td data-label="Due by" class="date">7 November</td></tr>
+<tr><td>6 October to 5 January</td><td data-label="Due by" class="date">7 February</td></tr>
+<tr><td>6 January to 5 April</td><td data-label="Due by" class="date">7 May</td></tr>
+</tbody></table>
+<p>You can choose calendar quarters instead (to 30 June, 30 September, 31 December and 31 March). The due dates stay the same. Late updates earn penalty points, in the same way as late VAT returns.</p>
+<p>Want every date in one list? The free {L('/deadline-finder', 'deadline finder')} shows your next 12 months.</p>"""),
+("What to do now", f"""
+<ul><li><b>Already in since April 2026?</b> Your updates for the quarters to 5 July and 5 October should be filed. The next one is due by 7 February 2027.</li>
+<li><b>Income over £30,000 in 2025 to 2026?</b> You start on 6 April 2027. Choose your software now and run it for a few months first, so April is not your first try.</li>
+<li><b>Not sure of your figure?</b> Add up your trading and rental income before expenses from your last tax return.</li>
+<li><b>Pick software that is ready.</b> Xero, QuickBooks, Sage and FreeAgent all have versions for MTD for Income Tax. We {L('/services/accounting-software', 'set up the software and train you')}.</li></ul>"""),
+("Let us run it for you", f"""
+<p>If you would rather not file four updates a year yourself, we keep your {L('/services/bookkeeping', 'books up to date every month')}, send each quarterly update, and file your {L('/services/self-assessment', 'final declaration')} before 31 January. You get one short note each quarter saying what was sent.</p>"""),
+],
+"faqs": [
+("When did Making Tax Digital for Income Tax start?", "On 6 April 2026, for sole traders and landlords with qualifying income over £50,000."),
+("Does MTD for Income Tax apply to limited companies?", "No. Companies pay corporation tax, so MTD for Income Tax does not apply to them. A director with rental income over the limit may still need to use it for that income."),
+("Do I still need to file a Self Assessment tax return?", "If you are in MTD for Income Tax, the final declaration by 31 January replaces the tax return. If your qualifying income is under the limit, you file a normal Self Assessment return."),
+("Is qualifying income my profit?", "No. It is your total income from self-employment and property before you take off expenses."),
+("Can I use a spreadsheet?", "Only with bridging software that sends the figures to HMRC. Most people find accounting software simpler."),
+],
+},
+# ------------------------------------------------------------------------------------------------
+{
 "slug": "how-to-change-accountant-uk",
 "category": "Switching",
 "title": "How to change accountant in the UK: a step-by-step guide",
@@ -113,20 +168,20 @@ POSTS = [
 {
 "slug": "bookkeeping-vs-management-accounts",
 "category": "Bookkeeping",
-"title": "Bookkeeping vs management accounts: what is the difference?",
-"seo_title": "Bookkeeping vs Management Accounts: The Difference | Aviteus",
-"description": "Bookkeeping records every transaction. Management accounts turn those records into a short monthly report. What each covers and when you need both.",
+"title": "What are management accounts? How they differ from bookkeeping and financial accounts",
+"seo_title": "What Are Management Accounts? A Plain UK Guide | Aviteus",
+"description": "Management accounts are a short monthly report on profit, cash and what changed. How they differ from bookkeeping and financial (statutory) accounts.",
 "date": "2026-11-24",
 "summary": "Bookkeeping records every transaction. Management accounts turn those records into a short report you can act on. Here is when you need each.",
-"in_short": "Bookkeeping is recording and matching every transaction. Management accounts are the short monthly report built from those records: profit, cash and what changed. Statutory accounts are the yearly accounts the law requires. You need up-to-date books before management accounts are worth reading.",
+"in_short": "Management accounts are a short report, usually monthly, on your profit, cash and what changed. They are for you, not for HMRC. Bookkeeping is recording and matching every transaction, and management accounts are built from it. Financial accounts, also called statutory or year-end accounts, are the yearly accounts the law requires. You need up-to-date books before management accounts are worth reading.",
 "services": [("Bookkeeping and management accounts", "/services/bookkeeping")],
 "sections": [
-("Three kinds of accounts, side by side", """
-<table class="table table--stack"><thead><tr><th scope="col"></th><th scope="col">Bookkeeping</th><th scope="col">Management accounts</th><th scope="col">Statutory accounts</th></tr></thead><tbody>
-<tr><td>What it is</td><td data-label="Bookkeeping">Recording and matching every sale, bill and bank line</td><td data-label="Management accounts">A short report on profit, cash and what changed</td><td data-label="Statutory accounts">The yearly accounts the law requires</td></tr>
-<tr><td>How often</td><td data-label="Bookkeeping">All the time, closed each month</td><td data-label="Management accounts">Monthly or quarterly</td><td data-label="Statutory accounts">Once a year</td></tr>
-<tr><td>Who it is for</td><td data-label="Bookkeeping">Everything else depends on it</td><td data-label="Management accounts">You, your managers, your lender</td><td data-label="Statutory accounts">Companies House and HMRC</td></tr>
-<tr><td>Required by law?</td><td data-label="Bookkeeping">Yes, you must keep records</td><td data-label="Management accounts">No</td><td data-label="Statutory accounts">Yes</td></tr>
+("Management accounts vs bookkeeping vs financial accounts", """
+<table class="table table--stack"><thead><tr><th scope="col"></th><th scope="col">Bookkeeping</th><th scope="col">Management accounts</th><th scope="col">Financial (statutory) accounts</th></tr></thead><tbody>
+<tr><td>What it is</td><td data-label="Bookkeeping">Recording and matching every sale, bill and bank line</td><td data-label="Management accounts">A short report on profit, cash and what changed</td><td data-label="Financial accounts">The yearly accounts the law requires</td></tr>
+<tr><td>How often</td><td data-label="Bookkeeping">All the time, closed each month</td><td data-label="Management accounts">Monthly or quarterly</td><td data-label="Financial accounts">Once a year</td></tr>
+<tr><td>Who it is for</td><td data-label="Bookkeeping">Everything else depends on it</td><td data-label="Management accounts">You, your managers, your lender</td><td data-label="Financial accounts">Companies House and HMRC</td></tr>
+<tr><td>Required by law?</td><td data-label="Bookkeeping">Yes, you must keep records</td><td data-label="Management accounts">No</td><td data-label="Financial accounts">Yes</td></tr>
 </tbody></table>"""),
 ("What bookkeeping covers", """
 <ul><li>Every bank and card line matched to a bill, a sale or a receipt.</li>
@@ -150,6 +205,7 @@ POSTS = [
 <p>Short, on time and readable. Three pages is plenty. They should arrive at the same point each month, and the notes should answer "why" in a sentence or two. See {L('/services/bookkeeping', 'how our monthly bookkeeping and management pack work')}.</p>"""),
 ],
 "faqs": [
+("What is the difference between management accounts and financial accounts?", "Management accounts are an internal report for running the business, made as often as you like, in any format. Financial accounts (statutory accounts) follow accounting standards, are made once a year and are filed with Companies House and HMRC."),
 ("Can I have management accounts without a bookkeeper?", "Only if your books are up to date. Management accounts are built from your records, so if the records are behind, the report will be wrong."),
 ("Are management accounts the same as year-end accounts?", "No. Year-end (statutory) accounts are a legal filing made once a year. Management accounts are for running the business and are not filed anywhere."),
 ("How often should I get management accounts?", "Monthly suits most growing businesses. Quarterly can work if your figures do not change much from month to month."),
@@ -240,13 +296,14 @@ POSTS = [
 <li>Any adjustments, such as credit notes.</li></ul>
 <p>Keep them for at least 6 years.</p>"""),
 ("What happens if you file or pay late", """
-<ul><li><b>Late returns:</b> each late return adds a penalty point. Once you reach the limit for your filing frequency, a penalty follows, and so does every late return after it.</li>
+<ul><li><b>Late returns:</b> each late return adds a penalty point. The limit is 4 points if you file quarterly, 5 if you file monthly and 2 if you file once a year. At the limit HMRC charges a £200 penalty, and £200 for every late return after that.</li>
 <li><b>Late payments:</b> penalties and interest start soon after the due date and grow the longer it is unpaid.</li></ul>
 <p>Filing a few days early every quarter is the simplest way to avoid both.</p>"""),
 ("Let someone else watch the dates", f"""
 <p>We prepare the return from your books, send you the draft figures to approve, and file before the deadline. See {L('/services/vat-tax', 'how our VAT and year-end service works')}, or use the {L('/deadline-finder', 'deadline finder')} to see your next VAT dates.</p>"""),
 ],
 "faqs": [
+("What is a VAT return?", "A form you send to HMRC, usually every quarter, showing the VAT you charged on sales and the VAT you paid on business costs. The difference is what you pay HMRC, or what HMRC pays back to you."),
 ("When is my VAT return due?", "One calendar month and seven days after the end of your VAT period. For a quarter ending 31 March, it is 7 May."),
 ("Do I have to use Making Tax Digital software?", "Yes, if you are VAT registered. Returns must go through compatible software, with digital links between your records and the return."),
 ("How long do I keep VAT records?", "At least 6 years."),

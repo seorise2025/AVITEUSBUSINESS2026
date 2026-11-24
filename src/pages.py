@@ -75,7 +75,7 @@ def home(data):
         ("How much will it cost?", "A fixed monthly fee, agreed in writing before we start. It depends on how many transactions you have, how many people you pay, and whether you are VAT registered. You will have the figure after your <a class='ilink' href='/contact'>review</a>."),
         ("Can I keep my current accountant for the year-end?", "Yes. Some owners use us for the monthly work and keep their current firm for the annual accounts. The scope will say who does what."),
         ("Which software do you work in?", "Xero, QuickBooks, Sage and FreeAgent. If you are on spreadsheets, we can <a class='ilink' href='/services/accounting-software'>set you up and move your records across</a>."),
-        ("Do I need to be near Harrow?", "No. We work with businesses across the UK by video, phone and email. Our office in Harrow is there if you would rather meet in person."),
+        ("Do I need to be near Harrow?", "No. We work with businesses across London and the rest of the UK by video, phone and email. Our office in Harrow, north-west London, is there if you would rather meet in person."),
         ("How does switching work?", "We write to your current accountant for professional clearance, collect your records, and get authority to talk to HMRC for you. We time it around your next <a class='ilink' href='/services/payroll'>payroll</a> and <a class='ilink' href='/deadline-finder'>VAT dates</a> so nothing is missed."),
     ]
     facts = ["Aviteus Business Solutions Ltd", f'<a href="{CH_URL}" target="_blank" rel="noopener">Company number {COMPANY_NO}</a>', "Registered in England and Wales", f"Registered office: {REG_OFFICE}"]
@@ -160,7 +160,7 @@ def home(data):
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="new-h">We're new. Here's why that works in your favour.</h2></div>
     <div>
-      <p class="lead">Aviteus Business Solutions was set up in Harrow in September 2025. We will not pretend to have hundreds of clients. What we can offer is what bigger firms struggle to: senior people on your work, time to learn your business, and every reason to keep you.</p>
+      <p class="lead">Aviteus Business Solutions was set up in Harrow, north-west London, in September 2025. We will not pretend to have hundreds of clients. What we can offer is what bigger firms struggle to: senior people on your work, time to learn your business, and every reason to keep you.</p>
       <ul class="ticks mt-6">
         <li><b>A written scope before you pay.</b> You see exactly what is included and what is not.</li>
         <li><b>One named manager.</b> The same person every month, by email, phone or WhatsApp.</li>
@@ -249,7 +249,7 @@ def bookkeeping(data):
       <li><b>Reconciled bank and card accounts.</b> Every line matched to a bill, a sale or a receipt, to the last day of the month.</li>
       <li><b>Bills and sales posted.</b> Supplier bills, sales invoices and credit notes recorded and coded correctly for <a class='ilink' href='/services/vat-tax'>VAT</a>.</li>
       <li><b>A list of what is missing.</b> Short and specific: "3 card payments need receipts", not "please send paperwork".</li>
-      <li><b>Your monthly management pack.</b> Profit and loss for the month and year to date, balance sheet, cash position, and one page of notes on what moved and why.</li>
+      <li><b>Your monthly management pack.</b> Profit and loss for the month and year to date, balance sheet, cash position, and one page of notes on what moved and why. Our management accounts service is built into the monthly routine, not sold as an extra. <a class='ilink' href='/blog/bookkeeping-vs-management-accounts'>What management accounts are</a>.</li>
       <li><b>Your "Done and due" report.</b> What we finished, what is due next, and what we need from you, with dates.</li>
     </ul>
   </div>
@@ -403,6 +403,7 @@ def payroll(data):
         ("Do you pay my staff, or do I?", "You do, from your own bank account. We prepare the payment file and tell you the totals. Your money never passes through us."),
         ("What if I send changes after the cut-off?", "Tell us anyway. We will do our best to include them. If it is too late, we will add them to the next run and tell you exactly what that means for the employee."),
         ("Do you handle workplace pensions?", "Yes. We assess each employee, enrol those who qualify, send contributions to your pension provider and handle re-enrolment every three years."),
+        ("Are you a payroll bureau?", "Yes. We run payroll as a managed bureau service. You send the month's changes by the cut-off, we process the pay run, send payslips, file RTI with HMRC and tell you what to pay and when. You keep control of paying your staff. Taking on your first employee? Start with our <a class='ilink' href='/blog/small-business-payroll-checklist'>small business payroll checklist</a>."),
     ]
     cut = data.get("payroll_cutoff_day")
     cut_txt = escape(str(cut)) if cut else "Cut-off day"
@@ -507,7 +508,9 @@ def vat(data):
         ("When do I have to register for VAT?", "When your VAT-taxable turnover goes over the registration threshold in any rolling 12 months, or you expect it to in the next 30 days. We check your turnover each month, so you hear about it early."),
         ("Can you take over my VAT returns mid-year?", "Yes. We start from your next VAT period and check the last return filed before we submit anything."),
         ("Do you deal with HMRC for me?", "Yes, once you authorise us as your agent. HMRC letters and calls about your VAT or corporation tax come to us, and we tell you what they mean."),
-        ("I'm a sole trader. Does Making Tax Digital for Income Tax affect me?", "It might. It started in April 2026 for sole traders and landlords above an income threshold, and the threshold falls in later years. Bring your figures to a review and we will tell you if and when it applies."),
+        ("I'm a sole trader. Does Making Tax Digital for Income Tax affect me?", "It does if your income from self-employment and property, before expenses, is over £50,000. That rule started on 6 April 2026. The limit falls to £30,000 from April 2027 and £20,000 from April 2028. <a class='ilink' href='/blog/making-tax-digital-income-tax'>Read our Making Tax Digital for Income Tax guide</a>."),
+        ("What happens if my VAT return is late?", "Each late return earns a penalty point. For quarterly returns, the fourth point brings a £200 penalty, and so does every late return after that. Paying late adds separate penalties and interest. We file early, so the points never start."),
+        ("Do I need an accountant for my limited company?", "The law does not say you must have one. But a limited company must file accounts with Companies House, a company tax return with HMRC, and a confirmation statement every year, and directors are responsible if they are late or wrong. Most owners use a limited company accountant so those filings are done right and on time."),
     ]
     crumbs = [("Home", "/"), ("Services", "/services"), ("VAT and tax", "/services/vat-tax")]
     body = f'''
@@ -677,7 +680,7 @@ def about(data):
     <div class="head" style="margin:0"><h2 id="story-h">Why Aviteus exists</h2></div>
     <div>
       <p class="lead">Vikas Pandey started <a class="tlink" href="https://www.aviteushealthcare.co.uk" target="_blank" rel="noopener">Aviteus Healthcare</a> to supply care and nursing staff across the UK. Running that business taught him a simple lesson about money: when payroll is late, real people do not get paid, and when the books are behind, the owner makes decisions blind.</p>
-      <p class="lead">Aviteus Business Solutions was set up in Harrow in September 2025 to give other owner-managed businesses what he needed himself. <a class='ilink' href='/services/bookkeeping'>Books that are current</a>. <a class='ilink' href='/services/payroll'>Payroll that runs on the same day every month</a>. <a class='ilink' href='/services/vat-tax'>Deadlines known well in advance</a>. And one person to ask.</p>
+      <p class="lead">Aviteus Business Solutions was set up in Harrow, north-west London, in September 2025 to give other owner-managed businesses what he needed himself. <a class='ilink' href='/services/bookkeeping'>Books that are current</a>. <a class='ilink' href='/services/payroll'>Payroll that runs on the same day every month</a>. <a class='ilink' href='/services/vat-tax'>Deadlines known well in advance</a>. And one person to ask.</p>
     </div>
   </div>
 </section>
@@ -817,7 +820,7 @@ def services(data):
     <p class="lead">Owner-managed businesses in any sector, anywhere in the UK. If your business sells, employs people or files with HMRC, we can help.</p>
     <ul class="ticks mt-6">
       <li><b>Limited companies and their directors.</b> Books, payroll, <a class="ilink" href="/services/vat-tax">VAT and year-end accounts</a>, and the directors' own tax returns.</li>
-      <li><b>Sole traders and the self-employed.</b> <a class="ilink" href="/services/bookkeeping">Bookkeeping</a> and <a class="ilink" href="/services/self-assessment">Self Assessment</a>, with Making Tax Digital for Income Tax in hand.</li>
+      <li><b>Sole traders and the self-employed.</b> <a class="ilink" href="/services/bookkeeping">Bookkeeping</a> and <a class="ilink" href="/services/self-assessment">Self Assessment</a>, with <a class="ilink" href="/blog/making-tax-digital-income-tax">Making Tax Digital for Income Tax</a> in hand.</li>
       <li><b>Partnerships and LLPs.</b> Partnership accounts and each partner's tax return.</li>
       <li><b>Landlords.</b> Rental income records and Self Assessment.</li>
       <li><b>Businesses changing accountant.</b> We handle the handover. Use our free <a class="ilink" href="/tools/switching-checklist">switching accountant checklist</a> to see every step.</li>
@@ -1333,7 +1336,7 @@ def formation(data):
                   ("Set-up", "Register the company at Companies House", "Approve the details before we file"),
                   ("HMRC registrations", "Register for corporation tax, and VAT and PAYE if needed", "Answer a few questions about the business"),
                   ("Each year", "File the confirmation statement and keep the registers current", "Tell us about any changes")],
-        "related": [("Your first company deadlines", "/blog/limited-company-deadlines-uk"), ("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Accounting software set-up", "/services/accounting-software"), ("Self Assessment for directors", "/services/self-assessment")],
+        "related": [("Your first company deadlines", "/blog/limited-company-deadlines-uk"), ("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Accounting software set-up", "/services/accounting-software"), ("Self Assessment for directors", "/services/self-assessment"), ("Hiring your first employee", "/blog/small-business-payroll-checklist")],
         "suits": "This suits you if you are starting a new limited company, or moving from sole trader to limited company and want the set-up done once and done properly.",
         "not": "Whether a limited company is right for you depends on your profit and your plans. If it is not the right move yet, we will say so on the call.",
         "fee": "A fixed fee for the set-up and registrations. Yearly compliance, such as the confirmation statement, is included when you use one of our monthly services. Agreed in writing before any work starts.",
@@ -1427,7 +1430,7 @@ def self_assessment(data):
         "faqs": [("When is the Self Assessment deadline?", "31 January after the end of the tax year, for online returns and for paying the tax. Paper returns are due earlier, on 31 October."),
                  ("What are payments on account?", "Advance payments towards next year's tax bill, due on 31 January and 31 July. Whether they apply depends on your last bill."),
                  ("What happens if I file late?", "HMRC charges a £100 penalty straight away for a late return, with more if it stays late. Interest is also charged on tax paid late."),
-                 ("Does Making Tax Digital for Income Tax affect me?", "It might, if you are self-employed or a landlord above an income threshold. Bring your figures to a review and we will tell you if and when it applies.")],
+                 ("Does Making Tax Digital for Income Tax affect me?", "It does if you are self-employed or a landlord and your income from those sources, before expenses, is over £50,000. That started on 6 April 2026. The limit falls to £30,000 from April 2027 and £20,000 from April 2028. You then keep digital records and send HMRC a short update every quarter. <a class='ilink' href='/blog/making-tax-digital-income-tax'>Read our full guide</a>.")],
         "close_h": "Get your return done before the January rush",
         "close_p": "In 20 minutes we will go through your income sources and what your return will need.",
     })
