@@ -464,3 +464,15 @@ body.nav-open .sticky-bar { display: none !important; }
 .ci-text span { font-size: 15px; line-height: 22px; }
 .check-item input:checked + .ci-text b { text-decoration: line-through; text-decoration-color: var(--ember); text-decoration-thickness: 2px; }
 .send-note { font-size: 14px; line-height: 20px; color: var(--ink-body); margin-top: calc(-1 * var(--space-2)); }
+
+/* ---------- Founder ---------- */
+.founder-grid { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: var(--space-8); align-items: start; }
+.founder-card { position: sticky; top: 112px; display: grid; gap: var(--space-4); justify-items: start; padding: var(--space-6); background: var(--ground-alt); border-radius: var(--radius-l); }
+.founder-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; }
+.founder-initials { display: grid; place-items: center; background: var(--night); color: var(--on-night); font: 650 52px/1 var(--font-display); letter-spacing: -0.02em; }
+.founder-name { font: 650 22px/28px var(--font-display); color: var(--ink); }
+.founder-role { font-size: 15px; line-height: 22px; }
+.founder-letter { max-width: 720px; }
+.founder-letter p + p { margin-top: var(--space-4); }
+.founder-sign { margin-top: var(--space-6) !important; font: 600 20px/26px var(--font-display); color: var(--ink); }
+@media (max-width: 860px) { .founder-grid { grid-template-columns: 1fr; gap: var(--space-6); } .founder-card { position: static; grid-template-columns: auto 1fr; align-items: center; } .founder-card .tlink { grid-column: 1 / -1; } .founder-photo { width: 96px; height: 96px; } .founder-initials { font-size: 34px; } }

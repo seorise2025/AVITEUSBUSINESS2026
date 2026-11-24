@@ -88,6 +88,10 @@ It must answer with:
 
 Add the Turnstile site key in `src/site.js` (`CONFIG.turnstileSiteKey`) and load the Turnstile script once the backend checks it.
 
+## Founder
+
+The About page opens with "Meet Vikas Pandey", the founder and CEO's own words (supplied 24 Nov 2026), with a "Discuss your accounting needs" button and a link to his LinkedIn profile. Home and Contact link to it. Until a photo is supplied, it shows his initials. To add the photo: save the original (square, at least 600 x 600 px) as `src/static/img-vikas-pandey.jpg`, set `founder.photo` to `/assets/img/vikas-pandey.jpg` in `src/data.json`, and rebuild.
+
 ## Hidden until real (from the deck's editor notes)
 
 Fill these in `src/data.json` and rebuild. Each block appears only when its data exists.

@@ -56,7 +56,7 @@ def org_ld():
         "areaServed": {"@type": "Country", "name": "United Kingdom"},
         "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}],
         "knowsAbout": ["Bookkeeping", "Management accounts", "Payroll", "Workplace pensions", "Real Time Information (RTI)", "VAT returns", "Making Tax Digital", "Year-end accounts", "Corporation tax", "Company tax return (CT600)", "Self Assessment", "Tax planning", "Business advisory", "Virtual CFO", "Business valuation", "Fundraising support", "Audit support", "Company formation", "Xero", "Sage", "QuickBooks", "FreeAgent", "Construction Industry Scheme"],
-        "founder": {"@type": "Person", "name": "Vikas Pandey"},
+        "founder": {"@type": "Person", "@id": f"{SITE}/about-us#vikas-pandey", "name": "Vikas Pandey", "jobTitle": "CEO", "sameAs": ["https://www.linkedin.com/in/vikas-pandey-aviteus/"]},
     }
 
 

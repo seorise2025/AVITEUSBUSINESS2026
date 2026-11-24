@@ -172,7 +172,8 @@ def home(data):
 <section class="section section--alt" aria-labelledby="roots-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="roots-h">Started by the team behind Aviteus Healthcare</h2></div>
-    <p class="lead"><a class='ilink' href='/about-us'>Aviteus began in healthcare staffing</a>, supplying care and nursing staff across the UK. In that world a late payroll means a carer does not get paid on Friday. We brought the same standard to accounting: get the dull things right, on time, every time.</p>
+    <div><p class="lead"><a class='ilink' href='/about-us'>Aviteus began in healthcare staffing</a>, supplying care and nursing staff across the UK. In that world a late payroll means a carer does not get paid on Friday. We brought the same standard to accounting: get the dull things right, on time, every time.</p>
+    <p class="mt-5"><a class="tlink" href="/about-us#founder">Meet Vikas Pandey, our founder and CEO →</a></p></div>
   </div>
 </section>
 
@@ -372,7 +373,7 @@ def contact(data):
         <li>Your <a class='ilink' href='/deadline-finder'>VAT and payroll dates</a>, if you know them</li>
         <li>The name of your current accountant, if you have one</li>
       </ul>
-      <p class="mt-6"><a class="tlink" href="/about-us">Meet the team first</a></p>
+      <p class="mt-6"><a class="tlink" href="/about-us#founder">Meet our founder first</a></p>
     </div>
   </div>
 </section>
@@ -621,6 +622,36 @@ def vat(data):
 
 
 # ---------------------------------------------------------------- About
+def founder_block(data):
+    f = data.get("founder") or {}
+    if not f.get("name"):
+        return ""
+    if f.get("photo"):
+        portrait = f'<img class="founder-photo" src="{escape(f["photo"])}" alt="{escape(f["name"])}, {escape(f.get("role", ""))}" width="200" height="200" loading="lazy">'
+    else:
+        portrait = '<span class="founder-photo founder-initials" aria-hidden="true">VP</span>'
+    li = f'<a class="tlink" href="{escape(f["linkedin"])}" target="_blank" rel="noopener">View Vikas on LinkedIn</a>' if f.get("linkedin") else ""
+    return f'''<section class="section founder" id="founder" aria-labelledby="founder-h">
+  <div class="wrap founder-grid">
+    <div class="founder-card">
+      {portrait}
+      <div><p class="founder-name">{escape(f["name"])}</p><p class="founder-role">{escape(f.get("role", ""))}</p></div>
+      {li}
+    </div>
+    <div class="founder-letter">
+      <p class="av-eyebrow">About the founder and CEO</p>
+      <h2 id="founder-h" class="mt-4">Meet Vikas Pandey</h2>
+      <p class="lead mt-5">Handing over your books, payroll or client work takes trust. I don’t expect you to hand over everything on day one. I’d rather start with one clearly defined piece of work and give you the chance to see how we deliver.</p>
+      <p>I lead Aviteus Business Solutions from Harrow, London. We help UK businesses with bookkeeping, payroll, VAT, year-end accounts and tax. We also give accountancy practices extra capacity for recurring work such as bookkeeping and reconciliations, so their teams have more time to advise clients.</p>
+      <p>I also lead <a class="ilink" href="https://www.aviteushealthcare.co.uk" target="_blank" rel="noopener">Aviteus Healthcare</a>, a separate UK healthcare staffing business established in 2021. Working with care providers has shaped how I lead: get the details right, raise issues early and follow through on what you’ve agreed. Those are the same standards I expect at Aviteus Business Solutions.</p>
+      <p>Before we start, we’ll agree on what we’ll handle, what it will cost and when you can expect it back. You can then judge us on the work itself and how we communicate along the way. If it works for your business, we can take on more. If you only need help with that one task, that’s fine too.</p>
+      <p class="founder-sign">Vikas Pandey</p>
+      <div class="mt-6">{book_btn("founder", "Discuss your accounting needs")}</div>
+    </div>
+  </div>
+</section>'''
+
+
 # The deck's line names the team, so it shows only once team members are added in data.json.
 ABOUT_INTRO_TEAM = "You are about to trust someone with your bank feeds, your payroll and your tax. You should know who they are. Here they are, with the details you can check."
 ABOUT_INTRO_NO_TEAM = "You are about to trust someone with your bank feeds, your payroll and your tax. You should be able to check who we are. Here is our story, how we work, and the company details you can verify yourself."
@@ -659,6 +690,7 @@ def about(data):
   </div>
 </section>
 
+{founder_block(data)}
 <section class="section section--alt" aria-labelledby="story-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="story-h">Why Aviteus exists</h2></div>
@@ -740,7 +772,8 @@ def about(data):
                 description="Meet Aviteus Business Solutions: ICAEW, ACCA and CIMA qualified accountants in Harrow, our values, how we work, and company details you can check.",
                 h_active="about", body_html=body, page_type="about",
                 ld=[{"@type": "AboutPage", "url": f"{SITE}/about-us", "name": "The people who will keep your books", "about": {"@id": f"{SITE}/#business"}, "inLanguage": "en-GB"}, faq_ld(ABOUT_FAQS),
-                    {"@type": "Organization", "@id": f"{SITE}/#org", "name": "Aviteus Business Solutions Ltd", "url": f"{SITE}/", "founder": {"@type": "Person", "name": "Vikas Pandey"}, "foundingDate": "2025-09-04", "foundingLocation": "Harrow, United Kingdom",
+                    {"@type": "Person", "@id": f"{SITE}/about-us#vikas-pandey", "name": "Vikas Pandey", "jobTitle": "CEO", "worksFor": {"@id": f"{SITE}/#business"}, "url": f"{SITE}/about-us#founder", "sameAs": ["https://www.linkedin.com/in/vikas-pandey-aviteus/"]},
+                    {"@type": "Organization", "@id": f"{SITE}/#org", "name": "Aviteus Business Solutions Ltd", "url": f"{SITE}/", "founder": {"@id": f"{SITE}/about-us#vikas-pandey"}, "foundingDate": "2025-09-04", "foundingLocation": "Harrow, United Kingdom",
                      "sameAs": [CH_URL]} | ({"employee": people} if people else {}),
                     breadcrumb_ld([("Home", "/"), ("About us", "/about-us")])], data=data)
 
