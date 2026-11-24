@@ -42,6 +42,9 @@ ROUTES = [
     ("about-us.html", pages.about, "/about-us", "0.7", "monthly"),
     ("services.html", pages.services, "/services", "0.6", "monthly"),
     ("deadline-finder.html", pages.finder, "/deadline-finder", "0.8", "monthly"),
+    ("terms-and-conditions.html", pages.terms, "/terms-and-conditions", "0.2", "yearly"),
+    ("privacy-policy.html", pages.privacy, None, None, None),   # draft, noindex, out of the sitemap until approved
+    ("cookies.html", pages.cookies, None, None, None),          # draft, noindex, out of the sitemap until approved
     ("404.html", pages.notfound, None, None, None),
 ]
 for fn, func, url, _, _ in ROUTES:

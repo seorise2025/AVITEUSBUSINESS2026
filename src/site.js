@@ -32,7 +32,10 @@
     doc.head.appendChild(s);
   }
   function applyConsent(v) {
-    if (v === 'granted') { gtag('consent', 'update', { analytics_storage: 'granted' }); loadGtm(); }
+    if (v === 'granted') {
+      gtag('consent', 'update', { analytics_storage: 'granted' }); loadGtm();
+      try { if (!sessionStorage.getItem('av_first')) sessionStorage.setItem('av_first', location.pathname); } catch (e) {}
+    }
   }
 
   var banner = doc.getElementById('cookie');
@@ -135,7 +138,8 @@
   (function attribution() {
     var q = new URLSearchParams(location.search);
     var first;
-    try { first = sessionStorage.getItem('av_first'); if (!first) { first = location.pathname; sessionStorage.setItem('av_first', first); } } catch (e) { first = location.pathname; }
+    // Stored only after the visitor accepts analytics (PECR). Otherwise the current page is used.
+    try { first = sessionStorage.getItem('av_first') || location.pathname; } catch (e) { first = location.pathname; }
     var vals = {
       page_url: location.href.split('#')[0], page_title: doc.title, referrer: doc.referrer || 'direct/unknown',
       utm_source: q.get('utm_source'), utm_medium: q.get('utm_medium'), utm_campaign: q.get('utm_campaign'),

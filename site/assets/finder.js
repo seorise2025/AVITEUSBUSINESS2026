@@ -107,7 +107,19 @@
   form.addEventListener('submit', run);
   form.addEventListener('change', function () { render(build(opts())); });
 
-  icsBtn.addEventListener('click', function () {
+  if (window.AV_ARTIFACT) {
+    icsBtn.textContent = 'Copy these dates';
+    var note = document.getElementById('finder-ics-note'); if (note) note.hidden = true;
+    icsBtn.addEventListener('click', function () {
+      var text = current.map(function (it) { return fmt(it.date) + '  ' + it.title + '. ' + it.detail; }).join('\n');
+      var done = function () { icsBtn.textContent = 'Copied'; setTimeout(function () { icsBtn.textContent = 'Copy these dates'; }, 2000); };
+      try { navigator.clipboard.writeText(text).then(done, function () { fallback(text); }); } catch (e) { fallback(text); }
+    });
+    var fallback = function (text) {
+      var ta = document.createElement('textarea'); ta.value = text; ta.className = 'av-input'; ta.rows = 8; ta.setAttribute('aria-label', 'Your dates');
+      icsBtn.parentNode.appendChild(ta); ta.select();
+    };
+  } else icsBtn.addEventListener('click', function () {
     var stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
     var lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Aviteus Business Solutions//Deadline finder//EN', 'CALSCALE:GREGORIAN'];
     current.forEach(function (it, i) {

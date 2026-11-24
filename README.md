@@ -36,9 +36,23 @@ The build writes `site/` from scratch. Edit files in `src/` or `design-system/`,
 | `/about-us` | `about-us.html` | |
 | `/contact` | `contact.html` | Review booking and enquiry form |
 | `/deadline-finder` | `deadline-finder.html` | Free tool. New copy, not in the deck |
+| `/terms-and-conditions` | `terms-and-conditions.html` | Word for word from the live site, until Vikas reviews it |
+| `/privacy-policy` | `privacy-policy.html` | **Draft for adviser review.** `noindex`, not in the sitemap. "To confirm" items need answers |
+| `/cookies` | `cookies.html` | **Draft for adviser review.** Describes exactly what the site stores today. `noindex` |
 | any unknown path | `404.html` | Real 404, `noindex` |
 
 Files are named `page.html` so Cloudflare Pages and Netlify serve them at clean URLs with no trailing slash, matching the canonical tags.
+
+## Preview on claude.ai
+
+Private staging preview: https://claude.ai/artifact/LGLR7cbpy2X8yz8Y4PSvyf
+
+```bash
+python3 src/build.py
+python3 src/build_artifact.py <folder>
+```
+
+The preview copy uses file names for links (`contact.html`), keeps the light look whatever the viewer's theme, and offers "Copy these dates" in the finder because claude.ai blocks downloads. The `site/` folder is the real website and is not changed by this step.
 
 ## SEO built in
 
@@ -96,8 +110,8 @@ Fill these in `src/data.json` and rebuild. Each block appears only when its data
 ## Launch blockers (from the strategy pack)
 
 - [ ] `/api/enquiries` endpoint, database, notification and Zoho push working, with one approved test enquiry received
-- [ ] Privacy notice at `/privacy-policy` (adviser drafted). The footer and form already link to it
-- [ ] Cookie details at `/cookies`
+- [ ] Privacy notice at `/privacy-policy`: draft is built, adviser must complete and approve it, then remove `noindex` and add it to the sitemap
+- [ ] Cookie details at `/cookies`: draft is built, adviser must approve it
 - [ ] Terms at `/terms-and-conditions` reviewed by Vikas
 - [ ] Team, AML supervisor and PI insurer confirmed in writing
 - [ ] Vikas approves: the "Done and due" report as standard, the free review, the "we're new" wording, the origin story, referring poor-fit leads

@@ -759,7 +759,7 @@ def finder(data):
       <div class="results" id="finder-results" role="list" aria-live="polite"><noscript><p>This tool needs JavaScript. The rules it uses are listed below.</p></noscript></div>
       <div class="mt-5" style="display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:center">
         <button class="av-btn av-btn--outline" type="button" id="finder-ics" hidden>Add these dates to my calendar</button>
-        <span class="small">Each calendar entry has a reminder 14 days before.</span>
+        <span class="small" id="finder-ics-note">Each calendar entry has a reminder 14 days before.</span>
       </div>
       <div class="callout mt-6">
         <h2 style="font-size:24px;line-height:30px">Want someone to watch these dates for you?</h2>
@@ -800,3 +800,121 @@ def finder(data):
                      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}, "provider": {"@id": f"{SITE}/#business"}, "inLanguage": "en-GB",
                      "description": "Enter your year end, VAT quarters and payroll status to see your next UK tax and filing deadlines."},
                     breadcrumb_ld(crumbs), faq_ld(faqs)], data=data)
+
+
+# ---------------------------------------------------------------- Legal pages
+def _legal(path, title, desc, h1, crumb, body_inner, data, noindex=False, draft=None):
+    banner = f'<div class="callout mt-6" role="note"><b>Draft for adviser review.</b> {draft}</div>' if draft else ""
+    body = f'''
+<section class="hero hero--simple" aria-labelledby="h1">
+  <div class="wrap read">
+    {crumbs_html([("Home", "/"), (crumb, path)])}
+    <h1 id="h1">{h1}</h1>
+    {banner}
+  </div>
+</section>
+<section class="section legal-copy" style="padding-top:0">
+  <div class="wrap read">
+{body_inner}
+  </div>
+</section>'''
+    return page(path=path, title=title, description=desc, h_active="", body_html=body, page_type="legal", noindex=noindex,
+                ld=[breadcrumb_ld([("Home", "/"), (crumb, path)])], data=data)
+
+
+def terms(data):
+    # Word for word from the live site (read 24 Nov 2026). The strategy pack keeps these unchanged until Vikas reviews them.
+    s = [
+        ("1. Introduction", "<p>Welcome to Aviteus Business Solutions. These Terms and Conditions govern your use of our website and services. By accessing our website or engaging our services, you agree to be bound by these terms. If you do not agree with any part of these terms, please do not use our website or services.</p>"),
+        ("2. Our Services", "<p>Aviteus Business Solutions provides professional accounting, tax planning, business advisory, and related financial services to businesses and individuals. The scope of services will be defined in individual engagement letters or service agreements.</p><ul><li>All services are subject to availability and acceptance by Aviteus Business Solutions</li><li>Service fees and payment terms will be outlined in your engagement letter</li><li>We reserve the right to refuse service to any client at our discretion</li></ul>"),
+        ("3. Client Responsibilities", "<p>As our client, you agree to:</p><ul><li>Provide accurate, complete, and timely information required for our services</li><li>Respond promptly to our requests for information or clarification</li><li>Maintain proper records and documentation as required by law</li><li>Pay all fees in accordance with agreed payment terms</li><li>Inform us immediately of any changes to your circumstances that may affect our services</li></ul>"),
+        ("4. Confidentiality", "<p>We are committed to protecting the confidentiality of your information. All client information will be kept confidential and will only be disclosed where required by law or with your express permission. We maintain professional standards in accordance with relevant accounting bodies and data protection legislation.</p>"),
+        ("5. Limitation of Liability", "<p>While we strive to provide accurate and professional services, Aviteus Business Solutions shall not be liable for:</p><ul><li>Any losses arising from incomplete or inaccurate information provided by the client</li><li>Losses resulting from circumstances beyond our reasonable control</li><li>Indirect or consequential losses, unless caused by our negligence</li><li>Decisions made by clients based on advice that was not formally documented</li></ul><p>Our liability is limited to the fees paid for the specific service in question, except in cases of proven negligence or breach of professional duty.</p>"),
+        ("6. Intellectual Property", "<p>All content on this website, including text, graphics, logos, and software, is the property of Aviteus Business Solutions and is protected by intellectual property laws. You may not reproduce, distribute, or use any content without our prior written permission.</p>"),
+        ("7. Termination of Services", "<p>Either party may terminate services with written notice as specified in the engagement letter. Upon termination, you remain responsible for payment of all fees for services rendered. We will return your records and documents upon settlement of outstanding fees.</p>"),
+        ("8. Professional Standards", "<p>Aviteus Business Solutions operates in accordance with professional standards set by relevant accounting and regulatory bodies. We maintain professional indemnity insurance and adhere to continuing professional development requirements.</p>"),
+        ("9. Complaints Procedure", "<p>If you have a complaint about our services, please contact us in writing at info@aviteusbusiness.co.uk. We will acknowledge your complaint within 5 business days and provide a full response within 28 days.</p>"),
+        ("10. Changes to Terms", "<p>We reserve the right to modify these Terms and Conditions at any time. Changes will be posted on this page with an updated revision date. Your continued use of our services after changes are posted constitutes acceptance of the modified terms.</p>"),
+        ("11. Governing Law", "<p>These Terms and Conditions are governed by the laws of England and Wales. Any disputes arising from these terms or our services will be subject to the exclusive jurisdiction of the courts of England and Wales.</p>"),
+        ("12. Contact Information", "<p>If you have any questions about these Terms and Conditions, please contact us:</p><p><b>Aviteus Business Solutions</b><br>Alpha House, 296 Kenton Rd, Harrow HA3 8DD, United Kingdom<br>Email: info@aviteusbusiness.co.uk<br>Phone: 020 4628 8209</p>"),
+    ]
+    inner = "".join(f"<h2>{h}</h2>{b}" for h, b in s) + "<p><b>Last Updated: November 6, 2025</b></p>"
+    return _legal("/terms-and-conditions", "Terms and Conditions | Aviteus Business Solutions",
+                  "The terms and conditions for using the Aviteus Business Solutions website and services, including confidentiality, liability, complaints and governing law.",
+                  "Terms &amp; Conditions", "Terms and conditions", inner, data)
+
+
+def privacy(data):
+    todo = lambda t: f'<span class="todo">To confirm: {t}</span>'
+    inner = f'''
+<h2>Who we are</h2>
+<p>Aviteus Business Solutions Ltd is the data controller for personal data collected through this website. Company number {COMPANY_NO}, registered in England and Wales. Registered office: {ADDRESS}.</p>
+<p>Questions about your data: email {EMAIL} or call {PHONE}.</p>
+
+<h2>What we collect</h2>
+<ul>
+<li><b>When you send an enquiry:</b> your full name, email, company or website (if you give it), the service you ask about, your message, how you want us to reply, and your phone or WhatsApp number if you choose a call or WhatsApp.</li>
+<li><b>About the visit that led to your enquiry:</b> the page you sent it from, the website that sent you here, and any campaign tags in the link you clicked.</li>
+<li><b>If you tick the email box:</b> your email address, to send occasional emails about UK tax deadlines and changes.</li>
+<li><b>If you accept analytics cookies:</b> how pages are used, through Google Analytics. See our <a class="tlink" href="/cookies">cookie details</a>.</li>
+<li><b>If you message us on WhatsApp:</b> your number and the messages you send.</li>
+</ul>
+<p>The deadline finder works in your browser. Nothing you choose in it is saved or sent to us.</p>
+
+<h2>Why we use it, and our lawful basis</h2>
+<ul>
+<li>To reply to your enquiry and prepare your review. {todo("lawful basis, for example steps taken at your request before a contract, or legitimate interests")}</li>
+<li>To send occasional emails, only if you tick the box. Lawful basis: your consent. You can withdraw it at any time.</li>
+<li>To see which pages help people, only if you accept analytics cookies. Lawful basis: your consent.</li>
+</ul>
+
+<h2>Who we share it with</h2>
+<p>{todo("the final list of processors and the agreements with each. The strategy pack names: Zoho CRM, the email service that sends enquiry notifications, SEO Rise (website support and lead notifications), Google Analytics, Cloudflare Turnstile spam checks, and WhatsApp (Meta) for chats.")}</p>
+<p>We do not sell your data.</p>
+
+<h2>Where your data is handled</h2>
+<p>{todo("whether any processing happens outside the UK, for example by team members in India, and the safeguards used.")}</p>
+
+<h2>How long we keep it</h2>
+<p>{todo("how long enquiries that do not become clients are kept, and how long client records are kept.")}</p>
+
+<h2>Your rights</h2>
+<p>You can ask to see the personal data we hold about you, to correct it, to delete it, to limit how we use it, to object to how we use it, or to receive a copy in a common format. Where we rely on your consent, you can withdraw it at any time. To use any of these rights, email {EMAIL}.</p>
+<p>If you are unhappy with how we handle your data, you can complain to the Information Commissioner's Office at ico.org.uk or on 0303 123 1113.</p>
+
+<h2>Changes to this notice</h2>
+<p>{todo("the date this notice is approved and published.")}</p>
+'''
+    return _legal("/privacy-policy", "Privacy Notice | Aviteus Business Solutions",
+                  "How Aviteus Business Solutions collects and uses personal data from its website enquiry form, emails and analytics, and the rights you have.",
+                  "Privacy notice", "Privacy notice", inner, data, noindex=True,
+                  draft="This notice has not been approved yet. Aviteus's adviser must check and complete it before the website goes live. Items marked \"To confirm\" need an answer from Aviteus.")
+
+
+def cookies(data):
+    inner = '''
+<p class="lead">We use essential cookies to run this site. With your permission, we also use analytics cookies to see which pages help people. We do not use advertising cookies.</p>
+
+<h2>Before you choose</h2>
+<p>Nothing is set for analytics until you choose. Your choice itself is saved in your browser so we do not ask again on every page.</p>
+<table class="facts-table">
+<tr><th scope="row">av_consent</th><td>Remembers whether you accepted or rejected analytics. Saved in your browser's local storage until you clear it.</td></tr>
+</table>
+
+<h2>If you accept analytics</h2>
+<table class="facts-table">
+<tr><th scope="row">_ga</th><td>Google Analytics. Tells visits apart. Expires after 2 years.</td></tr>
+<tr><th scope="row">_ga_ followed by an ID</th><td>Google Analytics. Keeps track of a visit. Expires after 2 years.</td></tr>
+<tr><th scope="row">av_first</th><td>The first page you visited, so an enquiry shows which page helped. Saved in your browser for this visit only.</td></tr>
+</table>
+
+<h2>Spam protection on the enquiry form</h2>
+<p><span class="todo">To confirm: once the enquiry form goes live, Cloudflare Turnstile checks that a real person is sending it. List what it stores here.</span></p>
+
+<h2>Change your choice</h2>
+<p>Use <a class="tlink" href="#" data-cookie-settings>Cookie settings</a> at any time, or at the bottom of every page.</p>
+'''
+    return _legal("/cookies", "Cookie Details | Aviteus Business Solutions",
+                  "Which cookies and browser storage the Aviteus Business Solutions website uses, why, for how long, and how to change your choice at any time.",
+                  "Cookie details", "Cookies", inner, data, noindex=True,
+                  draft="This page describes exactly what the website does today. Aviteus's adviser must approve it before the website goes live.")
