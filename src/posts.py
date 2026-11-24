@@ -76,8 +76,8 @@ POSTS = [
 <tr><td>Company tax return (CT600)</td><td data-label="Rule">12 months after year end</td><td data-label="Year end 31 March 2026" class="date">31 March 2027</td></tr>
 </tbody></table>
 <p class="mt-5">Notice the order. You pay corporation tax three months before the return is due. That catches many owners out, because the bill arrives before the paperwork.</p>"""),
-("Your first accounts are different", """
-<p>A new company's first accounts are due 21 months after the date it was set up. After that, the 9-month rule applies. If your company is new, check this date first, as it is easy to miss.</p>"""),
+("Your first accounts are different", f"""
+<p>A new company's first accounts are due 21 months after the date it was set up. If you are setting one up now, see {L('/services/company-formation', 'company formation and compliance')}. After that, the 9-month rule applies. If your company is new, check this date first, as it is easy to miss.</p>"""),
 ("Dates that repeat through the year", f"""
 <table class="table table--stack"><thead><tr><th scope="col">What</th><th scope="col">When</th></tr></thead><tbody>
 <tr><td>VAT return and payment</td><td data-label="When" class="date">1 month and 7 days after each VAT period ends</td></tr>
@@ -89,9 +89,10 @@ POSTS = [
 ("Yearly payroll dates", """
 <ul><li><b>31 May:</b> give every employee their P60 for the tax year that ended on 5 April.</li>
 <li><b>6 July:</b> send P11D and P11D(b) forms for benefits in kind, where you have any.</li></ul>"""),
-("Directors' own tax", """
+("Directors' own tax", f"""
 <ul><li><b>31 January:</b> Self Assessment return and any tax due for the tax year that ended the previous April, plus a first payment on account if one applies.</li>
-<li><b>31 July:</b> second payment on account, if one applies.</li></ul>"""),
+<li><b>31 July:</b> second payment on account, if one applies.</li></ul>
+<p>We prepare and file directors' returns: see {L('/services/self-assessment', 'Self Assessment tax returns')}.</p>"""),
 ("What happens if you miss a date", """
 <ul><li><b>Accounts filed late at Companies House:</b> an automatic penalty that grows with time, from £150 for up to a month late to £1,500 for over six months. It doubles if you are late two years running.</li>
 <li><b>CT600 filed late:</b> a £100 penalty, and another £100 if it is three months late. More follows after that.</li>
@@ -137,10 +138,10 @@ POSTS = [
 <li><b>Balance sheet:</b> what the business owns and owes.</li>
 <li><b>Cash position</b> and what is coming in and going out.</li>
 <li><b>Notes in plain English</b> on what moved and why. This is the part most owners actually read.</li></ul>"""),
-("When management accounts are worth it", """
+("When management accounts are worth it", f"""
 <p>You probably need them if any of these is true:</p>
 <ul><li>You employ staff and want to know if you can afford the next hire.</li>
-<li>You borrow money, or plan to. Lenders often ask for recent management accounts.</li>
+<li>You borrow money, or plan to. Lenders often ask for recent management accounts, and a {L('/services/business-advisory', 'forecast')} helps too.</li>
 <li>Your margins move from month to month and you do not know why.</li>
 <li>You only find out if you made money when the yearly accounts arrive.</li></ul>
 <p>If you have very few transactions and no staff, good software and a quarterly check may be enough.</p>"""),
@@ -229,7 +230,7 @@ POSTS = [
 <ul><li>Keep its VAT records digitally.</li>
 <li>Submit returns through software that works with Making Tax Digital.</li>
 <li>Keep digital links between its records and the return. Copying figures by hand between systems is not allowed.</li></ul>
-<p>If you still use spreadsheets, bridging software can link them to HMRC. Most businesses find it simpler to move to {L('/services/bookkeeping#software', 'Xero, QuickBooks, Sage or FreeAgent')}.</p>"""),
+<p>If you still use spreadsheets, bridging software can link them to HMRC. Most businesses find it simpler to move to {L('/services/accounting-software', 'Xero, QuickBooks, Sage or FreeAgent')}.</p>"""),
 ("When you must register for VAT", """
 <p>You must register when your VAT-taxable turnover goes over the registration threshold in any rolling 12 months, or when you expect it to in the next 30 days alone. Check the current threshold on GOV.UK, as it can change. Watching your turnover each month is the easiest way to avoid registering late.</p>"""),
 ("Records to keep", """

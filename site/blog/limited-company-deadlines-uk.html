@@ -33,14 +33,24 @@
     <a class="av-logo" href="/" aria-label="Aviteus Business Solutions home"><picture><source srcset="/assets/img/aviteus-business-logo.webp" type="image/webp"><img src="/assets/img/aviteus-business-logo.png" alt="Aviteus Business Solutions" width="168" height="74" fetchpriority="high" class=""></picture></a>
     <ul class="menu">
       <li class="has-sub">
-        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="submenu-services">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-        <ul class="submenu" id="submenu-services">
-          <li><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li>
-          <li><a href="/services/payroll">Payroll and pensions</a></li>
-          <li><a href="/services/vat-tax">VAT and year-end tax</a></li>
-          <li><a href="/services">All services</a></li>
-          <li><a href="/deadline-finder">Free UK deadline finder</a></li>
-        </ul>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mega-services">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega" id="mega-services">
+          <div class="wrap">
+            <div class="mega-grid">
+              <div class="mega-col"><p class="mega-group">Monthly accounting</p><ul><li><a class="mega-svc" href="/services/bookkeeping"><b>Bookkeeping and management accounts</b><span>A short pack showing profit, cash and what changed.</span></a></li><li><a class="mega-svc" href="/services/business-advisory"><b>Business advisory</b><span>Forecasts, budgets, pricing reviews and funding readiness.</span></a></li></ul></div><div class="mega-col"><p class="mega-group">Payroll and tax</p><ul><li><a class="mega-svc" href="/services/payroll"><b>Payroll and pensions</b><span>Staff paid on the right day. RTI filed with HMRC.</span></a></li><li><a class="mega-svc" href="/services/vat-tax"><b>VAT and year-end tax</b><span>VAT returns, year-end accounts and corporation tax.</span></a></li><li><a class="mega-svc" href="/services/self-assessment"><b>Self Assessment tax returns</b><span>Personal tax returns, filed before 31 January.</span></a></li></ul></div><div class="mega-col"><p class="mega-group">Company and software</p><ul><li><a class="mega-svc" href="/services/company-formation"><b>Company formation and compliance</b><span>Limited company set-up, HMRC registrations and Companies House filings.</span></a></li><li><a class="mega-svc" href="/services/accounting-software"><b>Accounting software set-up and training</b><span>Xero, QuickBooks, Sage and FreeAgent: set-up, clean-up and training.</span></a></li></ul></div>
+              <div class="mega-col mega-side">
+                <p class="mega-group">Free tool</p>
+                <ul><li><a class="mega-svc" href="/deadline-finder"><b>UK deadline finder</b><span>Your next VAT, tax and payroll dates in one list.</span></a></li></ul>
+                <p class="mega-group mt-6">Learn</p>
+                <ul><li><a class="mega-svc" href="/blog"><b>Blog</b><span>Plain answers on bookkeeping, payroll and tax.</span></a></li></ul>
+              </div>
+            </div>
+            <div class="mega-foot">
+              <a class="av-link" href="/services">All services, and what we don't do <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <span class="mega-cta"><span>Not sure which you need?</span> <a class="av-btn av-btn--ember av-btn--small" href="/contact" data-book data-placement="mega_menu">Book a 20-minute review</a></span>
+            </div>
+          </div>
+        </div>
       </li>
       <li><a href="/about-us">About us</a></li>
       <li><a href="/blog" aria-current="page">Blog</a></li>
@@ -50,11 +60,12 @@
     <button class="av-menu-toggle nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h16"/></svg></button>
   </div>
   <nav class="mobile-nav wrap" id="mobile-nav" aria-label="Main">
-    <ul>
-      <li><a href="/services">Services</a></li>
-      <li class="sub"><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li>
-      <li class="sub"><a href="/services/payroll">Payroll and pensions</a></li>
-      <li class="sub"><a href="/services/vat-tax">VAT and year-end tax</a></li>
+    <p class="m-label">Our services</p>
+    <ul class="m-services">
+      <li class="m-group"><span class="m-glabel">Monthly accounting</span><ul><li><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li><li><a href="/services/business-advisory">Business advisory</a></li></ul></li><li class="m-group"><span class="m-glabel">Payroll and tax</span><ul><li><a href="/services/payroll">Payroll and pensions</a></li><li><a href="/services/vat-tax">VAT and year-end tax</a></li><li><a href="/services/self-assessment">Self Assessment tax returns</a></li></ul></li><li class="m-group"><span class="m-glabel">Company and software</span><ul><li><a href="/services/company-formation">Company formation and compliance</a></li><li><a href="/services/accounting-software">Accounting software set-up and training</a></li></ul></li>
+    </ul>
+    <ul class="m-main">
+      <li><a href="/services">All services</a></li>
       <li><a href="/about-us">About us</a></li>
       <li><a href="/blog">Blog</a></li>
       <li><a href="/deadline-finder">Free UK deadline finder</a></li>
@@ -70,7 +81,7 @@
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/blog">Blog</a></li><li><span aria-current="page">Deadlines</span></li></ol></nav>
     <p class="av-eyebrow">Deadlines</p>
     <h1 id="h1" class="mt-4">UK limited company deadlines: the dates every director should know</h1>
-    <p class="post-meta mt-5">Aviteus Business Solutions · Updated <time datetime="2026-11-24">24 November 2026</time> · 2 min read</p>
+    <p class="post-meta mt-5">Aviteus Business Solutions · Updated <time datetime="2026-11-24">24 November 2026</time> · 3 min read</p>
     <div class="callout mt-5" role="note"><b>Draft: awaiting accounting review.</b> This guide is not yet signed off by a named reviewer, so search engines are asked not to list it.</div>
   </div>
 </section>
@@ -90,7 +101,7 @@
 <tr><td>Company tax return (CT600)</td><td data-label="Rule">12 months after year end</td><td data-label="Year end 31 March 2026" class="date">31 March 2027</td></tr>
 </tbody></table>
 <p class="mt-5">Notice the order. You pay corporation tax three months before the return is due. That catches many owners out, because the bill arrives before the paperwork.</p></section><section class="post-sec" aria-labelledby="your-first-accounts-are-different"><h2 id="your-first-accounts-are-different">Your first accounts are different</h2>
-<p>A new company's first accounts are due 21 months after the date it was set up. After that, the 9-month rule applies. If your company is new, check this date first, as it is easy to miss.</p></section><section class="post-sec" aria-labelledby="dates-that-repeat-through-the-year"><h2 id="dates-that-repeat-through-the-year">Dates that repeat through the year</h2>
+<p>A new company's first accounts are due 21 months after the date it was set up. If you are setting one up now, see <a class='ilink' href='/services/company-formation'>company formation and compliance</a>. After that, the 9-month rule applies. If your company is new, check this date first, as it is easy to miss.</p></section><section class="post-sec" aria-labelledby="dates-that-repeat-through-the-year"><h2 id="dates-that-repeat-through-the-year">Dates that repeat through the year</h2>
 <table class="table table--stack"><thead><tr><th scope="col">What</th><th scope="col">When</th></tr></thead><tbody>
 <tr><td>VAT return and payment</td><td data-label="When" class="date">1 month and 7 days after each VAT period ends</td></tr>
 <tr><td>PAYE and National Insurance</td><td data-label="When" class="date">22nd of each month if you pay electronically</td></tr>
@@ -101,7 +112,8 @@
 <ul><li><b>31 May:</b> give every employee their P60 for the tax year that ended on 5 April.</li>
 <li><b>6 July:</b> send P11D and P11D(b) forms for benefits in kind, where you have any.</li></ul></section><section class="post-sec" aria-labelledby="directors-own-tax"><h2 id="directors-own-tax">Directors' own tax</h2>
 <ul><li><b>31 January:</b> Self Assessment return and any tax due for the tax year that ended the previous April, plus a first payment on account if one applies.</li>
-<li><b>31 July:</b> second payment on account, if one applies.</li></ul></section><section class="post-sec" aria-labelledby="what-happens-if-you-miss-a-date"><h2 id="what-happens-if-you-miss-a-date">What happens if you miss a date</h2>
+<li><b>31 July:</b> second payment on account, if one applies.</li></ul>
+<p>We prepare and file directors' returns: see <a class='ilink' href='/services/self-assessment'>Self Assessment tax returns</a>.</p></section><section class="post-sec" aria-labelledby="what-happens-if-you-miss-a-date"><h2 id="what-happens-if-you-miss-a-date">What happens if you miss a date</h2>
 <ul><li><b>Accounts filed late at Companies House:</b> an automatic penalty that grows with time, from £150 for up to a month late to £1,500 for over six months. It doubles if you are late two years running.</li>
 <li><b>CT600 filed late:</b> a £100 penalty, and another £100 if it is three months late. More follows after that.</li>
 <li><b>Corporation tax paid late:</b> HMRC charges interest from the day after the due date.</li>
@@ -138,9 +150,8 @@
       <div>
         <h2>Services</h2>
         <ul>
-          <li><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li>
-          <li><a href="/services/payroll">Payroll and pensions</a></li>
-          <li><a href="/services/vat-tax">VAT and year-end tax</a></li>
+          <li><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li><li><a href="/services/business-advisory">Business advisory</a></li><li><a href="/services/payroll">Payroll and pensions</a></li><li><a href="/services/vat-tax">VAT and year-end tax</a></li><li><a href="/services/self-assessment">Self Assessment tax returns</a></li><li><a href="/services/company-formation">Company formation and compliance</a></li><li><a href="/services/accounting-software">Accounting software set-up and training</a></li>
+          <li><a href="/services">All services</a></li>
           <li><a href="/deadline-finder">Free UK deadline finder</a></li>
         </ul>
       </div>

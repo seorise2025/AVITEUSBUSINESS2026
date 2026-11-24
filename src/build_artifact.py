@@ -17,6 +17,8 @@ PAGES = {
     "/about-us": "about-us.html", "/contact": "contact.html", "/deadline-finder": "deadline-finder.html",
     "/terms-and-conditions": "terms-and-conditions.html", "/privacy-policy": "privacy-policy.html",
     "/cookies": "cookies.html", "/blog": "blog.html",
+    "/services/self-assessment": "services-self-assessment.html", "/services/business-advisory": "services-business-advisory.html",
+    "/services/company-formation": "services-company-formation.html", "/services/accounting-software": "services-accounting-software.html",
 }
 sys.path.insert(0, os.path.join(ROOT, "src"))
 from posts import POSTS  # noqa: E402

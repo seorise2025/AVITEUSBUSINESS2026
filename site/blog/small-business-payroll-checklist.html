@@ -33,14 +33,24 @@
     <a class="av-logo" href="/" aria-label="Aviteus Business Solutions home"><picture><source srcset="/assets/img/aviteus-business-logo.webp" type="image/webp"><img src="/assets/img/aviteus-business-logo.png" alt="Aviteus Business Solutions" width="168" height="74" fetchpriority="high" class=""></picture></a>
     <ul class="menu">
       <li class="has-sub">
-        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="submenu-services">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-        <ul class="submenu" id="submenu-services">
-          <li><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li>
-          <li><a href="/services/payroll">Payroll and pensions</a></li>
-          <li><a href="/services/vat-tax">VAT and year-end tax</a></li>
-          <li><a href="/services">All services</a></li>
-          <li><a href="/deadline-finder">Free UK deadline finder</a></li>
-        </ul>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mega-services">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega" id="mega-services">
+          <div class="wrap">
+            <div class="mega-grid">
+              <div class="mega-col"><p class="mega-group">Monthly accounting</p><ul><li><a class="mega-svc" href="/services/bookkeeping"><b>Bookkeeping and management accounts</b><span>A short pack showing profit, cash and what changed.</span></a></li><li><a class="mega-svc" href="/services/business-advisory"><b>Business advisory</b><span>Forecasts, budgets, pricing reviews and funding readiness.</span></a></li></ul></div><div class="mega-col"><p class="mega-group">Payroll and tax</p><ul><li><a class="mega-svc" href="/services/payroll"><b>Payroll and pensions</b><span>Staff paid on the right day. RTI filed with HMRC.</span></a></li><li><a class="mega-svc" href="/services/vat-tax"><b>VAT and year-end tax</b><span>VAT returns, year-end accounts and corporation tax.</span></a></li><li><a class="mega-svc" href="/services/self-assessment"><b>Self Assessment tax returns</b><span>Personal tax returns, filed before 31 January.</span></a></li></ul></div><div class="mega-col"><p class="mega-group">Company and software</p><ul><li><a class="mega-svc" href="/services/company-formation"><b>Company formation and compliance</b><span>Limited company set-up, HMRC registrations and Companies House filings.</span></a></li><li><a class="mega-svc" href="/services/accounting-software"><b>Accounting software set-up and training</b><span>Xero, QuickBooks, Sage and FreeAgent: set-up, clean-up and training.</span></a></li></ul></div>
+              <div class="mega-col mega-side">
+                <p class="mega-group">Free tool</p>
+                <ul><li><a class="mega-svc" href="/deadline-finder"><b>UK deadline finder</b><span>Your next VAT, tax and payroll dates in one list.</span></a></li></ul>
+                <p class="mega-group mt-6">Learn</p>
+                <ul><li><a class="mega-svc" href="/blog"><b>Blog</b><span>Plain answers on bookkeeping, payroll and tax.</span></a></li></ul>
+              </div>
+            </div>
+            <div class="mega-foot">
+              <a class="av-link" href="/services">All services, and what we don't do <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <span class="mega-cta"><span>Not sure which you need?</span> <a class="av-btn av-btn--ember av-btn--small" href="/contact" data-book data-placement="mega_menu">Book a 20-minute review</a></span>
+            </div>
+          </div>
+        </div>
       </li>
       <li><a href="/about-us">About us</a></li>
       <li><a href="/blog" aria-current="page">Blog</a></li>
@@ -50,11 +60,12 @@
     <button class="av-menu-toggle nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h16"/></svg></button>
   </div>
   <nav class="mobile-nav wrap" id="mobile-nav" aria-label="Main">
-    <ul>
-      <li><a href="/services">Services</a></li>
-      <li class="sub"><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li>
-      <li class="sub"><a href="/services/payroll">Payroll and pensions</a></li>
-      <li class="sub"><a href="/services/vat-tax">VAT and year-end tax</a></li>
+    <p class="m-label">Our services</p>
+    <ul class="m-services">
+      <li class="m-group"><span class="m-glabel">Monthly accounting</span><ul><li><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li><li><a href="/services/business-advisory">Business advisory</a></li></ul></li><li class="m-group"><span class="m-glabel">Payroll and tax</span><ul><li><a href="/services/payroll">Payroll and pensions</a></li><li><a href="/services/vat-tax">VAT and year-end tax</a></li><li><a href="/services/self-assessment">Self Assessment tax returns</a></li></ul></li><li class="m-group"><span class="m-glabel">Company and software</span><ul><li><a href="/services/company-formation">Company formation and compliance</a></li><li><a href="/services/accounting-software">Accounting software set-up and training</a></li></ul></li>
+    </ul>
+    <ul class="m-main">
+      <li><a href="/services">All services</a></li>
       <li><a href="/about-us">About us</a></li>
       <li><a href="/blog">Blog</a></li>
       <li><a href="/deadline-finder">Free UK deadline finder</a></li>
@@ -139,9 +150,8 @@
       <div>
         <h2>Services</h2>
         <ul>
-          <li><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li>
-          <li><a href="/services/payroll">Payroll and pensions</a></li>
-          <li><a href="/services/vat-tax">VAT and year-end tax</a></li>
+          <li><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li><li><a href="/services/business-advisory">Business advisory</a></li><li><a href="/services/payroll">Payroll and pensions</a></li><li><a href="/services/vat-tax">VAT and year-end tax</a></li><li><a href="/services/self-assessment">Self Assessment tax returns</a></li><li><a href="/services/company-formation">Company formation and compliance</a></li><li><a href="/services/accounting-software">Accounting software set-up and training</a></li>
+          <li><a href="/services">All services</a></li>
           <li><a href="/deadline-finder">Free UK deadline finder</a></li>
         </ul>
       </div>

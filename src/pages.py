@@ -1,7 +1,7 @@
 """Page content. Public copy is taken word for word from the Website Copy Deck (24 Nov 2026).
 Blocks that wait on approval or proof read from data.json and stay hidden until filled."""
 from html import escape
-from layout import (SITE, PHONE, PHONE_TEL, WA_DISPLAY, EMAIL, ADDRESS, COMPANY_NO, CH_URL, ARROW, PULSE,
+from layout import (SERVICE_MAP, ALSO_AVAILABLE, SITE, PHONE, PHONE_TEL, WA_DISPLAY, EMAIL, ADDRESS, COMPANY_NO, CH_URL, ARROW, PULSE,
                     book_btn, wa_btn, wa, faq_html, faq_ld, breadcrumb_ld, crumbs_html, page)
 
 
@@ -74,7 +74,7 @@ def home(data):
     faqs = [
         ("How much will it cost?", "A fixed monthly fee, agreed in writing before we start. It depends on how many transactions you have, how many people you pay, and whether you are VAT registered. You will have the figure after your <a class='ilink' href='/contact'>review</a>."),
         ("Can I keep my current accountant for the year-end?", "Yes. Some owners use us for the monthly work and keep their current firm for the annual accounts. The scope will say who does what."),
-        ("Which software do you work in?", "Xero, QuickBooks, Sage and FreeAgent. If you are on spreadsheets, we can <a class='ilink' href='/services/bookkeeping'>set you up and move your records across</a>."),
+        ("Which software do you work in?", "Xero, QuickBooks, Sage and FreeAgent. If you are on spreadsheets, we can <a class='ilink' href='/services/accounting-software'>set you up and move your records across</a>."),
         ("Do I need to be near Harrow?", "No. We work with businesses across the UK by video, phone and email. Our office in Harrow is there if you would rather meet in person."),
         ("How does switching work?", "We write to your current accountant for professional clearance, collect your records, and get authority to talk to HMRC for you. We time it around your next <a class='ilink' href='/services/payroll'>payroll</a> and <a class='ilink' href='/deadline-finder'>VAT dates</a> so nothing is missed."),
     ]
@@ -230,7 +230,7 @@ def bookkeeping(data):
   </div>
 </section>
 
-<section class="section" aria-labelledby="get-h">
+<section class="section" id="monthly" aria-labelledby="get-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="get-h">What lands in your inbox each month</h2></div>
     <ul class="ticks">
@@ -258,7 +258,7 @@ def bookkeeping(data):
       </tbody>
     </table>
     <p class="note mt-4">The table in your scope will be specific to your business. This is the starting point.</p>
-    {related([("We can run payroll from the same books", "/services/payroll"), ("VAT returns and Making Tax Digital", "/services/vat-tax"), ("Who will do the work", "/about-us"), ("All services", "/services"), ("Blog: bookkeeping vs management accounts", "/blog/bookkeeping-vs-management-accounts"), ("Blog: catch up your books", "/blog/catch-up-bookkeeping")])}
+    {related([("We can run payroll from the same books", "/services/payroll"), ("VAT returns and Making Tax Digital", "/services/vat-tax"), ("Who will do the work", "/about-us"), ("Business advisory: forecasts and budgets", "/services/business-advisory"), ("All services", "/services"), ("Blog: bookkeeping vs management accounts", "/blog/bookkeeping-vs-management-accounts"), ("Blog: catch up your books", "/blog/catch-up-bookkeeping")])}
     <div class="mt-7">{book_btn("after_scope")}</div>
   </div>
 </section>
@@ -273,7 +273,7 @@ def bookkeeping(data):
 <section class="section section--alt" id="software" aria-labelledby="soft-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="soft-h">Your software, or we will set it up</h2></div>
-    <p class="lead">We work in Xero, QuickBooks, Sage and FreeAgent. If your records live in spreadsheets or a shoebox, we will set up the software, connect your bank, and show you the two or three things you need to do each month. Nothing more.</p>
+    <p class="lead">We work in Xero, QuickBooks, Sage and FreeAgent. If your records live in spreadsheets or a shoebox, we will <a class='ilink' href='/services/accounting-software'>set up the software</a>, connect your bank, and show you the two or three things you need to do each month. Nothing more.</p>
   </div>
 </section>
 
@@ -450,12 +450,12 @@ def payroll(data):
       </tbody>
     </table>
     <p class="lead mt-5">The same routine every month. No guessing, no last-minute calls.</p>
-    {related([("Monthly bookkeeping", "/services/bookkeeping"), ("Who will run your payroll", "/about-us"), ("VAT and year-end tax", "/services/vat-tax"), ("Find your payroll dates", "/deadline-finder"), ("All services", "/services"), ("Blog: the employer payroll checklist", "/blog/small-business-payroll-checklist")])}
+    {related([("Monthly bookkeeping", "/services/bookkeeping"), ("Who will run your payroll", "/about-us"), ("VAT and year-end tax", "/services/vat-tax"), ("Find your payroll dates", "/deadline-finder"), ("Directors' Self Assessment", "/services/self-assessment"), ("All services", "/services"), ("Blog: the employer payroll checklist", "/blog/small-business-payroll-checklist")])}
     <div class="mt-7">{book_btn("after_table")}</div>
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="cover-h">
+<section class="section section--alt" id="handle" aria-labelledby="cover-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="cover-h">What we handle</h2></div>
     <ul class="ticks">
@@ -471,7 +471,7 @@ def payroll(data):
   </div>
 </section>
 
-<section class="section" aria-labelledby="switch-h">
+<section class="section" id="switch" aria-labelledby="switch-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="switch-h">Moving payroll part way through the year</h2></div>
     <p class="lead">You can move payroll to us at any point in the tax year. We need your PAYE reference, your Accounts Office reference, and the year-to-date figures for each employee from your current provider. We check those figures, run a parallel month if you want one, and take over from the next pay run. Your staff should notice nothing except the new payslip layout.</p>
@@ -529,7 +529,7 @@ def vat(data):
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="answer-h">
+<section class="section section--alt" id="file" aria-labelledby="answer-h">
   <div class="wrap read">
     <h2 id="answer-h">What we file for you</h2>
     <p class="mt-4 lead">We prepare and submit VAT returns through Making Tax Digital software, prepare your year-end accounts, file them with Companies House, and prepare and file your company tax return (CT600) with HMRC. We also tell you how much corporation tax to pay and by when. You review and approve everything before it is sent.</p>
@@ -550,7 +550,7 @@ def vat(data):
       </tbody>
     </table>
     <p class="callout mt-5">Note the order. Corporation tax is <b>paid</b> three months before the return is <b>due</b>. Many owners find that out the hard way.</p>
-    {related([("Find your own dates with the free deadline finder", "/deadline-finder"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Payroll", "/services/payroll"), ("Who will do the work", "/about-us"), ("All services", "/services"), ("Blog: VAT and Making Tax Digital", "/blog/vat-returns-making-tax-digital"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
+    {related([("Find your own dates with the free deadline finder", "/deadline-finder"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Payroll", "/services/payroll"), ("Who will do the work", "/about-us"), ("Self Assessment tax returns", "/services/self-assessment"), ("Company formation and compliance", "/services/company-formation"), ("All services", "/services"), ("Blog: VAT and Making Tax Digital", "/blog/vat-returns-making-tax-digital"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
     <div class="mt-7">{book_btn("after_table")}</div>
   </div>
 </section>
@@ -567,10 +567,10 @@ def vat(data):
   </div>
 </section>
 
-<section class="section" aria-labelledby="mtd-h">
+<section class="section" id="mtd" aria-labelledby="mtd-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="mtd-h">Making Tax Digital, in plain terms</h2></div>
-    <p class="lead">Every VAT-registered business must keep digital records and submit VAT returns through compatible software. If you still use spreadsheets, we can connect them through approved bridging software, or <a class='ilink' href='/services/bookkeeping#software'>move you to Xero, QuickBooks, Sage or FreeAgent</a>. Sole traders and landlords now face a similar rule for income tax, phased in by income level from April 2026.</p>
+    <p class="lead">Every VAT-registered business must keep digital records and submit VAT returns through compatible software. If you still use spreadsheets, we can connect them through approved bridging software, or <a class='ilink' href='/services/accounting-software'>move you to Xero, QuickBooks, Sage or FreeAgent</a>. Sole traders and landlords now face a similar rule for income tax, phased in by income level from April 2026.</p>
   </div>
 </section>
 
@@ -656,7 +656,7 @@ def about(data):
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="check-h">Details you can check</h2></div>
     <div><table class="facts-table">{rows}</table>
-    {related([("Bookkeeping and management accounts", "/services/bookkeeping"), ("Payroll and pensions", "/services/payroll"), ("VAT and year-end tax", "/services/vat-tax"), ("All services", "/services")])}</div>
+    {related([(s["name"], s["url"]) for s in SERVICE_MAP] + [("All services", "/services")])}</div>
   </div>
 </section>
 {close_band("Talk to the person who would actually do your work", "Book a 20-minute review. You will speak to someone from the team above, not a sales desk.")}
@@ -673,32 +673,62 @@ def about(data):
 
 
 # ---------------------------------------------------------------- Services hub
+def _incl(key):
+    s = next(x for x in SERVICE_MAP if x["key"] == key)
+    items = "".join(f'<li><a class="ilink" href="{u}">{t}</a></li>' for t, u in s["items"])
+    return f'<p class="incl-label mt-5">Includes</p><ul class="incl">{items}</ul>'
+
+
+HUB_ORDER = ["bookkeeping", "advisory", "payroll", "vat", "self-assessment", "formation", "software"]
+HUB_TEXT = {  # "for" and "you get" lines. The first three are the copy deck's own words; the rest follow the live site.
+    "bookkeeping": ("owners whose books are behind, or who want to see profit and cash every month.", "reconciled bank accounts, bills and sales posted, a three-page monthly pack.", "See how bookkeeping works"),
+    "advisory": ("owners who want to see the next few months before a hire, a price change or a loan.", "forecasts, budgets, pricing reviews, cost controls and funding readiness.", "See how business advisory works"),
+    "payroll": ("businesses paying 2 to 50 people who want payroll off their desk.", "staff paid on the right day, payslips, RTI filed, workplace pensions handled.", "See how payroll works"),
+    "vat": ("VAT-registered companies that want every deadline known and met.", "VAT returns under Making Tax Digital, year-end accounts, corporation tax.", "See VAT and tax deadlines"),
+    "self-assessment": ("directors, landlords and the self-employed who file a personal tax return.", "your return prepared from your figures and filed before 31 January.", "See how Self Assessment works"),
+    "formation": ("anyone starting a limited company, or moving from sole trader to limited.", "limited company set-up, HMRC registrations, Companies House filings and company secretarial tasks.", "See how company formation works"),
+    "software": ("businesses on spreadsheets, starting out, or with a software file nobody trusts.", "Xero, QuickBooks, Sage or FreeAgent set up, cleaned up and taught to your team.", "See how software set-up works"),
+}
+
+
+def _svc(key):
+    return next(x for x in SERVICE_MAP if x["key"] == key)
+
+
+def _hub_row(key):
+    s = _svc(key)
+    f, g, link = HUB_TEXT[key]
+    return (f'\n      <div class="row" id="svc-{key}"><h3><a href="{s["url"]}" style="color:inherit;text-decoration:none">{s["name"]}</a></h3>'
+            f'<div class="row-meta"><p><b>For</b> {f}</p><p class="mt-4"><b>You get:</b> {g}</p>{_incl(key)}</div>'
+            f'<a class="av-link" href="{s["url"]}">{link} {ARROW}</a></div>')
+
+
 def services(data):
     body = f'''
 <section class="hero hero--simple" aria-labelledby="h1">
   <div class="wrap read">
     {crumbs_html([("Home", "/"), ("Services", "/services")])}
     <h1 id="h1">What we do, and what we don't</h1>
-    <p class="lead">Three services, done every month for UK owner-managed businesses. Most clients use two or three together, because they all run off the same set of books.</p>
+    <p class="lead">Seven services for UK owner-managed businesses, from monthly books to tax returns and company set-up. Most clients use two or three together, because they all run off the same set of books.</p>
+    <nav class="jump mt-6" aria-label="Jump to a service">
+      {"".join(f'<a href="#svc-{k}">{_svc(k)["name"]}</a>' for k in HUB_ORDER)}<a href="#dont-h">What we don't do</a>
+    </nav>
   </div>
 </section>
 
 <section class="section" style="padding-top:0" aria-label="Our three services">
   <div class="wrap">
-    <div class="rows">
-      <div class="row"><h3><a href="/services/bookkeeping" style="color:inherit;text-decoration:none">Bookkeeping and management accounts</a></h3><div class="row-meta"><p><b>For</b> owners whose books are behind, or who want to see profit and cash every month.</p><p class="mt-4"><b>You get:</b> reconciled bank accounts, bills and sales posted, a three-page monthly pack.</p></div><a class="av-link" href="/services/bookkeeping">See how bookkeeping works {ARROW}</a></div>
-      <div class="row"><h3><a href="/services/payroll" style="color:inherit;text-decoration:none">Payroll and pensions</a></h3><div class="row-meta"><p><b>For</b> businesses paying 2 to 50 people who want payroll off their desk.</p><p class="mt-4"><b>You get:</b> staff paid on the right day, payslips, RTI filed, workplace pensions handled.</p></div><a class="av-link" href="/services/payroll">See how payroll works {ARROW}</a></div>
-      <div class="row"><h3><a href="/services/vat-tax" style="color:inherit;text-decoration:none">VAT and year-end tax</a></h3><div class="row-meta"><p><b>For</b> VAT-registered companies that want every deadline known and met.</p><p class="mt-4"><b>You get:</b> VAT returns under Making Tax Digital, year-end accounts, corporation tax.</p></div><a class="av-link" href="/services/vat-tax">See VAT and tax deadlines {ARROW}</a></div>
+    <div class="rows">{"".join(_hub_row(k) for k in HUB_ORDER)}
     </div>
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="also-h">
+<section class="section section--alt" id="also" aria-labelledby="also-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="also-h">Also available, as part of a monthly service</h2></div>
     <ul class="ticks">
-      <li><b>Company set-up:</b> forming a limited company and registering it with HMRC.</li>
-      <li><b>Software set-up and clean-up:</b> <a class='ilink' href='/services/bookkeeping#software'>moving you onto Xero, QuickBooks, Sage or FreeAgent</a>, or tidying a file that has got out of hand.</li>
+      <li><b>Company set-up:</b> <a class='ilink' href='/services/company-formation'>forming a limited company and registering it with HMRC</a>.</li>
+      <li><b>Software set-up and clean-up:</b> <a class='ilink' href='/services/accounting-software'>moving you onto Xero, QuickBooks, Sage or FreeAgent</a>, or tidying a file that has got out of hand.</li>
       <li><b>Catch-up bookkeeping:</b> <a class='ilink' href='/services/bookkeeping#catch-up'>bringing old records up to date</a> before monthly work starts.</li>
     </ul>
   </div>
@@ -718,9 +748,9 @@ def services(data):
   </div>
 </section>
 '''
-    items = [("Bookkeeping and management accounts", "/services/bookkeeping"), ("Payroll and pensions", "/services/payroll"), ("VAT and year-end tax", "/services/vat-tax")]
+    items = [(_svc(k)["name"], _svc(k)["url"]) for k in HUB_ORDER]
     return page(path="/services", title="Accounting Services for UK Businesses | Aviteus",
-                description="Bookkeeping and management accounts, payroll and pensions, VAT and year-end tax for UK owner-managed businesses. See what each service covers.",
+                description="Bookkeeping, payroll, VAT, Self Assessment, business advisory, company formation and software set-up for UK owner-managed businesses.",
                 h_active="services", body_html=body, page_type="hub",
                 ld=[{"@type": "ItemList", "name": "Aviteus services", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "url": f"{SITE}{u}"} for i, (n, u) in enumerate(items)]},
                     breadcrumb_ld([("Home", "/"), ("Services", "/services")])], data=data)
@@ -820,7 +850,7 @@ def finder(data):
       <tbody>{rule_rows}</tbody>
     </table>
     <div class="quiet mt-6"><h3>When these rules do not fit</h3><p class="mt-4">Your first accounts after setting up a company have a different deadline. Large companies pay corporation tax in instalments. If a payment date falls on a weekend or bank holiday, make sure the money reaches HMRC by the working day before. Always check your own dates on GOV.UK or with your accountant.</p></div>
-    {related([("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Monthly bookkeeping", "/services/bookkeeping"), ("All services", "/services"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
+    {related([("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Self Assessment tax returns", "/services/self-assessment"), ("All services", "/services"), ("Blog: limited company deadlines", "/blog/limited-company-deadlines-uk")])}
   </div>
 </section>
 
@@ -1067,3 +1097,227 @@ def blog_post(data, post):
     return page(path=url, title=post["seo_title"], description=post["description"], h_active="blog", body_html=body, page_type="post",
                 noindex=not ok, og_title=post["title"], og_desc=post["description"],
                 ld=[ld, breadcrumb_ld(crumbs), faq_ld(post["faqs"])], data=data)
+
+
+# ---------------------------------------------------------------- Services added from the live site (not in the copy deck: Vikas to approve)
+def _svc_page(data, spec):
+    you, us = '<span class="who who--you">You</span>', '<span class="who who--us">Aviteus</span>'
+    crumbs = [("Home", "/"), ("Services", "/services"), (spec["crumb"], spec["path"])]
+    incl = "".join(f"<li><b>{a}</b> {b}</li>" for a, b in spec["included"])
+    rows = "".join(f'<tr><td>{t}</td><td data-label="We do">{w}</td><td data-label="You do">{y}</td></tr>' for t, w, y in spec["scope"])
+    extra = spec.get("extra", "")
+    body = f'''
+<section class="hero hero--simple" aria-labelledby="h1">
+  <div class="wrap read">
+    {crumbs_html(crumbs)}
+    <h1 id="h1">{spec["h1"]}</h1>
+    <p class="lead">{spec["lead"]}</p>
+    <div class="hero-actions">{book_btn("hero")}<a class="tlink" href="#included">{spec["jump"]} ↓</a></div>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="answer-h">
+  <div class="wrap read">
+    <h2 id="answer-h">{spec["answer_h"]}</h2>
+    <p class="mt-4 lead">{spec["answer"]}</p>
+  </div>
+</section>
+
+<section class="section" id="included" aria-labelledby="inc-h">
+  <div class="wrap split">
+    <div class="head" style="margin:0"><h2 id="inc-h">What is included</h2></div>
+    <ul class="ticks">{incl}</ul>
+  </div>
+</section>
+
+<section class="section section--alt" id="scope" aria-labelledby="scope-h">
+  <div class="wrap">
+    <div class="head"><h2 id="scope-h">Who does what</h2></div>
+    <table class="table table--stack">
+      <thead><tr><th scope="col">Task</th><th scope="col">We do</th><th scope="col">You do</th></tr></thead>
+      <tbody>{rows}</tbody>
+    </table>
+    <p class="note mt-4">The table in your scope will be specific to your business. This is the starting point.</p>
+    {related(spec["related"] + [("All services", "/services")])}
+    <div class="mt-7">{book_btn("after_scope")}</div>
+  </div>
+</section>
+{extra}
+<section class="section" aria-labelledby="suits-h">
+  <div class="wrap split">
+    <div class="head" style="margin:0"><h2 id="suits-h">Who this is for, and who it isn't</h2></div>
+    <div><p class="lead">{spec["suits"]}</p><div class="quiet mt-6"><p>{spec["not"]}</p></div></div>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="fee-h">
+  <div class="wrap split">
+    <div class="head" style="margin:0"><h2 id="fee-h">How the fee works</h2></div>
+    <p class="lead">{spec["fee"]}</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="faq-h">
+  <div class="wrap split">
+    <div class="head" style="margin:0"><h2 id="faq-h">{spec["faq_h"]}</h2></div>
+    {faq_html(spec["faqs"])}
+  </div>
+</section>
+{close_band(spec["close_h"], spec["close_p"])}
+'''
+    return page(path=spec["path"], title=spec["title"], description=spec["desc"], h_active=spec["key"], body_html=body, page_type="service",
+                ld=[service_ld(spec["schema_name"], spec["path"], spec["desc"], spec["service_type"]), breadcrumb_ld(crumbs), faq_ld(spec["faqs"])], data=data)
+
+
+def advisory(data):
+    return _svc_page(data, {
+        "key": "advisory", "path": "/services/business-advisory", "crumb": "Business advisory",
+        "title": "Business Advisory: Forecasts, Budgets and Pricing | Aviteus",
+        "desc": "Business advisory for UK SMEs: cash flow forecasts, budgets, pricing reviews, cost controls and getting your figures ready for a lender. Fixed fee.",
+        "schema_name": "Business advisory", "service_type": "Business advisory",
+        "h1": "Business advisory: forecasts, budgets and pricing, in plain numbers",
+        "lead": "Know what next quarter looks like before it arrives. We build forecasts and budgets from your own books, review your prices and costs, and get your figures ready for a lender. On a fee agreed in writing before we start.",
+        "jump": "See what is included",
+        "answer_h": "What business advisory means with Aviteus",
+        "answer": "Business advisory means using your figures to make decisions, not just to file returns. With Aviteus it starts from up-to-date books, so every forecast rests on real numbers. You get a forecast you can update, a budget to measure against, and a short list of actions that protect cash and support growth.",
+        "included": [("Cash flow forecasts.", "What comes in and goes out over the coming months, built from your books and your plans."),
+                     ("Budgets.", "Targets for the year, compared with your actual figures each month."),
+                     ("Pricing reviews.", "The margin on each product or service, so you can see which ones pay their way."),
+                     ("Cost controls.", "Where the money goes: suppliers, subscriptions and the costs that crept up."),
+                     ("Funding readiness.", "The forecasts and figures a bank or lender asks for, prepared before you apply.")],
+        "scope": [("Cash flow forecast", "Build it from your books and update it each month or quarter", "Tell us about plans: hires, big purchases, new contracts"),
+                  ("Budget", "Set it with you and compare it with your actual figures", "Agree the targets"),
+                  ("Pricing review", "Work out the margin on each product or service", "Share your price list and supplier costs"),
+                  ("Funding pack", "Prepare the forecasts and figures a lender asks for", "Meet the lender and choose the offer")],
+        "related": [("Monthly bookkeeping", "/services/bookkeeping"), ("Accounting software set-up", "/services/accounting-software"), ("Bookkeeping vs management accounts", "/blog/bookkeeping-vs-management-accounts")],
+        "suits": "This suits you if you run a growing UK business and want to see the next few months before they happen: before a hire, a big purchase, a price change or a loan.",
+        "not": "We do not raise funds, arrange loans or act as a broker. If you need investment raised, we will point you to a firm that does. And if your books are behind, we start with a catch-up, because advice built on old figures is guesswork.",
+        "fee": "A fixed fee for a one-off piece of work, such as a pricing review or a funding pack. Or a fixed monthly fee if you want your forecast and budget kept up to date alongside your bookkeeping. Agreed in writing before any work starts.",
+        "faq_h": "Business advisory questions",
+        "faqs": [("Do I need monthly bookkeeping first?", "You need up-to-date books. If ours is the team keeping them, the forecast stays current every month. If your books are behind, we catch them up first."),
+                 ("Can you help me get a bank loan?", "We prepare the forecasts and figures a lender asks for, so your application is ready. We do not arrange loans or act as a broker."),
+                 ("How often should a forecast be updated?", "Monthly suits most growing businesses. Quarterly can work if your figures do not change much."),
+                 ("What is the difference between a forecast and a budget?", "A budget is the target you set for the year. A forecast is your best view of what will actually happen, updated as things change.")],
+        "close_h": "See the next few months before they happen",
+        "close_p": "In 20 minutes we will look at where your figures stand and what a forecast or budget would show you.",
+    })
+
+
+def formation(data):
+    return _svc_page(data, {
+        "key": "formation", "path": "/services/company-formation", "crumb": "Company formation",
+        "title": "Company Formation and Compliance in the UK | Aviteus",
+        "desc": "Limited company set-up, HMRC registrations, Companies House filings and company secretarial tasks, done in the right order with your first dates set.",
+        "schema_name": "Company formation and compliance", "service_type": "Company formation",
+        "h1": "Company formation and compliance, set up right from day one",
+        "lead": "Limited company set-up, HMRC registrations, Companies House filings and company secretarial tasks. Done in the right order, so your first tax, VAT and payroll dates are known before they arrive.",
+        "jump": "See what is included",
+        "answer_h": "What company formation and compliance cover",
+        "answer": "Company formation means registering a limited company at Companies House. Compliance means keeping it in good standing after that: the yearly confirmation statement, changes to directors and shareholders, and the records the law asks you to keep. We do both, and put every date in your \"Done and due\" report.",
+        "included": [("Limited company set-up.", "Registering the company at Companies House, with directors, shareholders and the registered office address checked first."),
+                     ("HMRC registrations.", "Corporation tax, and VAT and PAYE when you need them."),
+                     ("Companies House filings.", "The confirmation statement each year, and changes to directors, shareholders and addresses."),
+                     ("Company secretarial tasks.", "Keeping the company's registers and minutes of key decisions up to date."),
+                     ("Your first dates.", "First accounts, first corporation tax payment and first confirmation statement, in one calendar.")],
+        "scope": [("Before set-up", "Check the name, directors, shareholders and business activity", "Decide who the directors and shareholders are"),
+                  ("Set-up", "Register the company at Companies House", "Approve the details before we file"),
+                  ("HMRC registrations", "Register for corporation tax, and VAT and PAYE if needed", "Answer a few questions about the business"),
+                  ("Each year", "File the confirmation statement and keep the registers current", "Tell us about any changes")],
+        "related": [("Your first company deadlines", "/blog/limited-company-deadlines-uk"), ("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Accounting software set-up", "/services/accounting-software"), ("Self Assessment for directors", "/services/self-assessment")],
+        "suits": "This suits you if you are starting a new limited company, or moving from sole trader to limited company and want the set-up done once and done properly.",
+        "not": "Whether a limited company is right for you depends on your profit and your plans. If it is not the right move yet, we will say so on the call.",
+        "fee": "A fixed fee for the set-up and registrations. Yearly compliance, such as the confirmation statement, is included when you use one of our monthly services. Agreed in writing before any work starts.",
+        "faq_h": "Company formation questions",
+        "faqs": [("How long does it take to set up a limited company?", "Online applications to Companies House are often registered within a day, once the details are ready. Most of the time goes into deciding the details first."),
+                 ("When are my first accounts due?", "A new company's first accounts are due 21 months after the date it was set up. After that, accounts are due 9 months after each year end."),
+                 ("Do you file the confirmation statement?", "Yes. We check the company's details with you each year and file it within 14 days of the review date."),
+                 ("Do I need to register for VAT straight away?", "Only if your VAT-taxable turnover goes over the registration threshold, or you expect it to. Some businesses register early by choice. We go through this when we set up the company.")],
+        "close_h": "Start your company with the dates already set",
+        "close_p": "In 20 minutes we will go through the set-up, the registrations you need and your first deadlines.",
+    })
+
+
+def software(data):
+    return _svc_page(data, {
+        "key": "software", "path": "/services/accounting-software", "crumb": "Accounting software",
+        "title": "Xero, QuickBooks, Sage and FreeAgent Set-Up | Aviteus",
+        "desc": "Accounting software set-up, clean-up and training for UK businesses. Xero, QuickBooks, Sage and FreeAgent, with your records moved across and checked.",
+        "schema_name": "Accounting software set-up and training", "service_type": "Accounting software set-up",
+        "h1": "Accounting software set-up, clean-up and training",
+        "lead": "Xero, QuickBooks, Sage or FreeAgent. We help you choose, set it up, move your records across and show your team the few things they need to do each month.",
+        "jump": "See what is included",
+        "answer_h": "What accounting software set-up means with Aviteus",
+        "answer": "The right software turns bookkeeping from a monthly chore into a routine that runs itself. We set it up around how your business works: bank feeds connected, VAT set correctly, invoices ready to send. Your subscription stays in your company's name, and you keep full access at all times.",
+        "included": [("Choosing the right software.", "Xero, QuickBooks, Sage or FreeAgent, matched to your size, your sector and how you work."),
+                     ("Set-up.", "Chart of accounts, VAT settings, bank feeds and invoice templates."),
+                     ("Moving your records.", "From spreadsheets or another package, with opening balances checked before anything new is posted."),
+                     ("Clean-up.", "A file that has got out of hand: unmatched bank lines, duplicates and wrong VAT codes put right."),
+                     ("Training.", "For you and your team: the two or three things to do each month, and nothing more."),
+                     ("Connected apps.", "Receipt capture apps such as Hubdoc, so bills and receipts reach your books without paper.")],
+        "scope": [("Choosing software", "Recommend the best fit and explain why", "Make the final choice"),
+                  ("Set-up", "Build the accounts, VAT settings and invoice templates", "Connect your bank feeds with us"),
+                  ("Moving records", "Bring across balances and history, then check them", "Share access to your old system"),
+                  ("Training", "Show your team the monthly routine", "Join one short session")],
+        "related": [("Monthly bookkeeping", "/services/bookkeeping"), ("VAT returns and Making Tax Digital", "/blog/vat-returns-making-tax-digital"), ("Catch-up bookkeeping", "/blog/catch-up-bookkeeping")],
+        "suits": "This suits you if you are still on spreadsheets, starting out, or stuck with a software file nobody trusts any more.",
+        "not": "If your current software works and your books are up to date, you may not need this at all. We will say so on the call.",
+        "fee": "A fixed fee for set-up, moving records or a clean-up, quoted before we start. Training is included with set-up. If you then use our monthly bookkeeping, the software becomes part of that routine.",
+        "faq_h": "Accounting software questions",
+        "faqs": [("Which accounting software is best for a small business?", "It depends on your size, your sector and who will use it. Xero, QuickBooks, Sage and FreeAgent all work for UK businesses. We recommend one after a short review."),
+                 ("Can you move my old records into new software?", "Yes. We bring across opening balances and, where needed, past transactions, then check the figures before anything new is posted."),
+                 ("Do I need Making Tax Digital software?", "If you are VAT registered, yes. Your VAT returns must be filed through compatible software, and all four packages we use are compatible."),
+                 ("Who owns the software subscription?", "You do. The subscription stays in your company's name, and you can remove our access at any time.")],
+        "close_h": "Get software your whole team can use",
+        "close_p": "In 20 minutes we will look at how you keep records today and which software would fit.",
+    })
+
+
+def self_assessment(data):
+    dates = """<section class="section" id="dates" aria-labelledby="dates-h">
+  <div class="wrap">
+    <div class="head"><h2 id="dates-h">The Self Assessment dates</h2></div>
+    <table class="table table--stack">
+      <thead><tr><th scope="col">What</th><th scope="col">Deadline</th></tr></thead>
+      <tbody>
+        <tr><td>Register for Self Assessment, if you are new to it</td><td data-label="Deadline" class="date">5 October after the tax year ends</td></tr>
+        <tr><td>Paper tax return</td><td data-label="Deadline" class="date">31 October after the tax year ends</td></tr>
+        <tr><td>Online tax return and tax due</td><td data-label="Deadline" class="date">31 January after the tax year ends</td></tr>
+        <tr><td>First payment on account, if one applies</td><td data-label="Deadline" class="date">31 January</td></tr>
+        <tr><td>Second payment on account, if one applies</td><td data-label="Deadline" class="date">31 July</td></tr>
+      </tbody>
+    </table>
+    <p class="callout mt-5">Payments on account are advance payments towards next year's bill. They often catch people out in their second year, when the first return and the first advance payment fall due on the same day.</p>
+  </div>
+</section>"""
+    return _svc_page(data, {
+        "key": "self-assessment", "path": "/services/self-assessment", "crumb": "Self Assessment",
+        "title": "Self Assessment Tax Returns for Directors | Aviteus",
+        "desc": "Self Assessment tax returns for company directors, landlords and the self-employed. Prepared from your figures, filed before 31 January, no surprises.",
+        "schema_name": "Self Assessment tax returns", "service_type": "Tax preparation",
+        "h1": "Self Assessment tax returns, filed before 31 January",
+        "lead": "Your personal tax return, prepared from your figures and filed on time. You see the tax figure early, so the 31 January payment is never a surprise.",
+        "jump": "See what is included",
+        "answer_h": "Who needs a Self Assessment tax return",
+        "answer": "You usually need to file a Self Assessment tax return if you are self-employed, earn rental income, or have income that tax has not already been taken from, such as dividends above your allowance. HMRC can also ask you to file. Check GOV.UK, or ask us on a review call.",
+        "included": [("Registering for Self Assessment,", "if you are new to it."),
+                     ("Gathering your income:", "salary, dividends, rental income and self-employment."),
+                     ("Working out your tax,", "and any payments on account, with the figure sent to you early."),
+                     ("Filing your return online", "before 31 January, after you approve it."),
+                     ("Reminders", "for the 31 January and 31 July payments.")],
+        "scope": [("Your income", "Ask for the figures we need, in one list", "Send payslips, dividend vouchers and rental figures"),
+                  ("The return", "Prepare it and explain the tax figure", "Check it and approve it"),
+                  ("Filing", "File it online with HMRC", "Pay the tax by the due date"),
+                  ("Next year", "Remind you about payments on account", "Keep records as the year goes")],
+        "related": [("Company deadlines for directors", "/blog/limited-company-deadlines-uk"), ("Find your dates with the deadline finder", "/deadline-finder"), ("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll")],
+        "extra": dates,
+        "suits": "This suits company directors who take dividends, landlords, and self-employed people who want their return done properly and early, not in the last week of January.",
+        "not": "If your only income is a salary taxed through PAYE, you may not need to file at all. We will tell you on the call.",
+        "fee": "A fixed fee for each tax return, based on how many income sources you have. Agreed in writing before any work starts.",
+        "faq_h": "Self Assessment questions",
+        "faqs": [("When is the Self Assessment deadline?", "31 January after the end of the tax year, for online returns and for paying the tax. Paper returns are due earlier, on 31 October."),
+                 ("What are payments on account?", "Advance payments towards next year's tax bill, due on 31 January and 31 July. Whether they apply depends on your last bill."),
+                 ("What happens if I file late?", "HMRC charges a £100 penalty straight away for a late return, with more if it stays late. Interest is also charged on tax paid late."),
+                 ("Does Making Tax Digital for Income Tax affect me?", "It might, if you are self-employed or a landlord above an income threshold. Bring your figures to a review and we will tell you if and when it applies.")],
+        "close_h": "Get your return done before the January rush",
+        "close_p": "In 20 minutes we will go through your income sources and what your return will need.",
+    })

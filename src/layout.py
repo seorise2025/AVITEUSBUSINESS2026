@@ -99,23 +99,79 @@ def logo_img(width, height, cls="", eager=False):
             f'<img src="/assets/img/aviteus-business-logo.png" alt="Aviteus Business Solutions" width="{width}" height="{height}" {load} class="{cls}"></picture>')
 
 
+# One source for every service: the header panel, the phone menu, the footer and the Services page all read this.
+# The seven services match the live site's Services page. Labels reuse the deck's or the live site's own wording.
+SERVICE_MAP = [
+    {"key": "bookkeeping", "group": "Monthly accounting", "name": "Bookkeeping and management accounts", "url": "/services/bookkeeping",
+     "line": "A short pack showing profit, cash and what changed.",
+     "items": [("Monthly bookkeeping", "/services/bookkeeping"), ("Bank and card reconciliation", "/services/bookkeeping#monthly"),
+               ("Monthly management accounts pack", "/services/bookkeeping#monthly"), ("Catch-up bookkeeping", "/services/bookkeeping#catch-up")]},
+    {"key": "advisory", "group": "Monthly accounting", "name": "Business advisory", "url": "/services/business-advisory",
+     "line": "Forecasts, budgets, pricing reviews and funding readiness.",
+     "items": [("Cash flow forecasts", "/services/business-advisory#included"), ("Budgets and monthly comparison", "/services/business-advisory#included"),
+               ("Pricing and cost reviews", "/services/business-advisory#included"), ("Getting ready for a lender", "/services/business-advisory#included")]},
+    {"key": "payroll", "group": "Payroll and tax", "name": "Payroll and pensions", "url": "/services/payroll",
+     "line": "Staff paid on the right day. RTI filed with HMRC.",
+     "items": [("Monthly payroll and payslips", "/services/payroll#payroll-month"), ("RTI submissions to HMRC", "/services/payroll#handle"),
+               ("Workplace pensions and auto enrolment", "/services/payroll#handle"), ("Moving payroll part way through the year", "/services/payroll#switch")]},
+    {"key": "vat", "group": "Payroll and tax", "name": "VAT and year-end tax", "url": "/services/vat-tax",
+     "line": "VAT returns, year-end accounts and corporation tax.",
+     "items": [("VAT returns under Making Tax Digital", "/services/vat-tax#file"), ("Year-end accounts", "/services/vat-tax#file"),
+               ("Corporation tax and CT600", "/services/vat-tax#deadlines"), ("Making Tax Digital, in plain terms", "/services/vat-tax#mtd")]},
+    {"key": "self-assessment", "group": "Payroll and tax", "name": "Self Assessment tax returns", "url": "/services/self-assessment",
+     "line": "Personal tax returns, filed before 31 January.",
+     "items": [("Registering for Self Assessment", "/services/self-assessment#included"), ("Preparing and filing your return", "/services/self-assessment#included"),
+               ("Payments on account explained", "/services/self-assessment#dates"), ("Key Self Assessment dates", "/services/self-assessment#dates")]},
+    {"key": "formation", "group": "Company and software", "name": "Company formation and compliance", "url": "/services/company-formation",
+     "line": "Limited company set-up, HMRC registrations and Companies House filings.",
+     "items": [("Limited company set-up", "/services/company-formation#included"), ("HMRC registrations", "/services/company-formation#included"),
+               ("Confirmation statement and Companies House filings", "/services/company-formation#included"), ("Company secretarial tasks", "/services/company-formation#included")]},
+    {"key": "software", "group": "Company and software", "name": "Accounting software set-up and training", "url": "/services/accounting-software",
+     "line": "Xero, QuickBooks, Sage and FreeAgent: set-up, clean-up and training.",
+     "items": [("Choosing the right software", "/services/accounting-software#included"), ("Set-up and moving your records", "/services/accounting-software#included"),
+               ("Cleaning up an existing file", "/services/accounting-software#included"), ("Training for you and your team", "/services/accounting-software#included")]},
+]
+SERVICE_GROUPS = ["Monthly accounting", "Payroll and tax", "Company and software"]
+ALSO_AVAILABLE = [("Catch-up bookkeeping", "/services/bookkeeping#catch-up")]
+
+
 def header(active):
     def cur(k):
         return ' aria-current="page"' if active == k else ""
     chev = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'
+    svc_active = active in [s["key"] for s in SERVICE_MAP] + ["services"]
+    cols = []
+    for g in SERVICE_GROUPS:
+        svcs = "".join(f'''<li><a class="mega-svc" href="{s["url"]}"{cur(s["key"])}><b>{s["name"]}</b><span>{s["line"]}</span></a></li>'''
+                       for s in SERVICE_MAP if s["group"] == g)
+        cols.append(f'<div class="mega-col"><p class="mega-group">{g}</p><ul>{svcs}</ul></div>')
+    also = "".join(f'<li><a href="{u}">{t}</a></li>' for t, u in ALSO_AVAILABLE)
+    m_groups = "".join(
+        f'''<li class="m-group"><span class="m-glabel">{g}</span><ul>{"".join(f'<li><a href="{s["url"]}">{s["name"]}</a></li>' for s in SERVICE_MAP if s["group"] == g)}</ul></li>'''
+        for g in SERVICE_GROUPS)
     return f'''<header class="site-header">
   <div class="wrap">
     <a class="av-logo" href="/" aria-label="Aviteus Business Solutions home">{logo_img(168, 74, eager=True)}</a>
     <ul class="menu">
       <li class="has-sub">
-        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="submenu-services">Services {chev}</button>
-        <ul class="submenu" id="submenu-services">
-          <li><a href="/services/bookkeeping"{cur("bookkeeping")}>Bookkeeping and management accounts</a></li>
-          <li><a href="/services/payroll"{cur("payroll")}>Payroll and pensions</a></li>
-          <li><a href="/services/vat-tax"{cur("vat")}>VAT and year-end tax</a></li>
-          <li><a href="/services"{cur("services")}>All services</a></li>
-          <li><a href="/deadline-finder"{cur("finder")}>Free UK deadline finder</a></li>
-        </ul>
+        <button class="menu-btn{" is-current" if svc_active else ""}" type="button" aria-expanded="false" aria-controls="mega-services">Services {chev}</button>
+        <div class="mega" id="mega-services">
+          <div class="wrap">
+            <div class="mega-grid">
+              {"".join(cols)}
+              <div class="mega-col mega-side">
+                <p class="mega-group">Free tool</p>
+                <ul><li><a class="mega-svc" href="/deadline-finder"{cur("finder")}><b>UK deadline finder</b><span>Your next VAT, tax and payroll dates in one list.</span></a></li></ul>
+                <p class="mega-group mt-6">Learn</p>
+                <ul><li><a class="mega-svc" href="/blog"><b>Blog</b><span>Plain answers on bookkeeping, payroll and tax.</span></a></li></ul>
+              </div>
+            </div>
+            <div class="mega-foot">
+              <a class="av-link" href="/services"{cur("services")}>All services, and what we don't do {ARROW}</a>
+              <span class="mega-cta"><span>Not sure which you need?</span> <a class="av-btn av-btn--ember av-btn--small" href="/contact" data-book data-placement="mega_menu">Book a 20-minute review</a></span>
+            </div>
+          </div>
+        </div>
       </li>
       <li><a href="/about-us"{cur("about")}>About us</a></li>
       <li><a href="/blog"{cur("blog")}>Blog</a></li>
@@ -125,11 +181,12 @@ def header(active):
     <button class="av-menu-toggle nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h16"/></svg></button>
   </div>
   <nav class="mobile-nav wrap" id="mobile-nav" aria-label="Main">
-    <ul>
-      <li><a href="/services">Services</a></li>
-      <li class="sub"><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li>
-      <li class="sub"><a href="/services/payroll">Payroll and pensions</a></li>
-      <li class="sub"><a href="/services/vat-tax">VAT and year-end tax</a></li>
+    <p class="m-label">Our services</p>
+    <ul class="m-services">
+      {m_groups}
+    </ul>
+    <ul class="m-main">
+      <li><a href="/services">All services</a></li>
       <li><a href="/about-us">About us</a></li>
       <li><a href="/blog">Blog</a></li>
       <li><a href="/deadline-finder">Free UK deadline finder</a></li>
@@ -151,9 +208,8 @@ def footer(data):
       <div>
         <h2>Services</h2>
         <ul>
-          <li><a href="/services/bookkeeping">Bookkeeping and management accounts</a></li>
-          <li><a href="/services/payroll">Payroll and pensions</a></li>
-          <li><a href="/services/vat-tax">VAT and year-end tax</a></li>
+          {"".join(f'<li><a href="{s["url"]}">{s["name"]}</a></li>' for s in SERVICE_MAP)}
+          <li><a href="/services">All services</a></li>
           <li><a href="/deadline-finder">Free UK deadline finder</a></li>
         </ul>
       </div>

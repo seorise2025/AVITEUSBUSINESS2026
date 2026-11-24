@@ -96,6 +96,7 @@
       navBtn.setAttribute('aria-expanded', String(!open));
       navBtn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
       mobileNav.classList.toggle('is-open', !open);
+      body.classList.toggle('nav-open', !open);
     });
   }
 
