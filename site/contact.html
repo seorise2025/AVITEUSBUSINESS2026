@@ -87,7 +87,7 @@
           <div class="field" id="f-name-wrap"><label for="f-name">Full name</label><input class="av-input" id="f-name" name="name" autocomplete="name" required maxlength="100" aria-describedby="f-name-err"><p class="err" id="f-name-err"></p></div>
           <div class="field" id="f-email-wrap"><label for="f-email">Email</label><input class="av-input" id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err"><p class="err" id="f-email-err"></p></div>
           <div class="field"><label for="f-company">Company or website (optional)</label><input class="av-input" id="f-company" name="company" autocomplete="organization" maxlength="200"></div>
-          <div class="field" id="f-service-wrap"><label for="f-service">Which service is this about?</label><select class="av-input" id="f-service" name="service" required aria-describedby="f-service-err"><option value="">Choose one</option><option value="Bookkeeping and management accounts">Bookkeeping and management accounts</option><option value="Payroll and pensions">Payroll and pensions</option><option value="VAT and year-end tax">VAT and year-end tax</option><option value="Switching from my current accountant">Switching from my current accountant</option><option value="Something else, or not sure yet">Something else, or not sure yet</option></select><p class="err" id="f-service-err"></p></div>
+          <div class="field" id="f-service-wrap"><label for="f-service">Which service is this about?</label><select class="av-input" id="f-service" name="service" required aria-describedby="f-service-err"><option value="">Choose one</option><option value="Bookkeeping and management accounts">Bookkeeping and management accounts</option><option value="Payroll and pensions">Payroll and pensions</option><option value="VAT and year-end tax">VAT and year-end tax</option><option value="Switching from my current accountant">Switching from my current accountant</option><option value="Something else, or not sure yet">Something else, or not sure yet</option></select><p class="hint">Compare them first: <a class='ilink' href='/services'>see all services</a>.</p><p class="err" id="f-service-err"></p></div>
           <div class="field" id="f-message-wrap"><label for="f-message">What would you like help with?</label><p class="hint" id="f-message-hint">For example: our books are three months behind, or we want to move payroll before the new tax year.</p><textarea class="av-input" id="f-message" name="message" rows="5" required maxlength="2000" aria-describedby="f-message-hint f-message-err"></textarea><p class="err" id="f-message-err"></p></div>
           <fieldset class="field"><legend>How should we reply?</legend><div class="choices">
             <label class="choice"><input type="radio" name="reply_method" value="email" checked><span>Email</span></label>
@@ -117,7 +117,7 @@
       <h2 class="mt-7">Useful to have ready (not essential)</h2>
       <ul class="ticks mt-5">
         <li>Your accounting software login, or your last set of accounts</li>
-        <li>Your VAT and payroll dates, if you know them</li>
+        <li>Your <a class='ilink' href='/deadline-finder'>VAT and payroll dates</a>, if you know them</li>
         <li>The name of your current accountant, if you have one</li>
       </ul>
       <p class="mt-6"><a class="tlink" href="/about-us">Meet the team first</a></p>

@@ -100,10 +100,20 @@ Fill these in `src/data.json` and rebuild. Each block appears only when its data
 - Where the work is done (Option A or B): About page section.
 - LinkedIn company page: footer.
 
+## Software we work in (Home)
+
+Built from the updated deck (Copy Deck 1). The strip shows Xero, Sage, FreeAgent and Hubdoc as plain text, as the deck instructs, until each vendor's partner terms are confirmed. Xero's rules limit its logo (and Hubdoc's) to firms on the Xero partner programme. To show an approved logo, put the official file in `src/static/` and set its path in `src/data.json` under `software_logos`, then rebuild.
+
+## Internal linking
+
+Run `python3 src/link_audit.py` after any copy change. It counts contextual links only (header, footer, breadcrumbs excluded). Current state: every page links to at least 3 others in its body copy, every service page links to the other two, to About, Contact and the Services hub, and the Services hub has 7 inbound links (it had 0). All new links sit on words already in the deck, so no claim was added.
+
 ## Additions beyond the deck (for approval)
 
 - The free UK deadline finder page, its copy, menu and footer links, and links to it from the Payroll and VAT pages.
-- A short "Related pages" link row on each service page, using the exact anchor texts from the deck's internal link plan.
+- A short "Related pages" link row on each service page, the About page and the finder, using the deck's anchor texts plus "All services".
+- Contextual links on existing deck words, for example "The books are three months behind" to Bookkeeping, "Aviteus began in healthcare staffing" to About, "VAT and payroll dates" on Contact to the finder.
+- Three short link lines: "See all services and what we don't do →" (Home), "Find your own dates →" (Home sample card), "Compare them first: see all services" (Contact form hint).
 - "Cookie settings" link in the footer, so visitors can change their choice (PECR).
 - Payroll month table: "Cut-off day" shown in place of the `{Cut-off day}` field until a day is agreed.
 

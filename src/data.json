@@ -22,5 +22,12 @@
     "photo": "/assets/img/team/file.webp or null for initials",
     "linkedin": "https://www.linkedin.com/in/...",
     "consent": true
+  },
+  "software_logos": {
+    "_note": "Leave null until the vendor's partner terms allow Aviteus to use the logo (Xero partner programme for Xero and Hubdoc). Then set the path to the official file, e.g. /assets/img/logos/xero.svg",
+    "Xero": null,
+    "Sage": null,
+    "FreeAgent": null,
+    "Hubdoc": null
   }
 }

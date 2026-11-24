@@ -34,14 +34,35 @@ def team_block(data, heading, intro_link=False):
     return f'<section class="section" aria-labelledby="team-h"><div class="wrap"><div class="head"><h2 id="team-h">{heading}</h2></div><div class="team">{"".join(cards)}</div>{more}</div></section>'
 
 
+def software_strip(data):
+    """Deck: "Software we work in" strip. Names show as plain text until each vendor's partner terms are confirmed.
+    Add an approved logo file path in data.json software_logos to swap a name for its official logo."""
+    logos = data.get("software_logos", {})
+    items = []
+    for name in ["Xero", "Sage", "FreeAgent", "Hubdoc"]:
+        src = logos.get(name)
+        items.append(f'<li class="sw"><img src="{escape(src)}" alt="{name} logo" height="32" loading="lazy"></li>' if src else f'<li class="sw sw--text">{name}</li>')
+    return f'''<section class="section section--alt" id="software" aria-labelledby="sw-h">
+  <div class="wrap split">
+    <div class="head" style="margin:0"><h2 id="sw-h">Already on Xero, Sage, FreeAgent or Hubdoc? We start from your file.</h2></div>
+    <div>
+      <p class="sw-label">Software we work in</p>
+      <ul class="sw-row" aria-label="Software we work in">{"".join(items)}</ul>
+      <p class="lead mt-6">We work inside the software you already use, so nothing has to be rebuilt. Still on spreadsheets? We will set you up on the right one and move your records across.</p>
+      <p class="mt-5"><a class="av-link" href="/services/bookkeeping">See how monthly bookkeeping works {ARROW}</a></p>
+    </div>
+  </div>
+</section>'''
+
+
 # ---------------------------------------------------------------- Home
 def home(data):
     faqs = [
-        ("How much will it cost?", "A fixed monthly fee, agreed in writing before we start. It depends on how many transactions you have, how many people you pay, and whether you are VAT registered. You will have the figure after your review."),
+        ("How much will it cost?", "A fixed monthly fee, agreed in writing before we start. It depends on how many transactions you have, how many people you pay, and whether you are VAT registered. You will have the figure after your <a class='ilink' href='/contact'>review</a>."),
         ("Can I keep my current accountant for the year-end?", "Yes. Some owners use us for the monthly work and keep their current firm for the annual accounts. The scope will say who does what."),
-        ("Which software do you work in?", "Xero, QuickBooks, Sage and FreeAgent. If you are on spreadsheets, we can set you up and move your records across."),
+        ("Which software do you work in?", "Xero, QuickBooks, Sage and FreeAgent. If you are on spreadsheets, we can <a class='ilink' href='/services/bookkeeping'>set you up and move your records across</a>."),
         ("Do I need to be near Harrow?", "No. We work with businesses across the UK by video, phone and email. Our office in Harrow is there if you would rather meet in person."),
-        ("How does switching work?", "We write to your current accountant for professional clearance, collect your records, and get authority to talk to HMRC for you. We time it around your next payroll and VAT dates so nothing is missed."),
+        ("How does switching work?", "We write to your current accountant for professional clearance, collect your records, and get authority to talk to HMRC for you. We time it around your next <a class='ilink' href='/services/payroll'>payroll</a> and <a class='ilink' href='/deadline-finder'>VAT dates</a> so nothing is missed."),
     ]
     facts = ["Aviteus Business Solutions Ltd", f'<a href="{CH_URL}" target="_blank" rel="noopener">Company number {COMPANY_NO}</a>', "Registered in England and Wales", ADDRESS]
     if data.get("aml_supervisor"): facts.append(escape(data["aml_supervisor"]))
@@ -74,6 +95,7 @@ def home(data):
       <ul>
         <li><span>3 receipts for card spending</span><span class="due">by 5 December</span></li>
       </ul>
+      <p class="dd-more"><a class="tlink" href="/deadline-finder">Find your own dates →</a></p>
     </aside>
   </div>
 </section>
@@ -83,8 +105,8 @@ def home(data):
     <div class="head" style="margin:0"><h2 id="familiar-h">Most owners call an accountant when something has already gone wrong</h2></div>
     <div>
       <ul class="lines">
-        <li>The books are three months behind and the VAT return is due in two weeks.</li>
-        <li>Payroll only runs because you chase timesheets on the 24th of every month.</li>
+        <li><a class='ilink' href='/services/bookkeeping'>The books are three months behind</a> and the <a class='ilink' href='/services/vat-tax'>VAT return is due in two weeks</a>.</li>
+        <li><a class='ilink' href='/services/payroll'>Payroll only runs because you chase timesheets</a> on the 24th of every month.</li>
         <li>Your accountant appears once a year, with the accounts and an invoice, and you still don't know if you made money in March.</li>
       </ul>
       <p class="mt-6 lead">If any of that is you, the fix is not a better spreadsheet. It is someone doing the work every month, and telling you plainly where you stand.</p>
@@ -100,21 +122,23 @@ def home(data):
       <div class="row"><h3>Payroll and pensions</h3><p>Staff paid on the right day. Payslips sent. RTI filed with HMRC. Pension contributions handled.</p><a class="av-link" href="/services/payroll">Payroll and pensions {ARROW}</a></div>
       <div class="row"><h3>VAT and year-end tax</h3><p>VAT returns under Making Tax Digital. Year-end accounts. Corporation tax. Your part flagged weeks ahead, not days.</p><a class="av-link" href="/services/vat-tax">VAT and year-end tax {ARROW}</a></div>
     </div>
+    <p class="mt-5"><a class="tlink" href="/services">See all services and what we don't do →</a></p>
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="how-h">
+<section class="section" aria-labelledby="how-h">
   <div class="wrap">
     <div class="head"><h2 id="how-h">From first call to first report in four steps</h2></div>
     <ol class="steps">
       <li><b>Review.</b> A free 20-minute call. We look at what is behind, what is due, and whether we are the right fit. Sometimes we are not, and we will say so.</li>
       <li><b>Scope.</b> We send a written scope: what we do, what you do, when, and the fixed monthly fee. Nothing starts until you agree it.</li>
-      <li><b>Switch.</b> If you have an accountant now, we contact them for professional clearance and plan the move around your next payroll run and VAT date. You send one email.</li>
+      <li><b>Switch.</b> If you have an accountant now, we contact them for professional clearance and plan the move around your next <a class='ilink' href='/services/payroll'>payroll run</a> and <a class='ilink' href='/services/vat-tax'>VAT date</a>. You send one email.</li>
       <li><b>Monthly.</b> We do the work and send your "Done and due" report. You read it in two minutes.</li>
     </ol>
     <div class="mt-7">{book_btn("after_process")}</div>
   </div>
 </section>
+{software_strip(data)}
 
 <section class="section" aria-labelledby="new-h">
   <div class="wrap split">
@@ -133,7 +157,7 @@ def home(data):
 <section class="section section--alt" aria-labelledby="roots-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="roots-h">Started by the team behind Aviteus Healthcare</h2></div>
-    <p class="lead">Aviteus began in healthcare staffing, supplying care and nursing staff across the UK. In that world a late payroll means a carer does not get paid on Friday. We brought the same standard to accounting: get the dull things right, on time, every time.</p>
+    <p class="lead"><a class='ilink' href='/about-us'>Aviteus began in healthcare staffing</a>, supplying care and nursing staff across the UK. In that world a late payroll means a carer does not get paid on Friday. We brought the same standard to accounting: get the dull things right, on time, every time.</p>
   </div>
 </section>
 
@@ -197,7 +221,7 @@ def bookkeeping(data):
     <div class="head" style="margin:0"><h2 id="get-h">What lands in your inbox each month</h2></div>
     <ul class="ticks">
       <li><b>Reconciled bank and card accounts.</b> Every line matched to a bill, a sale or a receipt, to the last day of the month.</li>
-      <li><b>Bills and sales posted.</b> Supplier bills, sales invoices and credit notes recorded and coded correctly for VAT.</li>
+      <li><b>Bills and sales posted.</b> Supplier bills, sales invoices and credit notes recorded and coded correctly for <a class='ilink' href='/services/vat-tax'>VAT</a>.</li>
       <li><b>A list of what is missing.</b> Short and specific: "3 card payments need receipts", not "please send paperwork".</li>
       <li><b>Your monthly management pack.</b> Profit and loss for the month and year to date, balance sheet, cash position, and one page of notes on what moved and why.</li>
       <li><b>Your "Done and due" report.</b> What we finished, what is due next, and what we need from you, with dates.</li>
@@ -216,23 +240,23 @@ def bookkeeping(data):
         <tr><td>Sales invoices</td><td data-label="We do">Post and match payments</td><td data-label="You do">Raise invoices, or let us know who owes what</td><td data-label="When" class="when">As issued</td></tr>
         <tr><td>Receipts and queries</td><td data-label="We do">Send one clear list</td><td data-label="You do">Answer it</td><td data-label="When" class="when">Once a month</td></tr>
         <tr><td>Management pack</td><td data-label="We do">Prepare and explain it</td><td data-label="You do">Read it, ask anything</td><td{' data-label="When"' if pack_when else ''} class="when">{pack_when}</td></tr>
-        <tr><td>Year-end</td><td data-label="We do">Hand clean books to your accountant, or to our year-end team</td><td data-label="You do">Approve the accounts</td><td data-label="When" class="when">Once a year</td></tr>
+        <tr><td>Year-end</td><td data-label="We do">Hand clean books to your accountant, or to <a class='ilink' href='/services/vat-tax'>our year-end team</a></td><td data-label="You do">Approve the accounts</td><td data-label="When" class="when">Once a year</td></tr>
       </tbody>
     </table>
     <p class="note mt-4">The table in your scope will be specific to your business. This is the starting point.</p>
-    {related([("We can run payroll from the same books", "/services/payroll"), ("VAT returns and Making Tax Digital", "/services/vat-tax"), ("Who will do the work", "/about-us")])}
+    {related([("We can run payroll from the same books", "/services/payroll"), ("VAT returns and Making Tax Digital", "/services/vat-tax"), ("Who will do the work", "/about-us"), ("All services", "/services")])}
     <div class="mt-7">{book_btn("after_scope")}</div>
   </div>
 </section>
 {sample}
-<section class="section" aria-labelledby="behind-h">
+<section class="section" id="catch-up" aria-labelledby="behind-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="behind-h">Books three months behind? Start with a catch-up.</h2></div>
     <p class="lead">Most new clients are behind when they call. That is normal. We bring the records up to date first, as a separate, fixed-price piece of work, then move you onto the monthly routine. You will know the catch-up fee and how long it will take before we start.</p>
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="soft-h">
+<section class="section section--alt" id="software" aria-labelledby="soft-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="soft-h">Your software, or we will set it up</h2></div>
     <p class="lead">We work in Xero, QuickBooks, Sage and FreeAgent. If your records live in spreadsheets or a shoebox, we will set up the software, connect your bank, and show you the two or three things you need to do each month. Nothing more.</p>
@@ -291,7 +315,7 @@ def contact(data):
           <div class="field" id="f-name-wrap"><label for="f-name">Full name</label><input class="av-input" id="f-name" name="name" autocomplete="name" required maxlength="100" aria-describedby="f-name-err"><p class="err" id="f-name-err"></p></div>
           <div class="field" id="f-email-wrap"><label for="f-email">Email</label><input class="av-input" id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err"><p class="err" id="f-email-err"></p></div>
           <div class="field"><label for="f-company">Company or website (optional)</label><input class="av-input" id="f-company" name="company" autocomplete="organization" maxlength="200"></div>
-          <div class="field" id="f-service-wrap"><label for="f-service">Which service is this about?</label><select class="av-input" id="f-service" name="service" required aria-describedby="f-service-err"><option value="">Choose one</option>{opts}</select><p class="err" id="f-service-err"></p></div>
+          <div class="field" id="f-service-wrap"><label for="f-service">Which service is this about?</label><select class="av-input" id="f-service" name="service" required aria-describedby="f-service-err"><option value="">Choose one</option>{opts}</select><p class="hint">Compare them first: <a class='ilink' href='/services'>see all services</a>.</p><p class="err" id="f-service-err"></p></div>
           <div class="field" id="f-message-wrap"><label for="f-message">What would you like help with?</label><p class="hint" id="f-message-hint">For example: our books are three months behind, or we want to move payroll before the new tax year.</p><textarea class="av-input" id="f-message" name="message" rows="5" required maxlength="2000" aria-describedby="f-message-hint f-message-err"></textarea><p class="err" id="f-message-err"></p></div>
           <fieldset class="field"><legend>How should we reply?</legend><div class="choices">
             <label class="choice"><input type="radio" name="reply_method" value="email" checked><span>Email</span></label>
@@ -321,7 +345,7 @@ def contact(data):
       <h2 class="mt-7">Useful to have ready (not essential)</h2>
       <ul class="ticks mt-5">
         <li>Your accounting software login, or your last set of accounts</li>
-        <li>Your VAT and payroll dates, if you know them</li>
+        <li>Your <a class='ilink' href='/deadline-finder'>VAT and payroll dates</a>, if you know them</li>
         <li>The name of your current accountant, if you have one</li>
       </ul>
       <p class="mt-6"><a class="tlink" href="/about-us">Meet the team first</a></p>
@@ -412,7 +436,7 @@ def payroll(data):
       </tbody>
     </table>
     <p class="lead mt-5">The same routine every month. No guessing, no last-minute calls.</p>
-    {related([("Monthly bookkeeping", "/services/bookkeeping"), ("Who will run your payroll", "/about-us"), ("Find your payroll dates", "/deadline-finder")])}
+    {related([("Monthly bookkeeping", "/services/bookkeeping"), ("Who will run your payroll", "/about-us"), ("VAT and year-end tax", "/services/vat-tax"), ("Find your payroll dates", "/deadline-finder"), ("All services", "/services")])}
     <div class="mt-7">{book_btn("after_table")}</div>
   </div>
 </section>
@@ -427,8 +451,8 @@ def payroll(data):
       <li><b>Starters and leavers</b>, including P45s</li>
       <li><b>Statutory pay:</b> sick pay, maternity, paternity and shared parental pay</li>
       <li><b>Workplace pensions:</b> assessing staff, enrolling them, sending contributions, and re-enrolment every three years</li>
-      <li><b>Year-end:</b> P60s for staff by 31 May, P11D benefit forms by 6 July where needed</li>
-      <li><b>Directors' payroll</b>, including salary set at a tax-efficient level agreed with you</li>
+      <li><b>Year-end:</b> <a class='ilink' href='/deadline-finder'>P60s for staff by 31 May, P11D benefit forms by 6 July</a> where needed</li>
+      <li><b>Directors' payroll</b>, including salary set at a <a class='ilink' href='/services/vat-tax'>tax-efficient level</a> agreed with you</li>
     </ul>
   </div>
 </section>
@@ -512,7 +536,7 @@ def vat(data):
       </tbody>
     </table>
     <p class="callout mt-5">Note the order. Corporation tax is <b>paid</b> three months before the return is <b>due</b>. Many owners find that out the hard way.</p>
-    {related([("Find your own dates with the free deadline finder", "/deadline-finder"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Payroll", "/services/payroll")])}
+    {related([("Find your own dates with the free deadline finder", "/deadline-finder"), ("Monthly bookkeeping", "/services/bookkeeping"), ("Payroll", "/services/payroll"), ("Who will do the work", "/about-us"), ("All services", "/services")])}
     <div class="mt-7">{book_btn("after_table")}</div>
   </div>
 </section>
@@ -521,7 +545,7 @@ def vat(data):
   <div class="wrap">
     <div class="head"><h2 id="plan-h">How we stay ahead of the dates</h2></div>
     <ol class="steps">
-      <li><b>On day one</b> we put every deadline for your company into one calendar, and you get a copy.</li>
+      <li><b>On day one</b> we put <a class='ilink' href='/deadline-finder'>every deadline for your company into one calendar</a>, and you get a copy.</li>
       <li><b>Each month</b> your "Done and due" report shows the next two deadlines and anything we need from you.</li>
       <li><b>Before each VAT return</b> we send the draft figures for approval, with any unusual items explained in a sentence.</li>
       <li><b>At year-end</b> we send one list of questions, not a drip of emails, and a draft tax figure early enough for you to plan the payment.</li>
@@ -532,14 +556,14 @@ def vat(data):
 <section class="section" aria-labelledby="mtd-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="mtd-h">Making Tax Digital, in plain terms</h2></div>
-    <p class="lead">Every VAT-registered business must keep digital records and submit VAT returns through compatible software. If you still use spreadsheets, we can connect them through approved bridging software, or move you to Xero, QuickBooks, Sage or FreeAgent. Sole traders and landlords now face a similar rule for income tax, phased in by income level from April 2026.</p>
+    <p class="lead">Every VAT-registered business must keep digital records and submit VAT returns through compatible software. If you still use spreadsheets, we can connect them through approved bridging software, or <a class='ilink' href='/services/bookkeeping#software'>move you to Xero, QuickBooks, Sage or FreeAgent</a>. Sole traders and landlords now face a similar rule for income tax, phased in by income level from April 2026.</p>
   </div>
 </section>
 
 <section class="section section--alt" aria-labelledby="suits-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="suits-h">Who this is for</h2></div>
-    <p class="lead">UK limited companies that are VAT registered, or close to the registration threshold, and want returns and year-end handled by the same team that sees their books each month. If you want year-end only and do your own books, we can do that too. Tell us on the call.</p>
+    <p class="lead">UK limited companies that are VAT registered, or close to the registration threshold, and want returns and year-end handled by the same team that <a class='ilink' href='/services/bookkeeping'>sees their books each month</a>. If you want year-end only and do your own books, we can do that too. Tell us on the call.</p>
   </div>
 </section>
 
@@ -583,7 +607,7 @@ def about(data):
     <div class="head" style="margin:0"><h2 id="story-h">Why Aviteus exists</h2></div>
     <div>
       <p class="lead">Vikas Pandey started <a class="tlink" href="https://www.aviteushealthcare.co.uk" target="_blank" rel="noopener">Aviteus Healthcare</a> to supply care and nursing staff across the UK. Running that business taught him a simple lesson about money: when payroll is late, real people do not get paid, and when the books are behind, the owner makes decisions blind.</p>
-      <p class="lead">Aviteus Business Solutions was set up in Harrow in September 2025 to give other owner-managed businesses what he needed himself. Books that are current. Payroll that runs on the same day every month. Deadlines known well in advance. And one person to ask.</p>
+      <p class="lead">Aviteus Business Solutions was set up in Harrow in September 2025 to give other owner-managed businesses what he needed himself. <a class='ilink' href='/services/bookkeeping'>Books that are current</a>. <a class='ilink' href='/services/payroll'>Payroll that runs on the same day every month</a>. <a class='ilink' href='/services/vat-tax'>Deadlines known well in advance</a>. And one person to ask.</p>
     </div>
   </div>
 </section>
@@ -596,7 +620,7 @@ def about(data):
       <ul class="ticks mt-6">
         <li>Your work gets senior attention, not a junior working from a checklist.</li>
         <li>Each client matters to us, so we will work hard to keep you.</li>
-        <li>We set up every process recently, around today's software and Making Tax Digital, not around habits from 1998.</li>
+        <li>We set up every process recently, around today's software and <a class='ilink' href='/services/vat-tax'>Making Tax Digital</a>, not around habits from 1998.</li>
       </ul>
     </div>
   </div>
@@ -606,7 +630,7 @@ def about(data):
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="how-h">How we work with you</h2></div>
     <ul class="ticks">
-      <li><b>Everything in writing first.</b> A scope that lists what we do, what you do, and the fixed fee, before any work starts.</li>
+      <li><b>Everything in writing first.</b> <a class='ilink' href='/services/bookkeeping#scope'>A scope that lists what we do, what you do</a>, and the fixed fee, before any work starts.</li>
       <li><b>One named manager.</b> You will not be passed around. If your manager is away, you will be told who is covering.</li>
       <li><b>A monthly report you can read in two minutes.</b> What we finished, what is due next, what we need from you.</li>
       <li><b>Your software, your data.</b> Your accounting software stays in your name, and you can remove our access at any time.</li>
@@ -617,7 +641,8 @@ def about(data):
 <section class="section" aria-labelledby="check-h">
   <div class="wrap split">
     <div class="head" style="margin:0"><h2 id="check-h">Details you can check</h2></div>
-    <table class="facts-table">{rows}</table>
+    <div><table class="facts-table">{rows}</table>
+    {related([("Bookkeeping and management accounts", "/services/bookkeeping"), ("Payroll and pensions", "/services/payroll"), ("VAT and year-end tax", "/services/vat-tax"), ("All services", "/services")])}</div>
   </div>
 </section>
 {close_band("Talk to the person who would actually do your work", "Book a 20-minute review. You will speak to someone from the team above, not a sales desk.")}
@@ -659,8 +684,8 @@ def services(data):
     <div class="head" style="margin:0"><h2 id="also-h">Also available, as part of a monthly service</h2></div>
     <ul class="ticks">
       <li><b>Company set-up:</b> forming a limited company and registering it with HMRC.</li>
-      <li><b>Software set-up and clean-up:</b> moving you onto Xero, QuickBooks, Sage or FreeAgent, or tidying a file that has got out of hand.</li>
-      <li><b>Catch-up bookkeeping:</b> bringing old records up to date before monthly work starts.</li>
+      <li><b>Software set-up and clean-up:</b> <a class='ilink' href='/services/bookkeeping#software'>moving you onto Xero, QuickBooks, Sage or FreeAgent</a>, or tidying a file that has got out of hand.</li>
+      <li><b>Catch-up bookkeeping:</b> <a class='ilink' href='/services/bookkeeping#catch-up'>bringing old records up to date</a> before monthly work starts.</li>
     </ul>
   </div>
 </section>
@@ -673,7 +698,7 @@ def services(data):
 
 <section class="section" style="padding-top:0" aria-labelledby="unsure-h">
   <div class="wrap read">
-    <h2 id="unsure-h">Not sure which you need?</h2>
+    <h2 id="unsure-h"><a class="ilink" href="/contact" style="text-decoration-color:transparent">Not sure which you need?</a></h2>
     <p class="mt-4 lead">Most people aren't. Tell us what is going wrong and we will tell you which service fixes it, in 20 minutes.</p>
     <div class="mt-6">{book_btn("unsure")}</div>
   </div>
@@ -717,6 +742,9 @@ def finder(data):
         ("Does this tool store my details?", "No. The dates are worked out in your browser. Nothing you choose is saved or sent to us."),
     ]
     crumbs = [("Home", "/"), ("Free deadline finder", "/deadline-finder")]
+    def link_rule(a):
+        target = "/services/payroll" if any(k in a for k in ("PAYE", "P60", "P11D")) else ("/services/vat-tax" if not a.startswith(("Self", "Second")) else "/contact")
+        return f'<a class="ilink" href="{target}">{a}</a>'
     rules = [
         ("VAT return and payment", "1 month and 7 days after the end of each VAT period", "Quarter ending 30 November: due 7 January"),
         ("Annual accounts to Companies House", "9 months after your year end", "Year end 31 March: due 31 December"),
@@ -728,7 +756,7 @@ def finder(data):
         ("Self Assessment return and tax", "31 January after the tax year ends", "2025/26 tax year: due 31 January 2027"),
         ("Second payment on account", "31 July", "2026/27 tax year: due 31 July 2027"),
     ]
-    rule_rows = "".join(f'<tr><td>{a}</td><td data-label="Deadline" class="date">{b}</td><td data-label="Example">{c}</td></tr>' for a, b, c in rules)
+    rule_rows = "".join(f'<tr><td>{link_rule(a)}</td><td data-label="Deadline" class="date">{b}</td><td data-label="Example">{c}</td></tr>' for a, b, c in rules)
     body = f'''
 <section class="hero hero--simple" aria-labelledby="h1">
   <div class="wrap read">
@@ -778,7 +806,7 @@ def finder(data):
       <tbody>{rule_rows}</tbody>
     </table>
     <div class="quiet mt-6"><h3>When these rules do not fit</h3><p class="mt-4">Your first accounts after setting up a company have a different deadline. Large companies pay corporation tax in instalments. If a payment date falls on a weekend or bank holiday, make sure the money reaches HMRC by the working day before. Always check your own dates on GOV.UK or with your accountant.</p></div>
-    {related([("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Monthly bookkeeping", "/services/bookkeeping")])}
+    {related([("VAT and year-end tax", "/services/vat-tax"), ("Payroll and pensions", "/services/payroll"), ("Monthly bookkeeping", "/services/bookkeeping"), ("All services", "/services")])}
   </div>
 </section>
 

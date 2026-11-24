@@ -35,6 +35,7 @@ def rewrite_url(u):
 
 def convert(html, main):
     html = re.sub(r'((?:href|src|srcset)=")([^"]*)(")', lambda m: m.group(1) + rewrite_url(m.group(2)) + m.group(3), html)
+    html = re.sub(r"((?:href|src|srcset)=')([^']*)(')", lambda m: m.group(1) + rewrite_url(m.group(2)) + m.group(3), html)
     html = re.sub(r'<link rel="(?:icon|apple-touch-icon)"[^>]*>\s*', "", html)
     html = html.replace('<script src="assets/site.js" defer></script>', '<script>window.AV_ARTIFACT = true;</script>\n<script src="assets/site.js" defer></script>')
     if main:
